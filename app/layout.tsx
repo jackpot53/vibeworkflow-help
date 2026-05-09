@@ -27,7 +27,7 @@ export default async function RootLayout({
     <html lang="ko" dir="ltr" suppressHydrationWarning className={cn("font-sans", geist.variable)}>
       <Head />
       <body>
-        <Layout pageMap={pageMap}>
+        <Layout pageMap={pageMap} sidebar={{ defaultMenuCollapseLevel: 3 }}>
           {children}
         </Layout>
       </body>
