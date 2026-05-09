@@ -1,0 +1,75 @@
+---
+title: IDE 설치하기 (Antigravity)
+description: CLI가 불편한 분들을 위한 GUI 기반 바이브코딩 환경, Google Antigravity IDE 설치 가이드입니다.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# IDE 설치하기 (Antigravity)
+
+CLI 명령어가 불편하신 분들을 위해 GUI 형식으로도 바이브코딩을 할 수 있습니다.\
+**IDE(Integrated Development Environment, 통합 개발 환경)** 는 코드 편집기, 디버거, 터미널, AI 어시스턴트 등 소프트웨어 개발에 필요한 도구들을 하나의 프로그램 안에 통합해 놓은 GUI 애플리케이션입니다.\
+한 마디로, "코딩에 필요한 모든 것을 한 지붕 아래 모아 놓은 작업 공간"입니다.\
+이 가이드에서는 **Google Antigravity**를 사용합니다. Antigravity는 업계 표준 수준의 확장 프로그램 생태계와 가벼운 성능을 자랑하는 VSCode 기반의 에이전트 중심 IDE입니다.\
+VSCode의 모든 기능을 지원하면서 Gemini 3 기반의 Google 생태계 작업에 특히 강점이 있습니다.
+
+<Callout type="info">
+  Claude Code는 Antigravity의 Extensions 사이드바를 통해 IDE 안에서 바로 실행할 수 있습니다.
+</Callout>
+
+<Steps>
+
+### Antigravity 다운로드
+
+[**antigravity.google**](http://antigravity.google)에 접속한 후 macOS용 설치 파일을 다운로드하세요.\
+다운로드 용량은 약 200~300MB 정도입니다.
+
+### 설치 및 실행
+
+다운로드한 설치 파일을 실행하세요.\
+macOS에서는 열린 창에서 Antigravity 아이콘을 **Applications 폴더로 드래그**하면 설치가 완료됩니다.\
+Antigravity를 실행하면 VS Code와 유사한 형태로 열리며, 측면에 AI 패널이 추가된 UI를 확인할 수 있습니다.
+
+![Antigravity 에디터 화면](https://antigravity.google/assets/image/docs/editor-open-agent-manager.png)
+
+### Google 계정으로 로그인
+
+우측 상단의 **Sign In** 버튼을 클릭한 뒤 Google 계정으로 인증하세요.
+
+<Callout type="tip">
+  Google One 구독이 있다면 Gemini와 Claude 모델 모두에서 하루 토큰 사용 한도가 크게 증가합니다.
+</Callout>
+
+### 온보딩 설정 진행
+
+Antigravity는 처음 실행 시 간단한 온보딩 과정을 안내합니다.
+
+1. **Gemini 3 Pro 연결** — AI 모델 연결
+2. **기본 워크스페이스 폴더 선택** — 작업할 프로젝트 폴더 지정
+3. **선호 언어 및 프레임워크 설정** — 개발 환경 구성
+
+전체 과정은 약 3분 정도 소요됩니다.
+
+### 인터페이스 살펴보기
+
+Antigravity의 핵심 UI 요소 세 가지에 먼저 익숙해지세요.
+
+| 위치 | 패널 | 역할 |
+|------|------|------|
+| 우측 상단 | **Agent Manager** | AI 에이전트 실행 및 관리 |
+| 하단 | **Artifacts 창** | AI가 생성한 파일·코드 결과물 확인 |
+| 좌측 | **Extensions 사이드바** | 확장 프로그램 설치 및 관리 |
+
+<Callout type="info">
+  Antigravity는 VS Code와 달리, 에이전트가 코드를 수정하기 전에 **생각 과정과 구현 계획을 먼저 보여준다**는 점이 특징입니다. 무엇을 하려는지 확인한 후 승인하거나 방향을 수정할 수 있습니다.
+</Callout>
+
+### 레이아웃 커스터마이즈
+
+우측 상단 **Open Agent Manager** 옆의 **Customize Layout**을 클릭합니다.\
+목록 중 **Secondary Activity Bar**를 체크하세요.\
+체크하면 오른쪽에 에이전트 목록 아이콘들이 표시됩니다. 이 사이드바를 통해 Claude Code를 비롯한 다양한 에이전트로 빠르게 전환할 수 있습니다.
+
+![Secondary Activity Bar 설정](https://blog.kakaocdn.net/dna/x1qQA/dJMcaawVzJg/AAAAAAAAAAAAAAAAAAAAAG9VNZoE7AVKIKS_EoQ0omaahoWqEdUo6EBBGh6xWHt6/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1780239599&allow_ip=&allow_referer=&signature=GCx%2BmzXGspJE5b7lpG3BaBIk0fY%3D)
+
+</Steps>

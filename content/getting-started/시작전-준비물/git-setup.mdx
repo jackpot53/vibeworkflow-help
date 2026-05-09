@@ -1,0 +1,220 @@
+---
+title: Git & GitHub 설치하기
+description: 코드 변경 이력을 관리하는 Git과 GitHub를 설치하고 Claude Code와 연동하는 방법을 알아봐요.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# Git & GitHub 설치하기
+
+Git은 파일(특히 코드)의 변경 이력을 기록하고 관리하는 **버전 관리 시스템(VCS)** 입니다.
+
+개발하다 보면 이런 상황이 자주 생깁니다:
+- 코드 수정하다가 망함 → 이전 상태로 되돌리고 싶다
+- 여러 사람이 동시에 작업 → 누가 뭘 바꿨는지 알아야 함
+- 기능별로 따로 작업 → 나중에 합치기 필요
+
+Git이 이걸 전부 해결해줍니다.
+
+<Steps>
+
+### GitHub 가입
+
+사내 GitHub도 있지만, 이후 Vercel 배포를 위해 외부 GitHub 계정을 사용합니다.
+
+[**github.com**](https://github.com)에서 무료 개인 계정을 만드세요.\
+가입 후 이메일 인증이 필요합니다.
+
+<Callout type="info">
+  자세한 가입 방법은 [GitHub에서 계정 생성하기](https://docs.github.com/ko/get-started/start-your-journey/creating-an-account-on-github) 공식 문서를 참고하세요.
+</Callout>
+
+### GitHub Desktop 다운로드 & 설치
+
+macOS 12.0 이상에서 GitHub Desktop을 사용할 수 있습니다.
+
+1. [GitHub Desktop 다운로드 페이지](https://github.com/apps/desktop?locale=ko-kr)로 이동합니다.
+2. **Download for macOS**를 클릭합니다.
+3. 다운로드 폴더에서 zip 파일을 더블 클릭해 압축을 풉니다.
+4. GitHub Desktop 애플리케이션을 더블 클릭하면 실행됩니다.
+
+![GitHub Desktop 설치 화면](https://velog.velcdn.com/images%2Flazysia%2Fpost%2F0229a645-e4cd-4ac5-807a-7e74cfcf41ba%2F%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202021-12-19%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%204.00.35.png)
+
+설치 후 터미널에서 Git이 정상적으로 설치됐는지 확인합니다.
+
+```shell
+git --version
+```
+
+버전 숫자가 출력되면 완료입니다.
+
+### GitHub와 Git 연결하기 (SSH 키 설정)
+
+GitHub에 코드를 올리거나 가져올 때는 "이 사람이 진짜 계정 주인인가?"를 확인해야 합니다. 이를 인증(Authentication)이라고 하며, SSH 키 방식을 사용합니다.
+
+**SSH 키 생성**
+
+터미널에서 아래 명령어를 입력하세요. 이메일은 GitHub 가입 시 사용한 이메일을 넣습니다.
+
+```shell
+ssh-keygen -t ed25519 -C "내이메일@example.com"
+```
+
+<Callout type="tip">
+  이메일이 기억나지 않으면 `git config user.email`로 확인할 수 있습니다.\
+  `-C "이메일"` 부분은 키 파일에 붙는 메모(주석)일 뿐으로 인증에는 영향을 주지 않습니다.
+</Callout>
+
+프롬프트가 나타나면 엔터를 몇 번 눌러 기본 경로에 저장합니다.
+
+```
+~/.ssh/id_ed25519      # 개인키 (절대 공유하지 마세요)
+~/.ssh/id_ed25519.pub  # 공개키 (GitHub에 등록할 키)
+```
+
+<Callout type="info">
+  **Ed25519**는 현재 SSH 키로 가장 권장되는 암호화 알고리즘입니다.
+
+  | 알고리즘 | 키 길이 | 속도 | 보안성 | 권장 여부 |
+  |---------|--------|------|--------|---------|
+  | RSA | 2048~4096 bit | 느림 | 보통~좋음 | 구형 시스템 호환용 |
+  | ECDSA | 256 bit | 빠름 | 좋음 | 보통 |
+  | **Ed25519** | **256 bit** | **매우 빠름** | **매우 좋음** | ✅ 현재 권장 |
+  | DSA | 1024 bit | 느림 | 취약 | ❌ 사용 금지 |
+</Callout>
+
+**공개키 확인**
+
+```shell
+cat ~/.ssh/id_ed25519.pub
+```
+
+출력된 `ssh-ed25519 AAAA...` 문자열 전체를 복사합니다.
+
+**GitHub에 SSH 키 등록**
+
+1. GitHub 프로필 사진 클릭
+2. **Settings**
+3. **SSH and GPG keys**
+4. **New SSH key**
+5. Title 입력 (예: `My MacBook`)
+6. 복사한 공개키 붙여넣기
+7. **Add SSH key** 클릭
+
+**연결 테스트**
+
+```shell
+ssh -T git@github.com
+```
+
+처음엔 호스트 신뢰 여부를 묻는 메시지가 나오는데 `yes`를 입력하세요. 아래 메시지가 나오면 인증 성공입니다.
+
+```
+Hi username! You've successfully authenticated, but GitHub does not provide shell access.
+```
+
+### GitHub에서 새 저장소 만들기
+
+<Callout type="warning">
+  이 단계는 이후 실습 때 함께 진행할 예정입니다. 지금은 넘어가세요.
+</Callout>
+
+GitHub 로그인 후:
+1. 우측 상단 **+** 클릭 → **New repository**
+2. 저장소 이름 입력
+3. Public 또는 Private 선택
+4. **Create repository** 클릭
+
+여기까지 하면 원격 저장소가 생깁니다.
+
+### GitHub 저장소를 로컬로 가져오기
+
+```shell
+git clone git@github.com:사용자명/저장소명.git
+cd 저장소명
+```
+
+이 폴더는 이제 GitHub 원격 저장소와 연결된 상태입니다.
+
+### Claude Code로 Git 사용하기
+
+Claude Code는 Git에 대한 별도 설정이 필요 없습니다. 프로젝트 폴더에서 Claude Code를 실행하면 자연어로 바로 Git 작업을 할 수 있습니다.
+
+```shell
+cd 내프로젝트
+claude
+```
+
+**커밋하기**
+```
+> 변경사항을 확인하고 적절한 커밋 메시지로 커밋해줘
+```
+수동으로 스테이징한 파일이 없으면 Claude가 변경사항을 검토해 `git add`까지 자동으로 처리합니다.
+
+**브랜치 만들기**
+```
+> feature/user-auth라는 브랜치를 만들고 거기로 이동해줘
+```
+
+**푸시하기**
+```
+> 현재 브랜치를 origin에 푸시해줘
+```
+
+**PR 생성까지 한 번에**
+```
+> 이 브랜치를 푸시하고 변경사항 요약으로 PR을 만들어줘
+```
+
+<Callout type="tip">
+  `/commit` 슬래시 커맨드로도 빠르게 커밋할 수 있습니다.
+</Callout>
+
+### GitHub CLI 설치하기
+
+GitHub CLI를 설치하면 터미널에서 PR 생성, 이슈 관리 등을 명령어 하나로 처리할 수 있습니다. Claude Code의 PR 자동화 기능도 내부적으로 GitHub CLI를 활용합니다.
+
+**PR(Pull Request)이란?**
+
+"내가 이런 코드를 변경했는데, 검토하고 메인 코드에 합쳐주세요"라는 요청서입니다. 별도 브랜치에서 작업한 뒤 main에 합치는 과정에서 사용합니다.
+
+```
+feature/login 브랜치에서 개발
+       ↓
+GitHub에 push
+       ↓
+PR 생성 → 팀원 코드 리뷰
+       ↓
+승인 후 main에 merge
+```
+
+<Callout type="info">
+  Homebrew가 설치되어 있어야 합니다. 아직 설치하지 않으셨다면 [brew(Homebrew) 설치](./brew) 페이지를 먼저 진행하세요.
+</Callout>
+
+```shell
+brew install gh
+```
+
+설치 후 GitHub 계정을 연결합니다.
+
+```shell
+gh auth login --web --scopes repo,read:org,workflow
+```
+
+프롬프트에 따라 진행하세요.
+
+1. Git 프로토콜 → **HTTPS** 선택
+2. GitHub 자격증명으로 Git 인증 → **Yes**
+3. 화면에 표시된 **일회용 코드** 복사
+4. 브라우저가 열리면 코드를 입력해 인증 완료
+
+```
+✓ Authentication complete.
+✓ Configured git protocol
+✓ Logged in as username
+```
+
+위 메시지가 나오면 모든 설정이 완료된 것입니다.
+
+</Steps>

@@ -1,0 +1,65 @@
+---
+title: 클로드 코드 익스텐션 설치하기
+description: Antigravity IDE에 Claude Code 확장 프로그램을 설치하고 IDE 안에서 바로 바이브코딩을 시작하는 방법을 알아봐요.
+---
+
+import { Callout, Steps } from 'nextra/components'
+
+# 클로드 코드 익스텐션 설치하기
+
+Antigravity의 가장 큰 장점 중 하나는 VS Code 기반의 포크(fork)라는 점입니다.\
+VS Code의 모든 확장 프로그램을 그대로 사용할 수 있어, Antigravity 안에서 Claude Code를 직접 실행할 수 있습니다.\
+하나의 워크스페이스에서 Gemini와 Claude, 두 AI를 동시에 활용할 수 있는 환경이 만들어집니다.
+
+<Steps>
+
+### Extensions 패널 열기
+
+왼쪽 사이드바의 **Extensions 아이콘**을 클릭하여 확장 패널을 여세요.\
+이곳에서 외부 도구를 검색하고 설치할 수 있으며, 설치 후 API 키를 직접 연결해 사용하는 방식입니다.
+
+<Callout type="info">
+  단축키 `Cmd+Shift+X`(Mac) / `Ctrl+Shift+X`(Windows)로도 바로 열 수 있습니다.
+</Callout>
+
+### Claude Code 검색 & 설치
+
+검색창에 **Claude Code**를 입력하고 공식 Anthropic 확장 프로그램을 설치하세요.
+
+![Claude Code 검색 화면](https://resource.lilys.ai/thumbnails/yMJcHcCbgi4/289.jpg)
+
+설치하면 Antigravity의 통합 터미널에서 IDE를 벗어나지 않고 Claude Code CLI 세션을 직접 실행할 수 있습니다.
+
+### Claude Code 익스텐션 패널 열기
+
+설치가 완료되면 Spark 아이콘(<img src="https://mintcdn.com/claude-code/c5r9_6tjPMzFdDDT/images/vs-code-spark-icon.svg?fit=max&auto=format&n=c5r9_6tjPMzFdDDT&q=85&s=3ca45e00deadec8c8f4b4f807da94505" style={{display:'inline', height:'1em', verticalAlign:'middle'}} />)이 여러 곳에 나타납니다.
+Claude Code를 여는 방법은 다음과 같습니다.
+
+**편집기 도구 모음 (가장 빠른 방법)**
+
+파일을 열었을 때 편집기 오른쪽 위 모서리에 나타나는 Spark 아이콘을 클릭하세요.
+
+![편집기 도구 모음의 Spark 아이콘](https://mintcdn.com/claude-code/mfM-EyoZGnQv8JTc/images/vs-code-editor-icon.png?fit=max&auto=format&n=mfM-EyoZGnQv8JTc&q=85&s=eb4540325d94664c51776dbbfec4cf02)
+
+**그 외 접근 방법**
+
+- **활동 표시줄** — 왼쪽 사이드바의 Spark 아이콘(<img src="https://mintcdn.com/claude-code/c5r9_6tjPMzFdDDT/images/vs-code-spark-icon.svg?fit=max&auto=format&n=c5r9_6tjPMzFdDDT&q=85&s=3ca45e00deadec8c8f4b4f807da94505" style={{display:'inline', height:'1em', verticalAlign:'middle'}} />)을 클릭하면 세션 목록이 열립니다. 기존 세션을 탭으로 열거나 새 세션을 시작할 수 있으며, 항상 표시됩니다.
+- **명령 팔레트** — `Cmd+Shift+P`(Mac) / `Ctrl+Shift+P`(Windows) → "Claude Code" 검색 → "새 탭에서 열기" 선택
+- **상태 표시줄** — 창 오른쪽 아래 모서리의 Spark 아이콘(<img src="https://mintcdn.com/claude-code/c5r9_6tjPMzFdDDT/images/vs-code-spark-icon.svg?fit=max&auto=format&n=c5r9_6tjPMzFdDDT&q=85&s=3ca45e00deadec8c8f4b4f807da94505" style={{display:'inline', height:'1em', verticalAlign:'middle'}} />)을 클릭합니다. 파일을 열지 않은 상태에서도 작동합니다.
+
+![Claude Code 익스텐션 전체 패널](https://github.com/jackpot53/books/blob/main/claude-code-extension.png?raw=true)
+
+<Callout type="tip">
+  Claude 패널은 드래그로 원하는 위치에 자유롭게 재배치할 수 있습니다.
+</Callout>
+
+### 온보딩 체크리스트 확인
+
+패널을 처음 열면 **Learn Claude Code** 체크리스트가 나타납니다.\
+**Show me**를 클릭해 각 항목을 진행하거나, 필요 없으면 X로 닫아도 됩니다.
+
+<Callout type="info">
+  나중에 다시 열려면 Extensions → Claude Code 설정에서 **Hide Onboarding**을 선택 해제하세요.
+</Callout>
+
+</Steps>
