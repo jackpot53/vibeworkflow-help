@@ -127,3 +127,15 @@
     @apply font-sans;
     }
 }
+
+article {
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}
+
+article h1,
+article h2,
+article h3,
+article h4 {
+  font-family: var(--font-content), sans-serif;
+  font-weight: 300;
+}

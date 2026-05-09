@@ -4,10 +4,11 @@ import { Head } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
 import 'nextra-theme-docs/style.css'
 import './globals.css'
-import { Geist } from "next/font/google";
+import { Geist, Sunflower } from "next/font/google";
 import { cn } from "@/lib/utils";
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const sunflower = Sunflower({ weight: '300', variable: '--font-content' });
 
 export const metadata: Metadata = {
   title: {
@@ -24,9 +25,9 @@ export default async function RootLayout({
 }) {
   const pageMap = await getPageMap()
   return (
-    <html lang="ko" dir="ltr" suppressHydrationWarning className={cn("font-sans", geist.variable)}>
+    <html lang="ko" dir="ltr" suppressHydrationWarning className={cn("font-sans", geist.variable, sunflower.variable)}>
       <Head />
-      <body>
+<body>
         <Layout pageMap={pageMap} sidebar={{ defaultMenuCollapseLevel: 3 }}>
           {children}
         </Layout>
