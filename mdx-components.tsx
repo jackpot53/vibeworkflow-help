@@ -5,6 +5,7 @@ import { Screenshot } from '@/components/screenshot'
 import { StepBadge } from '@/components/step-badge'
 import { GitFlowDiagram } from '@/components/git-flow-diagram'
 import { PRFlowDiagram } from '@/components/pr-flow-diagram'
+import { HeroSection } from '@/components/hero-section'
 
 export function useMDXComponents() {
   return getDocsMDXComponents({
@@ -14,5 +15,6 @@ export function useMDXComponents() {
     StepBadge,
     GitFlowDiagram,
     PRFlowDiagram,
+    HeroSection,
   })
 }
