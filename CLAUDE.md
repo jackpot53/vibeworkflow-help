@@ -59,6 +59,17 @@ Registered globally in `mdx-components.tsx` — use in any MDX file without impo
 | `<CommandCard command="..." description="..." example="...">` | Slash command reference cards |
 | `<Screenshot src="..." alt="..." caption="...">` | Image with caption |
 | `<StepBadge step={1}>` | Numbered step badge |
+| `<VibeBlock>` | Claude Code CLI 입력 예시 코드 블록 — 사용자가 직접 터미널에 입력하는 명령어나 프롬프트를 보여줄 때 사용. 보라색 VIBE 헤더 바가 코드 블록 위에 붙어서 표시됨 |
+
+**VibeBlock 사용 기준**: Claude Code 터미널에 사용자가 **직접 입력하는** 명령어(`/plan`, `/model` 등) 또는 Claude에게 보내는 자연어 프롬프트 예시에 사용. 일반 코드 예시(출력 결과, 설정 파일, API 응답 등)에는 사용하지 않음.
+
+```mdx
+<VibeBlock>
+\`\`\`
+> /plan
+\`\`\`
+</VibeBlock>
+```
 
 ### Known Patch
 
