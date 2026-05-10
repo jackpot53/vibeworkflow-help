@@ -1,9 +1,7 @@
-import { Badge } from '@/components/ui/badge'
-
 export function StepBadge({ step }: { step: number }) {
   return (
-    <Badge className="mr-2 rounded-full w-7 h-7 p-0 inline-flex items-center justify-center text-xs font-bold">
+    <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-primary text-primary-foreground text-xs font-bold mr-2 shrink-0">
       {step}
-    </Badge>
+    </span>
   )
 }
