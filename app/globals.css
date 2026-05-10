@@ -150,3 +150,46 @@ article h4 {
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
   font-weight: 600 !important;
 }
+
+/* Terminal-style code blocks */
+:root {
+  --shiki-light-bg: #0d1117;
+  --shiki-dark-bg:  #0d1117;
+  --shiki-light:    #e6edf3;
+  --shiki-dark:     #e6edf3;
+}
+
+article pre {
+  background-color: #0d1117 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 0.5rem !important;
+  font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", ui-monospace, "SF Mono", Menlo, monospace !important;
+  font-size: 0.8125rem !important;
+  line-height: 1.6 !important;
+  position: relative !important;
+}
+
+article pre::before {
+  content: "● ● ●";
+  display: block;
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 0.55rem;
+  letter-spacing: 0.25rem;
+  padding: 0.6rem 1rem 0;
+  font-family: monospace;
+}
+
+article pre code.nextra-code {
+  color: #e6edf3 !important;
+  font-family: inherit !important;
+}
+
+article :not(pre) > code {
+  background-color: #161b22 !important;
+  color: #79c0ff !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 0.25rem !important;
+  padding: 0.1em 0.4em !important;
+  font-family: "JetBrains Mono", "Fira Code", ui-monospace, monospace !important;
+  font-size: 0.8em !important;
+}
