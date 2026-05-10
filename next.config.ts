@@ -6,11 +6,6 @@ const withNextra = nextra({
 
 export default withNextra({
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: '*.public.blob.vercel-storage.com',
-      },
-    ],
+    unoptimized: true,
   },
 })

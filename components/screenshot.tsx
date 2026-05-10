@@ -1,5 +1,3 @@
-import Image from 'next/image'
-
 export function Screenshot({
   src,
   alt,
@@ -12,11 +10,10 @@ export function Screenshot({
   return (
     <figure className="my-6">
       <div className="rounded-lg border overflow-hidden shadow-sm">
-        <Image
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
           src={src}
           alt={alt}
-          width={1200}
-          height={800}
           className="w-full h-auto"
         />
       </div>
