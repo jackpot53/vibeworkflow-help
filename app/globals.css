@@ -129,14 +129,24 @@
 }
 
 article {
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 0.9375rem;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+  font-size: 0.9375rem !important;
+  line-height: 1.5 !important;
 }
+
+article * {
+  line-height: inherit !important;
+}
+
+article h1 { font-size: 1.375rem !important; line-height: 1.25 !important; }
+article h2 { font-size: 1.125rem !important; line-height: 1.25 !important; }
+article h3 { font-size: 1rem !important;     line-height: 1.25 !important; }
+article h4 { font-size: 0.875rem !important; line-height: 1.25 !important; }
 
 article h1,
 article h2,
 article h3,
 article h4 {
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-weight: 600;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+  font-weight: 600 !important;
 }

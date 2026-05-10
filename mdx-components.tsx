@@ -7,6 +7,7 @@ import { GitFlowDiagram } from '@/components/git-flow-diagram'
 import { PRFlowDiagram } from '@/components/pr-flow-diagram'
 import { HeroSection } from '@/components/hero-section'
 import { LottieAnimation } from '@/components/lottie-animation'
+import { TimelineTabs } from '@/components/timeline-tabs'
 
 export function useMDXComponents() {
   return getDocsMDXComponents({
@@ -18,5 +19,6 @@ export function useMDXComponents() {
     PRFlowDiagram,
     HeroSection,
     LottieAnimation,
+    TimelineTabs,
   })
 }
