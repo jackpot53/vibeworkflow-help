@@ -10,6 +10,20 @@ import { Callout, Tabs } from 'nextra/components'
 바이브코딩을 하다 보면 에러는 반드시 만나게 돼요. 당황하지 않아도 돼요.\
 에러 메시지를 Claude Code에 그대로 던져주면 대부분 해결해줘요.
 
+<Callout type="tip">
+  <span className="inline-block text-xs font-semibold tracking-widest uppercase px-2 py-0.5 mb-2 bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">Best Practice</span>
+  에러가 났을 때 가장 좋은 방법은 단순해요.\
+  어떤 상황에서 에러가 났는지 한 줄로 설명하고, 에러 내용을 전부 붙여넣고, "수정해주세요"라고 하면 끝이에요.
+
+  ```
+  로그인 버튼 누르면 이 에러 나요. 수정해주세요.
+
+  [에러 메시지 전체 붙여넣기]
+  ```
+
+  분석하려고 하지 않아도 돼요. 원인을 몰라도 돼요. 그냥 붙여넣으면 Claude가 다 해줘요.
+</Callout>
+
 ---
 
 ## 에러가 나면 이렇게 하세요
@@ -18,7 +32,29 @@ import { Callout, Tabs } from 'nextra/components'
 
 **1. 에러 메시지 전체를 복사해요**
 
-빨간 글씨 일부만 복사하면 안 돼요. 스택 트레이스, 코드 프레임, 파일 경로까지 전부 포함해야 Claude가 정확히 진단할 수 있어요.
+빨간 글씨 일부만 복사하면 안 돼요. 아래 세 가지가 모두 포함돼야 Claude가 정확히 진단할 수 있어요.
+
+```
+TypeError: Cannot read properties of undefined (reading 'map')   ← 에러 메시지
+  at CareerList (components/career-list.tsx:24:20)               ← 스택 트레이스
+  at Page (app/page.tsx:10:5)
+
+  22 |   return (
+  23 |     <ul>
+> 24 |       {careers.map((c) => <li>{c.name}</li>)}              ← 코드 프레임
+     |       ^
+  25 |     </ul>
+  26 |   )
+
+components/career-list.tsx                                       ← 파일 경로
+```
+
+| 이름 | 설명 |
+|------|------|
+| **에러 메시지** | 무슨 에러인지 한 줄로 요약한 내용 |
+| **스택 트레이스** | 에러가 어떤 파일 몇 번째 줄에서 났는지 나열한 목록 |
+| **코드 프레임** | 에러가 난 줄을 `>` 로 표시해서 보여주는 코드 조각 |
+| **파일 경로** | 에러가 발생한 파일의 위치 |
 
 **2. 어떤 상황에서 났는지 같이 알려줘요**
 
