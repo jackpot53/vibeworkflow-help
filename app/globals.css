@@ -159,19 +159,6 @@ pre.not-prose {
   font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", ui-monospace, "SF Mono", Menlo, monospace !important;
   font-size: 0.8125rem !important;
   line-height: 1.6 !important;
-  position: relative !important;
-  padding-top: 2rem !important;
-}
-
-pre.not-prose::before {
-  content: "● ● ●";
-  position: absolute;
-  top: 0.6rem;
-  left: 1rem;
-  color: rgba(255, 255, 255, 0.25);
-  font-size: 0.5rem;
-  letter-spacing: 0.3rem;
-  font-family: monospace;
 }
 
 /* Shiki가 span에 인라인으로 --shiki-light를 심어서, 강제로 다크 토큰 색상 사용 */
