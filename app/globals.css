@@ -152,44 +152,37 @@ article h4 {
 }
 
 /* Terminal-style code blocks */
-:root {
-  --shiki-light-bg: #0d1117;
-  --shiki-dark-bg:  #0d1117;
-  --shiki-light:    #e6edf3;
-  --shiki-dark:     #e6edf3;
-}
-
-article pre {
+pre.not-prose {
   background-color: #0d1117 !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
   border-radius: 0.5rem !important;
   font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", ui-monospace, "SF Mono", Menlo, monospace !important;
   font-size: 0.8125rem !important;
   line-height: 1.6 !important;
   position: relative !important;
+  padding-top: 2rem !important;
 }
 
-article pre::before {
+pre.not-prose::before {
   content: "● ● ●";
-  display: block;
-  color: rgba(255, 255, 255, 0.2);
-  font-size: 0.55rem;
-  letter-spacing: 0.25rem;
-  padding: 0.6rem 1rem 0;
+  position: absolute;
+  top: 0.6rem;
+  left: 1rem;
+  color: rgba(255, 255, 255, 0.25);
+  font-size: 0.5rem;
+  letter-spacing: 0.3rem;
   font-family: monospace;
 }
 
-article pre code.nextra-code {
+/* Shiki가 span에 인라인으로 --shiki-light를 심어서, 강제로 다크 토큰 색상 사용 */
+pre.not-prose code.nextra-code span {
+  color: var(--shiki-dark) !important;
+  background-color: transparent !important;
+  font-family: inherit !important;
+}
+
+pre.not-prose code.nextra-code {
   color: #e6edf3 !important;
   font-family: inherit !important;
 }
 
-article :not(pre) > code {
-  background-color: #161b22 !important;
-  color: #79c0ff !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  border-radius: 0.25rem !important;
-  padding: 0.1em 0.4em !important;
-  font-family: "JetBrains Mono", "Fira Code", ui-monospace, monospace !important;
-  font-size: 0.8em !important;
-}
