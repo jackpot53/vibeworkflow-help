@@ -1,0 +1,156 @@
+---
+title: CLAUDE.md 초기화하기
+description: Claude Code가 자동으로 읽는 프로젝트 안내 파일, CLAUDE.md를 만드는 방법을 알아봐요.
+---
+
+import { Callout, Tabs } from 'nextra/components'
+
+# CLAUDE.md 초기화하기
+
+Claude Code는 프로젝트 폴더에서 실행될 때 **`CLAUDE.md`** 파일을 자동으로 읽어요.\
+이 파일에 프로젝트 정보를 적어두면, 매번 같은 설명을 반복하지 않아도 Claude가 상황을 이해하고 더 정확하게 도와줄 수 있어요.
+
+<Callout type="tip">
+  **비유로 이해하기** — `CLAUDE.md`는 새로 합류한 팀원에게 주는 **온보딩 문서**예요.\
+  "이 프로젝트는 이런 거고, 이런 규칙이 있고, 이 폴더는 건드리지 마" 같은 내용을 미리 적어두면 매번 설명할 필요가 없어요.
+</Callout>
+
+---
+
+## CLAUDE.md가 왜 필요한가요?
+
+Claude Code 세션은 매번 새로 시작돼요. 대화 내용이 쌓이면 오래된 내용은 Claude의 기억에서 사라지기도 해요.\
+`CLAUDE.md`가 있으면 세션이 새로 열릴 때마다 이 파일이 자동으로 컨텍스트에 포함되어서, Claude가 프로젝트를 처음부터 다시 이해할 필요가 없어요.
+
+| 없을 때 | 있을 때 |
+|---|---|
+| 매번 "이 프로젝트는 Next.js로 만든 포트폴리오야"라고 설명해야 해요 | Claude가 파일을 읽고 이미 알고 있어요 |
+| "배포는 Vercel로 해"라고 반복해서 말해야 해요 | 한 번 적어두면 끝이에요 |
+| 세션마다 코딩 스타일이 달라질 수 있어요 | 일관된 결과물이 나와요 |
+
+---
+
+## 어디에 만드나요?
+
+프로젝트 **루트 폴더** (가장 바깥 폴더)에 `CLAUDE.md`라는 이름으로 저장해요.
+
+```
+portfolio/          ← 여기가 루트 폴더 (프로젝트 폴더)
+├── CLAUDE.md       ← 여기에 만들어요
+├── app/
+├── components/
+└── package.json
+```
+
+<Callout type="info">
+  파일 이름은 반드시 **대문자**로 `CLAUDE.md` 이에요. 소문자로 쓰면 Claude Code가 인식하지 못해요.
+</Callout>
+
+---
+
+## 어떤 내용을 담나요?
+
+비개발자도 바로 쓸 수 있는 내용 위주로 적어두면 돼요.
+
+```markdown
+# 프로젝트 개요
+나만의 포트폴리오 사이트. Next.js로 만들었고 Vercel에 배포되어 있어요.
+
+## 기술 스택
+- Next.js 15 (App Router)
+- Tailwind CSS
+- Vercel 배포
+
+## 자주 쓰는 명령어
+- `npm run dev` — 개발 서버 시작 (http://localhost:3000)
+- `npm run build` — 배포용 빌드
+
+## 주의사항
+- `public/` 폴더의 이미지는 직접 올린 것이라 함부로 삭제하지 마세요
+- 배포는 항상 main 브랜치에서 해요
+
+## 코딩 스타일
+- 컴포넌트 이름은 한국어 주석으로 설명해줘요
+- 코드 설명은 항상 한국어로 해줘요
+```
+
+<Callout type="tip">
+  처음부터 완벽하게 적을 필요는 없어요.\
+  쓰다 보면 "이건 계속 설명해야 하네" 싶은 게 생기면 그때 추가하면 돼요.
+</Callout>
+
+---
+
+## `/init` 명령어로 자동 생성하기
+
+직접 작성하기 어렵다면 Claude Code의 `/init` 명령어를 사용하면 돼요.\
+Claude가 프로젝트 폴더를 스스로 분석해서 초안을 자동으로 만들어줘요. 그 후 본인이 내용을 다듬으면 끝이에요.
+
+<Tabs items={['1. claude 실행', '2. /init 입력', '3. 파일 확인 & 수정']}>
+  <Tabs.Tab>
+
+터미널을 열고 프로젝트 폴더로 이동한 뒤 `claude`를 실행해요.
+
+```bash
+cd dev/portfolio
+claude
+```
+
+<Callout type="info">
+  반드시 **프로젝트 폴더 안에서** `claude`를 실행해야 해요.\
+  그래야 Claude가 이 폴더의 코드를 분석할 수 있어요.
+</Callout>
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+
+Claude Code가 열리면 `/init`을 입력하고 Enter를 눌러요.
+
+```
+> /init
+```
+
+Claude가 폴더 안의 파일들을 살펴보고 `CLAUDE.md` 초안을 작성해줘요.\
+생성이 완료되면 "Created CLAUDE.md" 같은 메시지가 나타나요.
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+
+생성된 `CLAUDE.md` 파일을 열어서 내용을 확인해요.
+
+자동 생성된 내용에 이런 것들을 **추가**해두면 더 유용해요:
+
+<ul>
+  <li>나만의 코딩 스타일 (예: "설명은 항상 한국어로")</li>
+  <li>배포 관련 정보 (예: "Vercel로 배포, main 브랜치 기준")</li>
+  <li>건드리지 말아야 할 파일이나 폴더</li>
+  <li>자주 까먹는 명령어나 주의사항</li>
+</ul>
+
+  </Tabs.Tab>
+</Tabs>
+
+<Callout type="info">
+  `/init` 명령어의 실행 흐름, 생성 파일 예시, 주의사항 등 자세한 내용은 [/init 명령어 레퍼런스](/reference/commands/init)를 참고하세요.
+</Callout>
+
+---
+
+## CLAUDE.md 관리 팁
+
+**자주 업데이트하세요**\
+프로젝트가 바뀌면 `CLAUDE.md`도 함께 업데이트해요. 오래된 정보는 Claude를 혼란스럽게 할 수 있어요.
+
+**Claude에게 직접 부탁해도 돼요**\
+새로운 정보가 생기면 Claude Code에서 이렇게 말해보세요:
+
+```
+CLAUDE.md에 "배포는 Vercel 대신 Railway로 한다"는 내용 추가해줘
+```
+
+**팀 작업이라면 GitHub에 올려요**\
+`CLAUDE.md`는 일반 파일이라 GitHub에 올려두면 팀원 모두가 같은 설정으로 Claude를 쓸 수 있어요.
+
+---
+
+이제 `CLAUDE.md`를 만들었으면 Claude Code로 바이브코딩을 시작할 준비가 됐어요! 🎉
