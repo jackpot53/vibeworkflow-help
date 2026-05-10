@@ -120,27 +120,17 @@ Claude가 의도를 파악하고 알아서 구현해줘요.\
 
 <div className="not-prose grid grid-cols-1 sm:grid-cols-2 gap-px bg-border my-6 border border-border text-sm">
   <div className="bg-background px-5 py-4">
-    <div className="font-semibold text-foreground mb-3">한 번에 다 요청할 때</div>
-
-    <VibeBlock>
-    ```
-    로그인 페이지 만들어줘. 이메일이랑 비밀번호 입력창 있고, 로그인 버튼 누르면 Supabase로 인증하고, 실패하면 에러 메시지 보여주고, 성공하면 대시보드로 이동하고, 소셜 로그인도 있고, 비밀번호 찾기 링크도 있어야 해.
-    ```
-    </VibeBlock>
-
+    <div className="font-semibold text-foreground mb-2">한 번에 다 요청할 때</div>
+    <div className="text-muted-foreground">로그인 페이지 만들어줘. 이메일이랑 비밀번호 입력창 있고, 로그인 버튼 누르면 Supabase로 인증하고, 실패하면 에러 메시지 보여주고, 성공하면 대시보드로 이동하고, 소셜 로그인도 있고, 비밀번호 찾기 링크도 있어야 해.</div>
   </div>
   <div className="bg-background px-5 py-4">
-    <div className="font-semibold text-foreground mb-3">하나씩 요청할 때</div>
-
-    <VibeBlock>
-    ```
-    1. 이메일/비밀번호 입력창이 있는 로그인 폼 만들어줘.
-    2. 로그인 버튼 누르면 Supabase 인증 연결해줘.
-    3. 실패 시 에러 메시지, 성공 시 대시보드 이동 추가해줘.
-    4. Google 소셜 로그인 추가해줘.
-    ```
-    </VibeBlock>
-
+    <div className="font-semibold text-foreground mb-2">하나씩 요청할 때</div>
+    <div className="text-muted-foreground">
+      1. 이메일/비밀번호 입력창이 있는 로그인 폼 만들어줘.<br/>
+      2. 로그인 버튼 누르면 Supabase 인증 연결해줘.<br/>
+      3. 실패 시 에러 메시지, 성공 시 대시보드 이동 추가해줘.<br/>
+      4. Google 소셜 로그인 추가해줘.
+    </div>
   </div>
 </div>
 
