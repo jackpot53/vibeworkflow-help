@@ -3,7 +3,7 @@ title: Git & GitHub 설치하기
 description: 코드 변경 이력을 관리하는 Git과 GitHub를 설치하고 Claude Code와 연동하는 방법을 알아봐요.
 ---
 
-import { Callout, Steps } from 'nextra/components'
+import { Callout, Steps, Tabs } from 'nextra/components'
 
 # Git & GitHub 설치하기
 
@@ -54,18 +54,14 @@ git --version
 
 GitHub에 코드를 올리거나 가져올 때는 "이 사람이 진짜 계정 주인인가?"를 확인해야 합니다. 이를 인증(Authentication)이라고 하며, SSH 키 방식을 사용합니다.
 
-**SSH 키 생성**
+<TimelineTabs tabs={["SSH 키 생성", "공개키 확인", "GitHub에 등록", "연결 테스트"]}>
+<div>
 
 터미널에서 아래 명령어를 입력하세요. 이메일은 GitHub 가입 시 사용한 이메일을 넣습니다.
 
 ```shell
 ssh-keygen -t ed25519 -C "내이메일@example.com"
 ```
-
-<Callout type="tip">
-  이메일이 기억나지 않으면 `git config user.email`로 확인할 수 있습니다.\
-  `-C "이메일"` 부분은 키 파일에 붙는 메모(주석)일 뿐으로 인증에는 영향을 주지 않습니다.
-</Callout>
 
 프롬프트가 나타나면 엔터를 몇 번 눌러 기본 경로에 저장합니다.
 
@@ -74,26 +70,21 @@ ssh-keygen -t ed25519 -C "내이메일@example.com"
 ~/.ssh/id_ed25519.pub  # 공개키 (GitHub에 등록할 키)
 ```
 
-<Callout type="info">
-  **Ed25519**는 현재 SSH 키로 가장 권장되는 암호화 알고리즘입니다.
+이메일이 기억나지 않으면 `git config user.email`로 확인할 수 있습니다.
 
-  | 알고리즘 | 키 길이 | 속도 | 보안성 | 권장 여부 |
-  |---------|--------|------|--------|---------|
-  | RSA | 2048~4096 bit | 느림 | 보통~좋음 | 구형 시스템 호환용 |
-  | ECDSA | 256 bit | 빠름 | 좋음 | 보통 |
-  | **Ed25519** | **256 bit** | **매우 빠름** | **매우 좋음** | ✅ 현재 권장 |
-  | DSA | 1024 bit | 느림 | 취약 | ❌ 사용 금지 |
-</Callout>
+</div>
+<div>
 
-**공개키 확인**
+아래 명령어로 공개키를 확인하고 전체 내용을 복사합니다.
 
 ```shell
 cat ~/.ssh/id_ed25519.pub
 ```
 
-출력된 `ssh-ed25519 AAAA...` 문자열 전체를 복사합니다.
+출력된 `ssh-ed25519 AAAA...` 문자열 **전체**를 복사하세요.
 
-**GitHub에 SSH 키 등록**
+</div>
+<div>
 
 1. GitHub 프로필 사진 클릭
 2. **Settings**
@@ -103,17 +94,22 @@ cat ~/.ssh/id_ed25519.pub
 6. 복사한 공개키 붙여넣기
 7. **Add SSH key** 클릭
 
-**연결 테스트**
+</div>
+<div>
 
 ```shell
 ssh -T git@github.com
 ```
 
-처음엔 호스트 신뢰 여부를 묻는 메시지가 나오는데 `yes`를 입력하세요. 아래 메시지가 나오면 인증 성공입니다.
+처음엔 호스트 신뢰 여부를 묻는 메시지가 나옵니다. `yes`를 입력하세요.\
+아래 메시지가 나오면 인증 성공입니다.
 
 ```
 Hi username! You've successfully authenticated, but GitHub does not provide shell access.
 ```
+
+</div>
+</TimelineTabs>
 
 ### GitHub에서 새 저장소 만들기
 
@@ -149,30 +145,46 @@ cd 내프로젝트
 claude
 ```
 
-**커밋하기**
+<Tabs items={["커밋하기", "브랜치 만들기", "푸시하기", "PR 생성까지 한 번에"]}>
+  <Tabs.Tab>
+
 ```
 > 변경사항을 확인하고 적절한 커밋 메시지로 커밋해줘
 ```
+
 수동으로 스테이징한 파일이 없으면 Claude가 변경사항을 검토해 `git add`까지 자동으로 처리합니다.
 
-**브랜치 만들기**
+`/commit` 슬래시 커맨드로도 빠르게 커밋할 수 있습니다.
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+
 ```
 > feature/user-auth라는 브랜치를 만들고 거기로 이동해줘
 ```
 
-**푸시하기**
+새 브랜치를 만들고 즉시 이동까지 한 번에 처리됩니다.
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+
 ```
 > 현재 브랜치를 origin에 푸시해줘
 ```
 
-**PR 생성까지 한 번에**
+처음 푸시하는 브랜치라면 upstream 설정도 자동으로 처리합니다.
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+
 ```
 > 이 브랜치를 푸시하고 변경사항 요약으로 PR을 만들어줘
 ```
 
-<Callout type="tip">
-  `/commit` 슬래시 커맨드로도 빠르게 커밋할 수 있습니다.
-</Callout>
+GitHub CLI가 설치되어 있으면 푸시부터 PR 생성까지 한 번에 완료됩니다.
+
+  </Tabs.Tab>
+</Tabs>
 
 ### GitHub CLI 설치하기
 
