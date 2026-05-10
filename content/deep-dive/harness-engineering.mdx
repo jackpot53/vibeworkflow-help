@@ -1,0 +1,342 @@
+---
+title: 하네스 엔지니어링
+description: AI에게 잘 부탁하는 것보다, 잘못할 수 없게 만드는 기술
+---
+
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion'
+
+# 하네스 엔지니어링
+
+> **AI에게 "하지 마세요"라고 부탁하는 대신, 아예 "할 수 없게" 만드는 기술입니다.**
+
+AI가 실수를 하면 어떻게 막을까요?\
+"앞으로 이건 하지 마세요"라고 부탁해도, AI는 깜빡하거나 더 빠른 길을 선택할 수 있어요.\
+하네스 엔지니어링은 부탁이 아니라 **환경 설계**로 사고를 차단하는 기술입니다.
+
+<Callout type="info">
+**하네스(harness)** 는 두 곳에서 쓰이는 단어예요.
+
+말·소에게 채우는 **마구**(고삐, 굴레, 멍에) — 방향을 잡아주는 장치.\
+암벽등반의 **안전벨트** — 실수로 발을 헛디뎌도 추락하지 않게 잡아주는 장치.
+
+둘 다 "잘못되더라도 치명적인 사고가 나지 않도록" 설계된 도구라는 공통점이 있어요.\
+AI 하네스도 마찬가지입니다. 완벽을 바라는 게 아니라, **실수해도 괜찮은 구조**를 만드는 거예요.
+</Callout>
+
+---
+
+## AI 작업을 둘러싼 네 가지 축
+
+AI에게 일을 시키는 방법은 크게 네 가지 축으로 나뉘어요.\
+**하네스 엔지니어링은 그중 세 번째 축**입니다.
+
+| 축 | 말과 마구로 비유하면 | 핵심 질문 |
+|---|---|---|
+| 프롬프트 엔지니어링 | 말에게 **명령을 잘 내리는** 것 | AI에게 어떻게 말할까? |
+| 컨텍스트 엔지니어링 | 출발 전 **지형·경로를 미리 보는** 것 | AI에게 무엇을 알려줄까? |
+| **하네스 엔지니어링** | **고삐·울타리·마구를 만드는** 것 | **AI가 무엇을 못 하게 막을까?** |
+| 에이전틱 엔지니어링 | 말에게 목표만 주고 **스스로 경로를 찾아 완주하도록** 설계하는 것 | AI가 어떻게 스스로 실행할까? |
+
+<Callout type="tip">
+네 가지는 순서대로 졸업하는 단계가 아니라 **동시에 필요한 보완축**이에요.\
+잘 훈련된 말(에이전틱)도 마구(하네스) 없이는 위험하고,\
+마구만 있고 말이 없으면 수레는 움직이지 않습니다.
+</Callout>
+
+---
+
+## 네 가지 엔지니어링 한눈에 보기
+
+| 구분 | 프롬프트 | 컨텍스트 | **하네스** | 에이전틱 |
+|------|------|------|------|------|
+| **한 줄 정의** | AI에게 잘 말 거는 기술 | AI에게 필요한 정보를 제공하는 기술 | **AI가 실수할 수 없는 환경을 설계하는 기술** | AI가 자율적으로 추론·실행하도록 설계하는 기술 |
+| **인간의 역할** | 의도 전달자 | 지식 설계자 | **규칙·경계 설정자** | 위임자·감독자 |
+
+---
+
+## 왜 하네스가 핵심인가요?
+
+다른 세 축은 모두 **"부탁" 또는 "정보 제공"** 이에요. AI가 마음만 먹으면 무시할 수 있어요.\
+하네스만이 **물리적인 차단**입니다.
+
+| 방식 | 예시 | 결과 |
+|---|---|---|
+| 부탁 | CLAUDE.md에 "DB 직접 조작 금지"라고 적어둠 | AI가 깜빡하면 그냥 일어남 |
+| **차단** | 위험 명령어를 시스템이 사전에 막음 | **AI가 시도해도 실행 자체가 불가** |
+
+<Callout type="warning">
+"DB를 직접 만지지 말아주세요"라고 CLAUDE.md에 적어놓아도,\
+AI가 더 빠른 길을 찾아 `DROP TABLE`을 실행하면 — 그 순간엔 **부탁이 아니라 차단이 필요**합니다.
+</Callout>
+
+---
+
+## CLAUDE.md는 "선언"일 뿐, "강제"가 아닙니다
+
+많은 분들이 헷갈리는 부분이에요.\
+CLAUDE.md에 적은 규칙은 어디까지나 **부탁의 영역**이지, 강제의 영역이 아니에요.
+
+CLAUDE.md 안에는 사실 네 가지 종류의 내용이 섞여 있어요.
+
+| 구분 | CLAUDE.md 안의 예시 | 해당 엔지니어링 |
+|------|------|------|
+| **프롬프트** | "답변은 항상 한국어로", "코드 설명 먼저 후 코드 작성" | 프롬프트 엔지니어링 |
+| **컨텍스트** | 프로젝트 구조, 기술 스택, DB 스키마, 코딩 컨벤션 | 컨텍스트 엔지니어링 |
+| **하네스** | "새 라이브러리 도입 금지", "DB는 ORM으로만 접근" | 하네스 엔지니어링 |
+| **에이전틱** | "테스트 실패 시 스스로 수정", "모호하면 먼저 질문" | 에이전틱 엔지니어링 |
+
+> **CLAUDE.md의 정체 = 프롬프트 + 컨텍스트 + 하네스 + 에이전틱을 한 파일에 선언하는 AI 행동 헌법**
+
+하지만 헌법은 어디까지나 **선언문**이에요. 실제로 어기지 못하게 막는 **실행부**는 따로 필요해요.
+
+| 엔지니어링 | 선언 (CLAUDE.md) | 실행부 (실제 강제) |
+|------|------|------|
+| 프롬프트 | 말투·형식 규칙 | 출력 파서·형식 검증 루프 |
+| 컨텍스트 | 프로젝트 구조 기술 | RAG·파일 자동 첨부 |
+| **하네스** | **금지 규칙 나열** | **린터·CI/CD·훅** |
+| 에이전틱 | 행동 방침 기술 | 추론 루프·멀티에이전트 |
+
+<Callout type="warning">
+CLAUDE.md 하나로 네 가지를 다 잡으려 하면 **선언만 있고 강제가 없는** 구조가 돼요.\
+그래서 각 실행부가 반드시 필요합니다.
+</Callout>
+
+### 특히 컨텍스트 실행부에서 중요한 것: 규칙이 아니라 예시
+
+컨텍스트 엔지니어링의 실행부는 단순히 "파일을 첨부하는 것"이 아니에요.\
+**파일 안에 무엇이 담겨 있느냐**가 핵심입니다.
+
+CLAUDE.md에 이렇게 적어도:
+
+```markdown
+# 디자인은 design.md 참고할 것
+# 컴포넌트는 components.md 패턴 따를 것
+```
+
+Claude Code는 이걸 **"참고"** 하지, **"강제"** 되진 않아요.\
+작업하다 보면 슬금슬금 벗어나요.
+
+진짜 실행부는 그 참고 파일 안에 **구체적인 예시 코드**가 있을 때 만들어져요.
+
+| 선언 (CLAUDE.md) | 실행부 (참고 파일 안의 내용) |
+|---|---|
+| "디자인 시스템 따를 것" | `design.md` — 실제 색상 토큰과 예시 코드 |
+| "컴포넌트 패턴 따를 것" | `components.md` — 복붙 가능한 실제 스니펫 |
+| "API 구조 따를 것" | `api-patterns.md` — 실제 엔드포인트 예시 |
+| "폴더 구조 따를 것" | `structure.md` — 실제 디렉토리 트리 |
+
+<Callout type="tip">
+**Claude Code는 규칙보다 예시에 더 잘 따라요.**
+
+```markdown
+❌ 선언만 있는 구조
+버튼은 디자인 시스템에 맞게 만들 것
+
+✅ 실행부가 있는 구조
+버튼은 이렇게 만들 것:
+<button className="bg-primary px-4 py-2 rounded-lg">
+```
+
+규칙은 해석할 여지를 남기고, 예시는 따라할 대상을 줍니다.
+</Callout>
+
+---
+
+## 안전망 구조 한눈에 보기
+
+<div className="not-prose my-8 flex justify-center">
+  <svg
+    viewBox="0 0 640 410"
+    xmlns="http://www.w3.org/2000/svg"
+    role="img"
+    aria-label="CLAUDE.md 선언과 실행부 안전망 구조 다이어그램"
+    className="w-full max-w-2xl"
+  >
+    <defs>
+      <marker id="arr" markerWidth="10" markerHeight="10" refX="6" refY="5" orient="auto">
+        <polygon points="0 0, 10 5, 0 10" fill="#9ca3af" />
+      </marker>
+    </defs>
+
+    <rect x="180" y="16" width="280" height="64" rx="12" fill="#ede9fe" stroke="#7c3aed" strokeWidth="2" />
+    <text x="320" y="45" textAnchor="middle" fontFamily="system-ui, sans-serif" fontSize="17" fontWeight="700" fill="#5b21b6">CLAUDE.md</text>
+    <text x="320" y="66" textAnchor="middle" fontFamily="system-ui, sans-serif" fontSize="12" fill="#6d28d9">선언 · AI 행동 헌법</text>
+
+    <line x1="320" y1="82" x2="320" y2="115" stroke="#9ca3af" strokeWidth="2" markerEnd="url(#arr)" />
+
+    <rect x="40" y="122" width="560" height="182" rx="12" fill="#fef3c7" stroke="#f59e0b" strokeWidth="2" />
+    <text x="320" y="147" textAnchor="middle" fontFamily="system-ui, sans-serif" fontSize="14" fontWeight="700" fill="#92400e">실행부 — 자동 강제</text>
+
+    <rect x="65" y="160" width="230" height="52" rx="8" fill="white" stroke="#fcd34d" />
+    <text x="180" y="182" textAnchor="middle" fontFamily="system-ui, sans-serif" fontSize="13" fontWeight="600" fill="#78350f">린터 · pre-commit hook</text>
+    <text x="180" y="200" textAnchor="middle" fontFamily="system-ui, sans-serif" fontSize="11" fill="#92400e">규칙 위반 → 커밋·빌드 차단</text>
+
+    <rect x="345" y="160" width="230" height="52" rx="8" fill="white" stroke="#fcd34d" />
+    <text x="460" y="182" textAnchor="middle" fontFamily="system-ui, sans-serif" fontSize="13" fontWeight="600" fill="#78350f">CI/CD 게이트</text>
+    <text x="460" y="200" textAnchor="middle" fontFamily="system-ui, sans-serif" fontSize="11" fill="#92400e">테스트 통과 못하면 → 배포 불가</text>
+
+    <rect x="65" y="226" width="230" height="52" rx="8" fill="white" stroke="#fcd34d" />
+    <text x="180" y="248" textAnchor="middle" fontFamily="system-ui, sans-serif" fontSize="13" fontWeight="600" fill="#78350f">아키텍처 테스트</text>
+    <text x="180" y="266" textAnchor="middle" fontFamily="system-ui, sans-serif" fontSize="11" fill="#92400e">금지된 구조적 호출 자동 감지</text>
+
+    <rect x="345" y="226" width="230" height="52" rx="8" fill="white" stroke="#fcd34d" />
+    <text x="460" y="248" textAnchor="middle" fontFamily="system-ui, sans-serif" fontSize="13" fontWeight="600" fill="#78350f">도구 접근 제한</text>
+    <text x="460" y="266" textAnchor="middle" fontFamily="system-ui, sans-serif" fontSize="11" fill="#92400e">위험 명령어 실행 차단</text>
+
+    <text x="320" y="291" textAnchor="middle" fontFamily="system-ui, sans-serif" fontSize="11" fontStyle="italic" fill="#b45309">AI가 선언을 어기려 해도, 실행부가 물리적으로 막아냅니다.</text>
+
+    <line x1="320" y1="312" x2="320" y2="343" stroke="#9ca3af" strokeWidth="2" markerEnd="url(#arr)" />
+
+    <rect x="180" y="350" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" strokeWidth="2" />
+    <text x="320" y="378" textAnchor="middle" fontFamily="system-ui, sans-serif" fontSize="15" fontWeight="700" fill="#166534">안전한 AI 작업 환경</text>
+  </svg>
+</div>
+
+---
+
+## 실제 사례: 하네스가 없을 때 vs 있을 때
+
+### DB 보호
+
+| 상황 | 하네스 없음 | 하네스 있음 |
+|---|---|---|
+| AI가 `DROP TABLE` 실행 시도 | CLAUDE.md에 금지라 적혀 있어도 실행됨 | 시스템이 위험 명령어를 사전 차단, 실행 자체 불가 |
+
+### 폴더 규칙
+
+| 상황 | 하네스 없음 | 하네스 있음 |
+|---|---|---|
+| 프론트엔드 코드에서 DB를 직접 import | "분리해 주세요"라고 부탁만 가능 | 린터가 import 자동 감지 → 빌드 실패 |
+
+### 새 라이브러리 도입
+
+| 상황 | 하네스 없음 | 하네스 있음 |
+|---|---|---|
+| AI가 새 npm 패키지를 추가 | 코드 리뷰 시 발견 (놓치면 그대로 배포) | `package.json` 변경 시 CI가 자동 차단 → 사람이 승인 전엔 통과 불가 |
+
+---
+
+## 각 엔지니어링별 선언과 실행부
+
+### 하네스 → 강제
+
+| 선언 (CLAUDE.md) | 실행부 |
+|------|------|
+| "새 라이브러리 도입 금지" | pre-commit hook이 `package.json` 변경 감지 → 커밋 차단 |
+| "DB는 ORM으로만" | 아키텍처 테스트 → raw SQL 감지 시 실패 |
+| "외부 API 직접 호출 금지" | pre-commit hook → 위반 시 커밋 차단 |
+
+### 에이전틱 → 강제
+
+| 선언 (CLAUDE.md) | 실행부 |
+|------|------|
+| "테스트 실패 시 스스로 수정" | 실행 루프가 테스트 결과를 AI에 자동 피드백 |
+| "모호하면 먼저 질문" | 라우터가 모호한 요청 감지 → clarification 요청 |
+| "단계별 계획 후 실행" | 오케스트레이터가 plan → execute → verify 순서 강제 |
+
+### 컨텍스트 → 강제
+
+| 선언 (CLAUDE.md) | 실행부 |
+|------|------|
+| "프로젝트 구조 참고해" | RAG로 관련 파일 자동 주입 |
+| "DB 스키마 따라해" | 작업 시작 시 최신 스키마 자동 로딩 |
+
+### 프롬프트 → 강제
+
+| 선언 (CLAUDE.md) | 실행부 |
+|------|------|
+| "답변은 한국어로" | 출력 후 언어 감지 → 한국어 아니면 자동 재요청 |
+| "코드 설명 먼저" | 출력 파서로 형식 검증 → 불일치 시 재생성 |
+
+---
+
+## 비개발자도 시작할 수 있는 하네스
+
+"실행부 구축은 개발자의 일 아닌가요?" 라고 느끼실 수 있어요.\
+하지만 **하네스의 절반은 비개발자가 직접 만들 수 있습니다.**
+
+### ① CLAUDE.md에 명확한 금지 규칙 추가
+
+가장 쉬운 시작점이에요.\
+부탁이 강제가 되지 않더라도, 명시적으로 적어두는 것만으로도 사고 확률이 크게 줄어요.
+
+<VibeBlock>
+```
+CLAUDE.md에 다음 규칙을 추가해줘:
+- 데이터베이스 스키마를 직접 변경하지 말 것
+- 새 라이브러리 도입 전 반드시 나에게 먼저 물어볼 것
+- 결제·인증 관련 코드는 수정 전 계획부터 보여줄 것
+```
+</VibeBlock>
+
+### ② Claude Code 권한 설정 활용
+
+`.claude/settings.json`에 허용·금지할 명령어를 미리 정해두면,\
+AI가 위험한 명령을 시도해도 시스템이 막아줘요.\
+이건 실제로 **물리적 차단으로 작동하는 하네스**예요.
+
+### ③ 위험 작업은 `/plan` 모드부터
+
+`/plan` 명령으로 실행 전에 계획부터 보여달라고 요청하세요.\
+사람이 직접 검토하는 단계를 끼워넣는, 가장 강력한 하네스 중 하나입니다.
+
+### ④ 개발자와 함께 자동화 도입
+
+다음 단계의 하네스는 협업이 필요해요.\
+개발자에게 이렇게 요청하면 돼요: **"이 규칙을 자동으로 검사해주는 장치를 만들어 주세요."**
+
+- **린터** — 코드가 규칙을 어기면 자동 경고
+- **pre-commit hook** — 잘못된 코드는 커밋 자체가 안 되도록
+- **CI/CD 게이트** — 테스트 통과 못 하면 배포 차단
+
+---
+
+## 자주 묻는 질문
+
+<Accordion className="not-prose">
+  <AccordionItem value="q1">
+    <AccordionTrigger>하네스가 너무 빡빡하면 AI가 답답해하지 않나요?</AccordionTrigger>
+    <AccordionContent>
+      그래서 **"절대 일어나면 안 되는 일"만 막는 것**이 원칙이에요.
+      "일어나면 좋지 않은 일"까지 다 막으면 AI는 아무것도 못 하게 돼요.
+    </AccordionContent>
+  </AccordionItem>
+  <AccordionItem value="q2">
+    <AccordionTrigger>CLAUDE.md만 잘 써도 되지 않나요?</AccordionTrigger>
+    <AccordionContent>
+      핵심은 이거예요: **AI가 그 파일을 안 읽거나 잊거나 무시할 수도 있다는 사실.**
+      중요도가 높은 규칙(돈·데이터·보안 관련)은 선언 + 실행부 둘 다 필요해요.
+    </AccordionContent>
+  </AccordionItem>
+  <AccordionItem value="q3">
+    <AccordionTrigger>처음부터 모든 하네스를 만들어야 하나요?</AccordionTrigger>
+    <AccordionContent>
+      아니요. **사고가 한 번 날 때마다 하나씩 추가**하는 게 가장 효율적이에요.
+      하네스 엔지니어링의 진화 방식은 "실수 → 새 규칙 추가 → 시스템이 점점 견고해짐"입니다.
+    </AccordionContent>
+  </AccordionItem>
+  <AccordionItem value="q4">
+    <AccordionTrigger>AI가 발전하면 하네스도 필요 없어지지 않나요?</AccordionTrigger>
+    <AccordionContent>
+      오히려 반대예요. **AI가 강력해질수록 하네스의 중요도도 함께 올라가요.**
+      힘이 센 말일수록 더 튼튼한 마구가 필요한 것과 같습니다.
+    </AccordionContent>
+  </AccordionItem>
+</Accordion>
+
+---
+
+## 마치며
+
+> **AI에게 잘 부탁하기보다, AI가 잘못할 수 없는 환경을 만드는 게 훨씬 안전합니다.**
+
+바이브코딩에서 사고가 나는 대부분의 이유는 AI가 멍청해서가 아니에요.\
+**사고가 날 수 있는 환경을 그대로 둔 채 일을 시켰기 때문**입니다.
+
+CLAUDE.md 규칙 추가 → 권한 설정 → Plan 모드 → 자동화 장치.\
+단계적으로 하네스를 갖춰가면 됩니다.
+
+<Callout type="tip">
+**기억할 한 줄:**\
+CLAUDE.md는 **헌법**, 하네스는 **경찰**. 둘 다 있어야 진짜 안전합니다.
+</Callout>
