@@ -1,0 +1,134 @@
+---
+title: 물어보는 것도 실력이다
+description: Claude Code에게 잘 물어보는 법 — 좋은 질문이 좋은 코드를 만들어요.
+---
+
+import { Callout } from 'nextra/components'
+
+# 09. 물어보는 것도 실력이다
+
+바이브코딩에서 코드를 짜는 건 Claude가 해줘요.\
+하지만 **무엇을 만들지 설명하는 건 나의 몫**이에요.
+
+같은 기능을 원해도 어떻게 말하느냐에 따라 결과가 완전히 달라져요.\
+좋은 질문은 좋은 코드를 만들고, 모호한 질문은 엉뚱한 결과를 만들어요.
+
+---
+
+## 구체적일수록 좋아요
+
+Claude는 맥락이 많을수록 정확하게 동작해요.\
+"만들어줘" 한 마디보다 목적, 조건, 제약을 함께 말해주면 훨씬 나은 결과가 나와요.
+
+| 모호한 요청 | 구체적인 요청 |
+|-------------|--------------|
+| 버튼 만들어줘 | 로그인 버튼 만들어줘. 클릭하면 `/api/auth` 로 POST 요청 보내고, 로딩 중엔 비활성화돼야 해. |
+| 에러 고쳐줘 | `TypeError: Cannot read properties of undefined` 이 에러 고쳐줘. `user.name`을 읽으려는데 `user`가 null일 때 발생해. |
+| 리스트 보여줘 | 프로젝트 목록을 카드 형태로 보여줘. 카드마다 제목, 설명, GitHub 링크가 있어야 해. |
+| 디자인 바꿔줘 | Hero 섹션 배경을 짙은 남색으로 바꾸고, 텍스트는 흰색으로 해줘. 다크 모드에서도 같은 색이면 돼. |
+
+---
+
+## 모르면 모른다고 말해도 괜찮아요
+
+기술 용어를 몰라도, 정확한 스펙을 몰라도 괜찮아요.\
+느낌이나 원하는 결과를 말하면 Claude가 구체화해줘요.
+
+```
+> 뭔가 클릭할 때 반응이 있었으면 좋겠어. 살짝 눌리는 느낌?
+```
+
+```
+> 지금 너무 밋밋해. 좀 더 세련된 느낌으로 바꿔줘.
+```
+
+```
+> 사용자가 실수로 삭제할까봐 걱정돼. 확인 창 같은 걸 넣어줄 수 있어?
+```
+
+Claude가 의도를 파악하고 알아서 구현해줘요.\
+확실하지 않을 땐 먼저 물어봐줘요.
+
+---
+
+## 한 번에 다 요청하지 않아도 돼요
+
+복잡한 기능을 한 번에 설명하려다 보면 오히려 요청이 길어지고 결과가 산으로 가요.\
+**작게 나눠서 하나씩** 요청하는 게 훨씬 깔끔해요.
+
+<div className="not-prose grid grid-cols-1 sm:grid-cols-2 gap-px bg-border my-6 border border-border text-sm">
+  <div className="bg-background px-5 py-4">
+    <div className="font-semibold text-foreground mb-2">한 번에 다 요청할 때</div>
+    <div className="text-muted-foreground">로그인 페이지 만들어줘. 이메일이랑 비밀번호 입력창 있고, 로그인 버튼 누르면 Supabase로 인증하고, 실패하면 에러 메시지 보여주고, 성공하면 대시보드로 이동하고, 소셜 로그인도 있고, 비밀번호 찾기 링크도 있어야 해.</div>
+  </div>
+  <div className="bg-background px-5 py-4">
+    <div className="font-semibold text-foreground mb-2">하나씩 요청할 때</div>
+    <div className="text-muted-foreground">
+      1. 이메일/비밀번호 입력창이 있는 로그인 폼 만들어줘.<br/>
+      2. 로그인 버튼 누르면 Supabase 인증 연결해줘.<br/>
+      3. 실패 시 에러 메시지, 성공 시 대시보드 이동 추가해줘.<br/>
+      4. Google 소셜 로그인 추가해줘.
+    </div>
+  </div>
+</div>
+
+<Callout type="tip">
+  <span className="inline-block text-xs font-semibold tracking-widest uppercase px-2 py-0.5 mb-2 bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">Best Practice</span>
+  한 번의 요청에서 Claude가 수정하는 파일이 3~5개를 넘기 시작하면,\
+  요청을 쪼개는 게 맞는 신호예요. 작을수록 검토하기도 쉽고 되돌리기도 쉬워요.
+</Callout>
+
+---
+
+## 결과가 마음에 안 들면 바로 말해요
+
+한 번에 완벽한 결과가 나오지 않아도 괜찮아요.\
+Claude는 대화를 이어가면서 조금씩 맞춰가는 걸 잘해요.
+
+```
+> 색이 너무 진해. 좀 더 연하게 해줘.
+```
+
+```
+> 모바일에서 카드가 너무 작아 보여. 좀 더 크게 해줘.
+```
+
+```
+> 이건 내가 원하던 게 아니야. 원래대로 돌려줘.
+```
+
+```
+> 방향이 다른 것 같아. 내가 원한 건 이런 거야: (설명)
+```
+
+틀렸다고 다시 처음부터 시작할 필요 없어요.\
+Claude에게 어디가 어떻게 다른지 말해주면 그 부분만 고쳐줘요.
+
+---
+
+## 막막할 땐 먼저 물어봐요
+
+어디서 시작해야 할지 모를 때도 Claude에게 물어볼 수 있어요.
+
+```
+> 사용자가 프로필 사진을 업로드할 수 있게 하고 싶어.
+  어떻게 시작하면 좋을까?
+```
+
+```
+> Supabase 로그인을 내 Next.js 앱에 연결하고 싶은데,
+  뭐부터 해야 해?
+```
+
+```
+> 지금 내 코드에서 성능이 느릴 것 같은 부분이 있어?
+```
+
+Claude가 방향을 잡아줄 거예요.\
+직접 물어보는 것 자체가 개발을 잘하는 방법이에요.
+
+<Callout type="tip">
+  <span className="inline-block text-xs font-semibold tracking-widest uppercase px-2 py-0.5 mb-2 bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">Best Practice</span>
+  막막할 때 `/plan` 모드에서 먼저 방향을 잡아보세요.\
+  Claude가 코드를 건드리지 않고 어떻게 접근할지 설명해줘요.
+</Callout>
