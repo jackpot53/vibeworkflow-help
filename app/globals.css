@@ -155,6 +155,9 @@ article h4 {
 pre.not-prose {
   background-color: #0d1117 !important;
   border-radius: 0.5rem !important;
+  box-shadow: none !important;
+  outline: none !important;
+  border: none !important;
   font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", ui-monospace, "SF Mono", Menlo, monospace !important;
   font-size: 0.8125rem !important;
   line-height: 1.6 !important;
