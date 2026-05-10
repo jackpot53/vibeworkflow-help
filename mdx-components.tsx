@@ -11,6 +11,8 @@ import { TimelineTabs } from '@/components/timeline-tabs'
 import { ClaudeMdDemo } from '@/components/claude-md-demo'
 import { VibeBlock } from '@/components/vibe-block'
 import { DevLabelDemo } from '@/components/devlabel-demo'
+import { SectionMap } from '@/components/section-map'
+import { ShadcnComponentGrid } from '@/components/shadcn-component-grid'
 
 export function useMDXComponents() {
   return getDocsMDXComponents({
@@ -20,6 +22,8 @@ export function useMDXComponents() {
     StepBadge,
     VibeBlock,
     DevLabelDemo,
+    SectionMap,
+    ShadcnComponentGrid,
     GitFlowDiagram,
     PRFlowDiagram,
     HeroSection,
