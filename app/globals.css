@@ -136,6 +136,7 @@ article {
 
 article * {
   line-height: inherit !important;
+  border-radius: 0 !important;
 }
 
 article h1 { font-size: 1.375rem !important; line-height: 1.25 !important; }
