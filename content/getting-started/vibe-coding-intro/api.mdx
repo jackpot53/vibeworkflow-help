@@ -1,0 +1,213 @@
+---
+title: 08. API 연동
+description: 취업공고 API를 연동해서 포트폴리오 사이트에 실시간 채용정보를 보여줘요.
+---
+
+import { Callout } from 'nextra/components'
+
+# 08. API 연동
+
+포트폴리오에 실제 데이터를 연결하면 훨씬 살아있는 사이트가 돼요.\
+취업공고 사이트 API를 연동해서 실시간 채용정보를 보여주는 기능을 만들어볼게요.
+
+---
+
+## 사람인 채용정보 API
+
+개인 포트폴리오에 취업공고를 연동할 때 가장 많이 쓰이는 선택지예요.
+
+| 항목 | 내용 |
+|------|------|
+| **엔드포인트** | `oapi.saramin.co.kr` |
+| **응답 형식** | JSON |
+| **제공 정보** | 회사명, 포지션, 마감일, 직무 분류 등 |
+| **이용 방법** | 신청 및 승인 후 API 키 발급 |
+
+API 키는 [사람인 채용정보 API 가이드](https://oapi.saramin.co.kr/guide/job-search)에서 신청할 수 있어요.
+
+<Callout type="info">
+  API 키 발급에 1~2일 정도 소요될 수 있어요. 미리 신청해두는 게 좋아요.
+</Callout>
+
+---
+
+## API를 Claude Code로 구현하는 가장 현명한 방법
+
+API를 Claude Code로 구현할 때 가장 흔한 실수는 **"사람인 API 연동해줘"라고만 하는 거예요.**
+
+Claude가 API 스펙을 모르는 상태에서 코드를 짜면 엔드포인트, 파라미터 이름, 응답 구조를 틀리게 추측해요. 그러면 틀린 코드를 고치는 데 시간을 더 쓰게 돼요.
+
+<Callout type="tip">
+  <span className="inline-block text-xs font-semibold tracking-widest uppercase px-2 py-0.5 mb-2 bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">Best Practice</span>
+  Claude Code에게 API를 구현하도록 시키기 **전에**, API 공식 문서를 `docs/api/` 폴더에 `spec.md` 파일로 저장해두세요.\
+  DB의 ERD 파일처럼, Claude가 스펙 파일을 참고하면 추측 없이 정확한 코드를 짜줘요.
+</Callout>
+
+---
+
+## spec.md 파일 만들기
+
+### 1단계 — Claude Code에게 스펙 파일을 만들어달라고 해요
+
+두 가지 방법 중 편한 걸 쓰면 돼요.
+
+**방법 A — API 문서 URL을 넘겨주는 경우**
+
+[사람인 API 가이드 페이지](https://oapi.saramin.co.kr/guide/job-search)를 열고, 아래처럼 입력해요.
+
+```
+https://oapi.saramin.co.kr/guide/job-search
+
+이 페이지에 사람인 채용정보 API의 request/response 스펙이 있어.
+이 내용을 바탕으로 docs/api/saramin-spec.md 파일을 만들어줘.
+엔드포인트, 요청 파라미터, 응답 필드, 예시를 모두 포함해줘.
+```
+
+**방법 B — API 스펙을 직접 붙여넣는 경우**
+
+URL 접근이 안 되거나 내부 API인 경우, 스펙 내용을 직접 붙여넣어도 돼요.
+
+```
+이게 우리가 쓸 API 스펙이야. 이걸 바탕으로 docs/api/saramin-spec.md 파일 만들어줘.
+
+## Request
+GET https://oapi.saramin.co.kr/job
+Headers:
+  access-key: {API_KEY}
+
+Query Parameters:
+  keywords  string  검색 키워드
+  loc_mcd   string  지역 코드 (예: 101000 서울)
+  count     number  결과 수 (기본 10, 최대 110)
+  start     number  시작 페이지 (기본 0)
+
+## Response
+{
+  "jobs": {
+    "count": 10,
+    "start": 0,
+    "total": "1234",
+    "job": [
+      {
+        "id": "12345",
+        "company": {
+          "detail": { "name": "카카오" }
+        },
+        "position": {
+          "title": "프론트엔드 개발자",
+          "location": { "name": "서울" },
+          "job-type": { "name": "정규직" },
+          "experience-level": { "name": "경력 3년↑" }
+        },
+        "salary": { "name": "회사내규에 따름" },
+        "close-type": { "name": "2025-12-31" }
+      }
+    ]
+  }
+}
+```
+
+Claude가 API 문서를 읽고 스펙 파일을 생성해줘요.
+
+### 2단계 — CLAUDE.md에 참고하도록 지침 추가해요
+
+```
+API 관련 작업을 할 때는 docs/api/ 폴더 안의 스펙 파일을 먼저 확인해줘.
+```
+
+이렇게 해두면 이후 모든 API 관련 작업에서 Claude가 자동으로 스펙을 참고해요.
+
+### 생성되는 spec.md 예시
+
+Claude가 만들어주는 스펙 파일은 이런 형태예요.
+
+```markdown
+# 사람인 채용정보 API Spec
+
+## 엔드포인트
+GET https://oapi.saramin.co.kr/job
+
+## 인증
+헤더: access-key: {API_KEY}
+
+## 요청 파라미터
+| 파라미터 | 타입 | 필수 | 설명 |
+|---------|------|------|------|
+| keywords | string | N | 검색 키워드 |
+| loc_mcd | string | N | 지역 코드 |
+| job_mid_cd | string | N | 직종 코드 |
+| count | number | N | 결과 수 (기본 10, 최대 110) |
+| start | number | N | 시작 페이지 (기본 0) |
+
+## 응답 구조
+{
+  "jobs": {
+    "count": 100,
+    "start": 0,
+    "total": "1000",
+    "job": [
+      {
+        "id": "12345",
+        "company": { "detail": { "name": "회사명" } },
+        "position": {
+          "title": "포지션명",
+          "location": { "name": "서울" },
+          "job-type": { "name": "정규직" },
+          "experience-level": { "name": "경력무관" }
+        },
+        "salary": { "name": "회사내규에 따름" },
+        "close-type": { "name": "2025-12-31" }
+      }
+    ]
+  }
+}
+```
+
+---
+
+## API 구현하기
+
+스펙 파일이 준비됐으면 Claude Code에게 구현을 맡겨요.
+
+### 기본 연동
+
+```
+docs/api/saramin-spec.md 파일을 참고해서
+사람인 API로 채용공고 목록을 가져오는 기능을 만들어줘.
+키워드로 검색할 수 있고, 결과를 카드 형태로 보여줘.
+API 키는 환경변수 SARAMIN_API_KEY로 관리해줘.
+```
+
+### 기능 추가
+
+기본 연동이 되면 기능을 하나씩 추가해요.
+
+```
+직종, 지역, 경력 조건으로 필터링할 수 있도록 해줘.
+```
+
+```
+무한 스크롤로 더 많은 공고를 불러올 수 있게 해줘.
+```
+
+```
+관심 공고를 북마크할 수 있는 기능 추가해줘. Supabase에 저장해줘.
+```
+
+<Callout type="tip">
+  한 번에 다 요청하지 말고 하나씩 추가해요.\
+  기본 목록 → 필터 → 무한스크롤 → 북마크 순으로 단계별로 완성하면 에러가 났을 때 원인을 찾기 쉬워요.
+</Callout>
+
+---
+
+## 다른 API에도 똑같이 적용해요
+
+이 방법은 사람인 API에만 쓰는 게 아니에요. 어떤 API든 같은 순서로 하면 돼요.
+
+1. API 공식 문서 링크를 Claude Code에 붙여넣어요
+2. `docs/api/` 폴더에 스펙 파일을 만들어달라고 해요
+3. CLAUDE.md에 스펙 파일 참고하라고 지침을 추가해요
+4. 구현을 맡겨요
+
+공공데이터 포털, 카카오맵, 날씨 API, 유튜브 API 등 어떤 API든 이 방식으로 Claude Code와 함께 빠르게 연동할 수 있어요.
