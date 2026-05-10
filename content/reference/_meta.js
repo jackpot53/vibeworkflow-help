@@ -1,3 +1,5 @@
 export default {
-  'slash-commands': '슬래시 명령어',
+  'slash-commands': {
+    display: 'hidden',
+  },
 }

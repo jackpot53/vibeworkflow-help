@@ -6,6 +6,7 @@ import { StepBadge } from '@/components/step-badge'
 import { GitFlowDiagram } from '@/components/git-flow-diagram'
 import { PRFlowDiagram } from '@/components/pr-flow-diagram'
 import { HeroSection } from '@/components/hero-section'
+import { LottieAnimation } from '@/components/lottie-animation'
 
 export function useMDXComponents() {
   return getDocsMDXComponents({
@@ -16,5 +17,6 @@ export function useMDXComponents() {
     GitFlowDiagram,
     PRFlowDiagram,
     HeroSection,
+    LottieAnimation,
   })
 }
