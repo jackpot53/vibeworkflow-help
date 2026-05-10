@@ -1,6 +1,6 @@
 export default {
   index: '홈',
-  'getting-started': '시작',
+  'getting-started': '시작하기',
   guides: '클로드코드 가이드',
   'planning-guide': '바이브기획 가이드',
   'vibe-coding-workflow': '바이브코딩 가이드',
