@@ -1,0 +1,138 @@
+---
+title: 05. 자주 사용하는 명령어
+description: Claude Code에서 자주 사용하는 명령어를 정리했어요.
+---
+
+import { Callout } from 'nextra/components'
+
+# 05. 자주 사용하는 명령어
+
+## /exit — 종료
+
+작업이 끝났을 때 Claude Code 세션을 닫고 일반 터미널로 돌아가요.
+
+<CommandCard
+  command="/exit"
+  description="현재 Claude Code 세션을 종료하고 일반 터미널로 돌아갑니다."
+  example="/exit"
+/>
+
+<Callout type="info">
+  `/exit` 대신 **Ctrl + C** 또는 **Ctrl + D**를 눌러도 돼요.
+</Callout>
+
+자세한 내용은 [/exit 레퍼런스](/reference/commands/exit)를 참고하세요.
+
+---
+
+## /btw — 작업 중 옆 질문
+
+Claude가 작업하는 중에 본 작업 흐름을 끊지 않고 살짝 질문할 때 써요.\
+"**by the way(그런데)**"의 줄임말이에요.
+
+<CommandCard
+  command="/btw"
+  description="Claude가 작업 중일 때 본 작업과 무관한 질문을 살짝 끼워 넣습니다. 대화 흐름에 영향을 주지 않아요."
+  example="/btw 파이썬에서 리스트와 튜플 차이가 뭐야?"
+/>
+
+<Callout type="tip">
+  `/btw`로 한 질문은 Claude의 기억에 남지 않아요. 본 작업에 영향을 주는 중요한 정보는 일반 메시지로 전달하세요.
+</Callout>
+
+자세한 내용은 [/btw 레퍼런스](/reference/commands/btw)를 참고하세요.
+
+---
+
+## Esc — 작업 중단
+
+Claude가 작업을 실행하는 도중 **Esc 키를 한 번** 누르면 현재 작업을 즉시 멈춰요.
+
+<Callout type="info">
+  Esc를 **두 번** 누르면 이전 시점으로 되돌리는 `/rewind` 메뉴가 열려요.
+</Callout>
+
+---
+
+## 컨텍스트(메모리) 관리
+
+Claude Code는 대화가 길어질수록 기억할 수 있는 내용이 한정돼요. 이를 **컨텍스트 창**이라고 하는데, 가득 차면 Claude가 이전 내용을 잊거나 응답이 느려질 수 있어요. 아래 명령어로 현재 상태를 확인하고 관리할 수 있어요.
+
+| 명령어 | 역할 | 언제 쓰나요? |
+|--------|------|-------------|
+| [/context](/reference/commands/context) | 컨텍스트 사용량 시각적으로 확인 | Claude가 느려지거나 경고가 뜨기 전에 미리 확인할 때 |
+| [/usage](/reference/commands/usage) | 플랜 한도·비용·세션 통계 확인 | Claude가 갑자기 응답을 거부하거나 비용이 궁금할 때 |
+| [/compact](/reference/commands/compact) | 대화를 요약해서 공간 확보 | 작업 흐름은 유지하면서 계속 이어가고 싶을 때 |
+| [/clear](/reference/commands/clear) | 대화 전체 초기화 | 작업이 완전히 끝나고 새 작업을 시작할 때 |
+
+<Callout type="tip">
+  컨텍스트 사용률이 70~80%를 넘으면 `/compact`로 요약해두세요.\
+  자동 요약이 일어나기 전에 직접 실행하면 중요한 내용이 더 잘 보존돼요.
+</Callout>
+
+### 실제로 어떻게 쓰나요?
+
+**"뭔가 이상한데… 지금 얼마나 썼지?"**
+
+로그인 기능을 만들다가 Claude 응답이 조금 느려진 것 같을 때, 화면 하단 상태바를 슬쩍 봐요. 50%를 넘어간 게 보이면 `/context`를 쳐봐요.
+
+```
+> /context
+  ⎿  Context Usage
+     ⛁ ⛁ ⛁ ⛁ ⛁ ⛁ ⛁ ⛁ ⛁ ⛁   Sonnet 4.6
+     ⛁ ⛁ ⛁ ⛁ ⛁ ⛁ ⛁ ⛁ ⛁ ⛁   claude-sonnet-4-6
+     ⛁ ⛁ ⛁ ⛁ ⛁ ⛁ ⛁ ⛁ ⛀ ⛶   109k/200k tokens (55%)
+     ...
+                           ⛁ System prompt:  6.3k tokens (3.1%)
+                           ⛁ System tools:   8.3k tokens (4.2%)
+                           ⛁ Messages:       91.2k tokens (45.6%)
+                           ⛶ Free space:     57.4k (28.7%)
+                           ⛝ Autocompact buffer: 33k tokens (16.5%)
+```
+
+Messages가 91k로 가장 많이 쌓였어요. 대화가 길어진 거예요. 이 상태로 계속 가면 자동 압축이 일어나기 전에 내가 먼저 정리하는 게 좋아요.
+
+---
+
+**"Claude가 자꾸 엉뚱한 얘기를 해요"**
+
+한 시간 넘게 같은 세션에서 여러 기능을 만들다 보면 대화가 너무 많이 쌓여서 Claude가 앞에서 한 얘기를 잘못 기억하기 시작해요. 내가 분명히 "이 버튼은 파란색으로 해줘"라고 했는데 다시 초록색으로 만들어오는 식이에요. 이럴 때는 `/compact`를 써요.
+
+```
+> /compact
+  ⎿  Compacted conversation. Summary:
+     - 로그인 폼 UI 완성 (이메일, 비밀번호 입력 + 제출 버튼)
+     - JWT 토큰 방식으로 인증 처리
+     - 로그인 실패 시 에러 메시지 표시 기능 추가
+     - 현재 작업: 소셜 로그인(Google) 연동 중
+```
+
+지금까지의 흐름이 요약되면서 Claude의 기억이 정돈돼요. 대화를 날리지 않고도 맥락을 깔끔하게 정리할 수 있어요.
+
+반면 로그인 기능을 다 완성하고 이제 결제 페이지를 완전히 새로 시작한다면 `/clear`가 더 나아요. 이전 맥락이 새 작업에 오히려 방해가 될 수 있거든요.
+
+```
+> /clear
+  ⎿  Conversation cleared.
+```
+
+빈 화면으로 돌아오고 Claude는 이전 대화를 기억하지 않아요. 새 작업을 깔끔하게 시작할 수 있어요.
+
+---
+
+**"오늘 5시간째 작업 중인데 갑자기 응답이 안 돼요"**
+
+열심히 작업하다가 갑자기 Claude가 응답을 거부하면 당황스러울 수 있어요. 이때 `/usage`를 쳐봐요.
+
+```
+> /usage
+  ⎿  Current session
+     ████████████████████████████████████████████   89% used
+     Resets 8:10pm (Asia/Seoul)
+
+     Current week (Sonnet only)
+     ██████████████████████████████████████████████████   100% used
+     Resets May 12 at 8am (Asia/Seoul)
+```
+
+이번 주 Sonnet 한도가 꽉 찼어요. May 12 오전 8시에 초기화돼요. 오늘은 여기까지 하고 내일 다시 시작하거나, 더 저렴한 모델로 전환해서 계속할지 판단할 수 있어요.

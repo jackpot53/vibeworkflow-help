@@ -1,0 +1,293 @@
+---
+title: 06. DB 연동
+description: Supabase로 포트폴리오 사이트에 데이터베이스를 연결하고, 경력·학력 정보를 직접 관리해봐요.
+---
+
+import { Callout, Tabs } from 'nextra/components'
+
+# 06. DB 연동
+
+지금까지는 경력이나 학력 정보를 코드 안에 직접 써넣었어요.\
+이번 단계에서는 **Supabase**를 연결해서 데이터베이스에 저장하고, 웹 화면에서 직접 추가·수정·삭제할 수 있도록 만들어봐요.
+
+---
+
+## Supabase란?
+
+Supabase는 한마디로 **백엔드를 직접 만들지 않아도 되는 플랫폼**이에요.\
+데이터베이스, 인증, 파일 저장소, 실시간 기능, 서버리스 함수를 한 곳에서 쓸 수 있어요. \
+Firebase와 비슷한 개념인데, PostgreSQL 기반이라 SQL을 그대로 쓸 수 있고, 오픈소스라 셀프 호스팅도 가능해요.
+
+| 기능 | 설명 |
+|------|------|
+| **PostgreSQL** | 정식 SQL 데이터베이스 |
+| **자동 REST API** | 테이블을 만들면 API가 자동 생성 |
+| **인증** | 이메일·소셜 로그인 지원 |
+| **Storage** | 이미지·파일 저장소 |
+| **Edge Functions** | 서버리스 함수 |
+
+**가격**은 무료 플랜(500MB DB, 5만 MAU)으로 시작할 수 있어요.\
+개인 포트폴리오 사이트라면 무료 플랜으로 충분해요.
+
+<Callout type="tip">
+  GitHub 스타 약 10만 개, 기업 가치 $5B(약 6.5조 원)에 달하는 검증된 서비스예요.\
+  개인 프로젝트부터 대형 스타트업까지 널리 쓰이고 있어요.
+</Callout>
+
+---
+
+## Supabase 시작하기
+
+### 가입하기
+
+[supabase.com](https://supabase.com)에 접속해서 GitHub 계정으로 가입해요.
+
+### Organization 만들기
+
+[대시보드](https://supabase.com/dashboard/organizations)에서 **New organization** 버튼을 클릭해요.
+
+Organization은 프로젝트들을 묶는 상위 단위예요.\
+회사나 팀 단위로 만들어두고, 그 아래에 여러 프로젝트(dev, staging, prod 또는 서비스별)를 만드는 구조예요.
+
+<Screenshot
+  src="https://velog.velcdn.com/images/soorokim/post/b204b27a-76ea-4fd4-9834-b0a8809dd886/image.png"
+  alt="Supabase Organization 생성 화면"
+  caption="조직을 생성한 뒤 대시보드에서 확인할 수 있어요"
+/>
+
+### 프로젝트 만들기
+
+생성한 조직을 클릭하면 프로젝트 목록이 나와요.\
+**New project** 버튼을 눌러 프로젝트를 만들어요.
+
+```
+Project name : jackpot-portfolio
+Database password : ••••••••••••••••
+Region : Northeast Asia (Seoul)
+```
+
+<Callout type="warning">
+  Database password는 나중에 `.env.local`에 직접 입력해야 해요. 반드시 어딘가에 기록해두세요.
+</Callout>
+
+<Screenshot
+  src="https://jgjgill.com/_astro/supabase-new-project.vqP7kIsJ_Z2hYAnd.webp"
+  alt="Supabase 프로젝트 생성 화면"
+  caption="프로젝트 이름, DB 비밀번호, 리전을 입력해요"
+/>
+
+---
+
+## Claude Code로 Supabase 연결하기
+
+프로젝트가 준비됐으면 Claude Code에게 연결 작업을 맡겨요.
+
+### 환경설정 파일 만들기
+
+Claude Code에 다음과 같이 입력해요.
+
+```
+supabase와 연동하기 위한 환경설정 파일 만들어줘
+```
+
+그러면 프로젝트 루트에 `.env.local` 파일이 만들어져요.
+
+```bash
+# .env.local
+NEXT_PUBLIC_SUPABASE_URL=your-project-url
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your-publishable-key
+
+DATABASE_URL=postgresql://postgres.[project-ref]:[YOUR-PASSWORD]@aws-1-ap-northeast-2.pooler.supabase.com:6543/postgres
+```
+
+값들이 아직 비어 있어요. 다음 단계에서 Supabase Connect 화면의 프롬프트를 붙여넣으면 자동으로 채워져요.
+
+### Supabase Connect 프롬프트 붙여넣기
+
+Supabase 대시보드 상단의 **Connect** 버튼을 클릭하면 연결 설정 화면이 나와요.
+
+여기서 핵심은 **Copy prompt** 버튼이에요. 탭마다 이 버튼이 있는데, 클릭하면 "이렇게 설정해줘"라는 지시문이 클립보드에 복사돼요. 이걸 Claude Code에 그대로 붙여넣으면 설치·설정을 알아서 다 해줘요. 코드를 직접 건드릴 필요가 없어요.
+
+아래 4개 탭을 순서대로 진행해요. 각 탭에서 **Copy prompt**를 클릭하고 Claude Code에 붙여넣으면 돼요.
+
+<Tabs items={['1. Framework', '2. Direct Connection', '3. ORM', '4. MCP']}>
+  <Tabs.Tab>
+    ```
+    ┌─────────────────────────────────────────────────────┐
+    │  Framework                                          │
+    │  ─────────────────────────────────────────────────  │
+    │  Use a client library        ◉                      │
+    │  Use the CLI                 ○                      │
+    │                                                     │
+    │  Next.js ▼                                          │
+    │                                                     │
+    │  Install @supabase/supabase-js and create           │
+    │  a client at utils/supabase/...                     │
+    │                                                     │
+    │                              [ Copy prompt ]        │
+    └─────────────────────────────────────────────────────┘
+    ```
+
+    `Use a client library`가 선택된 상태에서 **Copy prompt**를 클릭하고 Claude Code에 붙여넣어요.
+
+    복사되는 프롬프트 예시:
+    ```
+    Set up Supabase in my Next.js project using the JavaScript client library.
+    Install @supabase/supabase-js, create a client helper at lib/supabase.ts,
+    and update my .env.local with the required environment variables.
+    Project URL: https://xxxx.supabase.co
+    Anon key: eyJh...
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```
+    ┌─────────────────────────────────────────────────────┐
+    │  Direct Connection                                  │
+    │  ─────────────────────────────────────────────────  │
+    │  Connect Method                                     │
+    │  [ Transaction pooler          ▼ ]  ← 이걸 선택    │
+    │                                                     │
+    │  Connection string                                  │
+    │  postgresql://postgres.[ref]:6543/postgres          │
+    │                                                     │
+    │                              [ Copy prompt ]        │
+    └─────────────────────────────────────────────────────┘
+    ```
+
+    `Connect Method`를 **Transaction pooler**로 변경한 뒤 **Copy prompt**를 클릭하고 Claude Code에 붙여넣어요.
+
+    서버리스 환경(Vercel 등)에서 DB 연결 수를 효율적으로 관리해줘요.
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```
+    ┌─────────────────────────────────────────────────────┐
+    │  ORM  Third-party library                           │
+    │  ─────────────────────────────────────────────────  │
+    │  ORM                                                │
+    │  [ Drizzle                     ▼ ]  ← 이걸 선택    │
+    │                                                     │
+    │  Install drizzle-orm and configure                  │
+    │  drizzle.config.ts...                               │
+    │                                                     │
+    │                              [ Copy prompt ]        │
+    └─────────────────────────────────────────────────────┘
+    ```
+
+    `ORM`을 **Drizzle**로 선택한 뒤 **Copy prompt**를 클릭하고 Claude Code에 붙여넣어요.
+
+    SQL 대신 TypeScript로 DB를 다룰 수 있게 해주는 도구예요.
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```
+    ┌─────────────────────────────────────────────────────┐
+    │  MCP  Connect your agent                            │
+    │  ─────────────────────────────────────────────────  │
+    │  Connect Claude Code directly to your               │
+    │  Supabase project via MCP server.                   │
+    │                                                     │
+    │  Allows Claude to run queries, create tables,       │
+    │  and manage your database directly.                 │
+    │                                                     │
+    │                              [ Copy prompt ]        │
+    └─────────────────────────────────────────────────────┘
+    ```
+
+    별도 설정 없이 **Copy prompt**를 클릭하고 Claude Code에 붙여넣어요.
+
+    연결하면 Claude Code가 Supabase 대시보드 없이도 테이블 생성·조회 같은 DB 작업을 직접 실행할 수 있어요.
+  </Tabs.Tab>
+</Tabs>
+
+<Callout type="tip">
+  프롬프트 안에 내 프로젝트 URL과 API 키가 이미 채워져 있어서, 그냥 붙여넣기만 해도 내 Supabase 프로젝트에 맞게 설정이 돼요.
+</Callout>
+
+### DB 비밀번호 입력하기
+
+`.env.local` 파일을 열면 이런 형태로 생성돼 있어요.
+
+```bash
+# .env.local
+NEXT_PUBLIC_SUPABASE_URL=your-project-url
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your-publishable-key
+
+DATABASE_URL=postgresql://postgres.[project-ref]:[YOUR-PASSWORD]@aws-1-ap-northeast-2.pooler.supabase.com:6543/postgres
+```
+
+`[YOUR-PASSWORD]` 부분만 프로젝트 생성할 때 설정한 실제 DB 비밀번호로 바꾸고 저장해요.
+
+```bash
+# .env.local (수정 후)
+NEXT_PUBLIC_SUPABASE_URL=your-project-url
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your-publishable-key
+
+DATABASE_URL=postgresql://postgres.[project-ref]:myActualPassword123!@aws-1-ap-northeast-2.pooler.supabase.com:6543/postgres
+```
+
+<Callout type="warning">
+  `.env.local` 파일은 절대 GitHub에 올리면 안 돼요. `.gitignore`에 이미 포함되어 있는지 확인하세요.
+</Callout>
+
+---
+
+## 경력·학력 데이터를 DB로 옮기기
+
+연결이 완료됐으면 이제 실제로 데이터를 DB에서 관리해봐요.
+
+### DB 테이블 만들기
+
+Claude Code에 다음과 같이 입력해요.
+
+```
+경력/학력 섹션의 내용을 DB에서 읽어와 보여주고 싶어.
+경력의 기간인 경우 년월일로 입사일, 퇴사일이 필요하고, 퇴사일은 필수는 아니야.
+
+1. 현재 구현된 내용 분석해서 Mermaid ERD를 만들어주고 docs/db/ 폴더에 파일로 저장해줘
+2. supabase에 ERD에 맞는 테이블을 생성해줘.
+3. CLAUDE.md에 앞으로 DB 작업을 할 때는 db 폴더 내 파일들을 참고하라고 지침서 넣어줘
+```
+
+Claude가 현재 코드를 분석해서 ERD를 그려주고, Supabase에 테이블도 직접 만들어줘요. Supabase 대시보드 → **Table Editor**에서 테이블이 잘 만들어졌는지 확인해보세요.
+
+<Callout type="info">
+  **Mermaid ERD가 뭔가요?**
+
+  ERD는 데이터베이스 구조를 그림으로 그린 설계도예요. Mermaid는 그 설계도를 코드(텍스트)로 작성하는 방식이에요. 그림 파일이 아니라 텍스트로 저장되니까 Git으로 관리할 수 있고, GitHub에서 자동으로 다이어그램으로 렌더링해줘요.
+
+  ```
+  erDiagram
+      career {
+          uuid id PK
+          string company_name
+          string position
+          date started_at
+          date ended_at
+      }
+  ```
+
+  CLAUDE.md에 "DB 작업 시 docs/db/ 파일 참고"라고 지침을 넣어두면, 이후 새 기능을 추가할 때마다 Claude가 ERD를 먼저 확인하고 기존 테이블 구조에 맞게 작업해요. "어떤 테이블이 있어?" 같은 설명 없이도 Claude가 DB 구조를 정확히 파악한 상태에서 코드를 짜줘요.
+</Callout>
+
+### DB에서 데이터 읽어오기
+
+지금은 경력사항이 코드 안에 하드코딩되어 있어요. 이걸 DB에서 읽어오도록 바꿔요.
+
+```
+경력사항을 DB에서 데이터를 읽어와서 보여주도록 하세요.
+```
+
+Claude가 Supabase 클라이언트로 데이터를 조회하는 코드로 교체해줘요.\
+화면에 기존과 똑같이 표시된다면 성공이에요.
+
+### 경력사항 CRUD 페이지 만들기
+
+이제 웹 화면에서 직접 경력사항을 추가·수정·삭제할 수 있는 페이지를 만들어요.
+
+```
+1. 경력사항을 DB에 CRUD 할 수 있는 페이지 만들어줘
+2. 경력/학력 섹션 우측에 경력사항 생성 버튼을 만들고 클릭 시 생성 페이지로 라우팅
+3. 경력/학력 목록에는 삭제, 수정 버튼이 있고 수정 버튼 클릭 시 수정 페이지로 라우팅
+```
+
+완성되면 실제로 경력을 추가해보고, 메인 페이지에 반영되는지 확인해봐요.
+

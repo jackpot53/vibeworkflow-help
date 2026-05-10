@@ -1,7 +1,5 @@
 'use client'
 
-import Script from 'next/script'
-
 declare global {
   namespace React.JSX {
     interface IntrinsicElements {
@@ -17,11 +15,6 @@ declare global {
 export function HeroSection() {
   return (
     <>
-      <Script
-        src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.9.10/dist/dotlottie-wc.js"
-        type="module"
-        strategy="afterInteractive"
-      />
       <div className="not-prose flex justify-center py-8">
         <dotlottie-wc
           src="https://lottie.host/e4d8d1eb-9e43-45ea-82af-82caa824fc3a/6OyOWgo3AX.lottie"
@@ -33,3 +26,4 @@ export function HeroSection() {
     </>
   )
 }
+

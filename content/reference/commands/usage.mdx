@@ -1,6 +1,6 @@
 ---
 title: /usage — 사용량 및 비용 확인
-description: 플랜 사용량, 요청 한도, 비용, 세션 통계를 종합적으로 확인하는 명령어예요.
+description: 세션 비용, 한도 사용률, 모델별 토큰 사용량을 확인하는 명령어예요.
 ---
 
 import { Callout } from 'nextra/components'
@@ -9,7 +9,7 @@ import { Callout } from 'nextra/components'
 
 <CommandCard
   command="/usage"
-  description="플랜 사용량, 요청 한도, 비용, 오늘의 세션 통계를 한 화면에서 확인합니다."
+  description="세션 비용, 플랜 한도 사용률, 모델별 토큰 사용량을 한 화면에서 확인합니다."
   example="/usage"
 />
 
@@ -17,13 +17,7 @@ import { Callout } from 'nextra/components'
 
 ## 언제 쓰나요?
 
-내가 얼마나 썼는지, 한도는 얼마나 남았는지, 비용은 얼마가 나왔는지 종합적으로 파악하고 싶을 때 사용해요.
-
-**이런 상황에서 쓰세요:**
-
-- Claude가 갑자기 응답을 거부하거나 느려질 때 (요청 한도 초과 여부 확인)
-- API 키로 사용 중인데 비용이 궁금할 때
-- 오늘 얼마나 작업했는지 통계를 보고 싶을 때
+이번 세션에서 비용이 얼마나 나왔는지, 플랜 한도가 얼마나 남았는지 확인하고 싶을 때 사용해요.
 
 ---
 
@@ -33,37 +27,92 @@ import { Callout } from 'nextra/components'
 > /usage
 ```
 
-실행하면 사용량 대시보드가 표시돼요:
+실행하면 아래와 같이 표시돼요:
 
 ```
-● Usage Dashboard
-  ─── Plan Limits ────────────────────
-  Messages today:    42 / 100  (42%)
-  ─── Rate Limits ────────────────────
-  Requests/min:       3 / 60   (5%)
-  ─── Cost ───────────────────────────
-  This session:      $0.087
-  Today:             $0.243
-  ─── Session Stats ──────────────────
-  Sessions today:    3
-  Avg session time:  24 min
-```
+Session
 
-<Callout type="info">
-  **Claude.ai Pro/Max 구독자**는 요청 횟수 한도가 표시돼요.\
-  **API 키 사용자**는 달러 비용이 주로 표시돼요.
-</Callout>
+  Total cost:            $0.54
+  Total duration (API):  3m 7s
+  Total duration (wall): 2h 36m 39s
+  Total code changes:    250 lines added, 5 lines removed
+  Usage by model:
+     claude-sonnet-4-6:  456 input, 10.4k output, 686.6k cache read, 47.5k
+  cache write ($0.54)
+      claude-haiku-4-5:  385 input, 21 output, 0 cache read, 0 cache write
+  ($0.0005)
+
+  Current session
+  ████████████▌                                      25% used
+  Resets 8:10pm (Asia/Seoul)
+
+  Current week (all models)
+  ████████████                                       24% used
+  Resets May 12 at 8am (Asia/Seoul)
+
+  Current week (Sonnet only)
+  ███████████████                                    30% used
+  Resets May 12 at 8am (Asia/Seoul)
+
+  What's contributing to your limits usage?
+  Approximate, based on local sessions on this machine — does not include other
+  devices or claude.ai
+
+  Last 24h · these are independent characteristics of your usage, not a breakdown
+
+  75% of your usage came from subagent-heavy sessions
+   Each subagent runs its own requests. Be deliberate about spawning them — and
+   consider configuring a cheaper model for simpler subagents.
+
+  Skills, subagents, and plugins
+  No attribution data yet · accumulates as you use Claude
+
+  d to day · w to week
+
+  Extra usage
+  Extra usage not enabled · /extra-usage to enable
+```
 
 ---
 
 ## 표시 항목
 
+**Session — 이번 세션 통계**
+
 | 항목 | 설명 |
 |------|------|
-| **Plan Limits** | 하루 사용 가능한 메시지·요청 횟수 대비 현재 사용량 |
-| **Rate Limits** | 분당 요청 한도 대비 현재 속도 |
-| **Cost** | 현재 세션 및 오늘 하루 예상 비용 (API 키 사용 시) |
-| **Session Stats** | 오늘 세션 수, 평균 작업 시간 등 통계 |
+| **Total cost** | 이번 세션에서 사용한 총 비용 |
+| **Total duration (API)** | 실제 API 응답에 걸린 시간 |
+| **Total duration (wall)** | 세션을 열어둔 실제 경과 시간 |
+| **Total code changes** | 추가·삭제된 코드 줄 수 |
+| **Usage by model** | 모델별 input/output/cache 토큰 수와 비용 |
+
+**한도 사용률**
+
+| 항목 | 설명 |
+|------|------|
+| **Current session** | 현재 세션의 한도 사용률과 초기화 시간 |
+| **Current week (all models)** | 이번 주 전체 모델 한도 사용률 |
+| **Current week (Sonnet only)** | 이번 주 Sonnet 모델 한도 사용률 |
+
+**사용 패턴 분석**
+
+지난 24시간 동안 내 사용량에서 어떤 패턴이 주요 원인인지 알려줘요.\
+서브에이전트를 많이 썼는지, 특정 기능이 많은 요청을 차지했는지 등을 보여줘요.
+
+<Callout type="info">
+  사용률은 이 기기의 로컬 세션 기준이에요.\
+  다른 기기나 claude.ai에서 사용한 내역은 포함되지 않아요.
+</Callout>
+
+---
+
+## 화면 전환
+
+| 키 | 동작 |
+|----|------|
+| **d** | 일간(day) 보기로 전환 |
+| **w** | 주간(week) 보기로 전환 |
 
 ---
 
@@ -71,9 +120,8 @@ import { Callout } from 'nextra/components'
 
 | | `/usage` | `/context` |
 |--|----------|------------|
-| 보여주는 것 | 플랜 한도·비용·통계 | 현재 대화의 컨텍스트 창 사용률 |
-| 시각화 | 수치 대시보드 | 색상 블록 그래프 |
-| 언제 쓰나 | 한도·비용 파악할 때 | 대화 용량 파악할 때 |
+| 보여주는 것 | 비용·한도·세션 통계 | 현재 대화의 컨텍스트 창 사용률 |
+| 언제 쓰나 | 비용·한도 파악할 때 | 대화 용량 파악할 때 |
 
 ---
 
@@ -82,5 +130,4 @@ import { Callout } from 'nextra/components'
 | 명령어 | 설명 |
 |--------|------|
 | `/context` | 현재 대화 컨텍스트 사용률 시각적으로 확인 |
-| `/status` | 버전·모델·계정 연결 상태 확인 |
 | `/compact` | 대화 요약해서 토큰 절약 |

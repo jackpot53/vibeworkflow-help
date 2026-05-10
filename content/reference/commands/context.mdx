@@ -41,13 +41,82 @@ Claude가 한 번의 대화에서 "기억"할 수 있는 텍스트의 최대 양
 > /context
 ```
 
-실행하면 색상으로 구분된 블록 형태로 사용량이 시각적으로 표시돼요:
+실행하면 동전 모양 아이콘으로 사용량이 시각적으로 표시돼요:
 
 ```
-● Context Window
-  ████████████░░░░░░░░  58% used
-  116,000 / 200,000 tokens
+Context Usage
+⛁ ⛁ ⛁ ⛁ ⛁ ⛁ ⛁ ⛀ ⛁ ⛁   Sonnet 4.6
+⛁ ⛁ ⛁ ⛁ ⛁ ⛁ ⛁ ⛁ ⛁ ⛁   claude-sonnet-4-6
+⛁ ⛀ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶   42.7k/200k tokens (21%)
+⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶
+⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶   Estimated usage by category
+⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶   ⛁ System prompt: 6.3k tokens (3.1%)
+⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶   ⛁ System tools: 8.3k tokens (4.2%)
+⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶   ⛁ Memory files: 848 tokens (0.4%)
+⛶ ⛶ ⛶ ⛝ ⛝ ⛝ ⛝ ⛝ ⛝ ⛝   ⛁ Skills: 2.1k tokens (1.0%)
+⛝ ⛝ ⛝ ⛝ ⛝ ⛝ ⛝ ⛝ ⛝ ⛝   ⛁ Messages: 25.2k tokens (12.6%)
+                      ⛶ Free space: 124.2k (62.1%)
+                      ⛝ Autocompact buffer: 33k tokens (16.5%)
+
+MCP tools · /mcp (loaded on-demand)
+
+Available
+├ mcp__claude_ai_Google_Drive__authenticate
+└ mcp__claude_ai_Google_Drive__complete_authentication
+
+Memory files · /memory
+└ CLAUDE.md: 848 tokens
+
+Skills · /skills
+
+User
+├ impeccable: 114 tokens
+├ critique: 91 tokens
+├ vercel-composition-patterns: 85 tokens
+├ find-skills: 79 tokens
+├ delight: 72 tokens
+├ audit: 72 tokens
+├ animate: 71 tokens
+├ colorize: 71 tokens
+├ adapt: 69 tokens
+├ shape: 68 tokens
+├ layout: 67 tokens
+├ bolder: 67 tokens
+├ clarify: 66 tokens
+├ overdrive: 65 tokens
+├ typeset: 64 tokens
+├ polish: 62 tokens
+├ quieter: 59 tokens
+├ optimize: 59 tokens
+└ distill: 59 tokens
+
+├ claude-api: 189 tokens
+├ update-config: 176 tokens
+├ schedule: 95 tokens
+├ loop: 85 tokens
+├ keybindings-help: 61 tokens
+├ fewer-permission-prompts: 47 tokens
+├ simplify: 23 tokens
+├ security-review: 22 tokens
+├ init: 16 tokens
+└ review: 7 tokens
 ```
+
+---
+
+## 표시 항목
+
+| 항목 | 설명 |
+|------|------|
+| **System prompt** | CLAUDE.md 등 시스템 프롬프트가 차지하는 토큰 |
+| **System tools** | Claude Code가 사용하는 내장 도구들이 차지하는 토큰 |
+| **Memory files** | 메모리 파일이 차지하는 토큰 |
+| **Skills** | 로드된 스킬들이 차지하는 토큰 |
+| **Messages** | 실제 대화 내용이 차지하는 토큰 |
+| **Free space** | 남은 여유 공간 |
+| **Autocompact buffer** | 자동 압축을 위해 예약된 공간 |
+
+아래쪽에는 로드된 MCP 도구, 메모리 파일, 스킬 목록과 각각의 토큰 수도 함께 표시돼요.
 
 ---
 

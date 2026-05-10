@@ -1,7 +1,5 @@
 'use client'
 
-import Script from 'next/script'
-
 declare global {
   namespace JSX {
     interface IntrinsicElements {
@@ -25,11 +23,6 @@ export function LottieAnimation({
 }) {
   return (
     <>
-      <Script
-        src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.9.10/dist/dotlottie-wc.js"
-        type="module"
-        strategy="afterInteractive"
-      />
       <div className="not-prose flex justify-center py-4">
         <dotlottie-wc
           src={src}
