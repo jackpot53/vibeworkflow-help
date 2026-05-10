@@ -9,5 +9,5 @@ export default {
   'errors': '07. 에러 수정하기',
   'api': '08. API 연동',
   'asking': '09. 물어보는 것도 실력이다',
-  'design-filtering': '10. 디자인 필터링',
+  'designing': '10. 디자인 필터링',
 }

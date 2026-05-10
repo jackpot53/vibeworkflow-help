@@ -13,6 +13,7 @@ import { VibeBlock } from '@/components/vibe-block'
 import { DevLabelDemo } from '@/components/devlabel-demo'
 import { SectionMap } from '@/components/section-map'
 import { ShadcnComponentGrid } from '@/components/shadcn-component-grid'
+import { ComponentNameGrid } from '@/components/component-name-grid'
 
 export function useMDXComponents() {
   return getDocsMDXComponents({
@@ -24,6 +25,7 @@ export function useMDXComponents() {
     DevLabelDemo,
     SectionMap,
     ShadcnComponentGrid,
+    ComponentNameGrid,
     GitFlowDiagram,
     PRFlowDiagram,
     HeroSection,
