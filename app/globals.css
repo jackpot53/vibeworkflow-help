@@ -154,7 +154,7 @@ article h4 {
 /* Terminal-style code blocks */
 pre.not-prose {
   background-color: #0d1117 !important;
-  border-radius: 0.5rem !important;
+  border-radius: 0 !important;
   box-shadow: none !important;
   outline: none !important;
   border: none !important;
