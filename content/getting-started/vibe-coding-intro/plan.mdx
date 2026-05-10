@@ -1,11 +1,11 @@
 ---
-title: 계획(PLAN)하기
+title: 계획(PLAN) + 구현
 description: 무엇을 만들지 계획하고, Claude Code의 Plan 모드로 구현을 준비해요.
 ---
 
 import { Callout } from 'nextra/components'
 
-# 03. 계획(PLAN)하기
+# 03. 계획(PLAN) + 구현
 
 ## 원래는 이런 것들을 해야 해요
 
@@ -328,6 +328,122 @@ Claude가 모호한 부분을 스스로 가정하지 않고 먼저 확인해요.
 <Callout type="info">
   Plan 모드에서 나가기 전에 Claude가 반드시 확인을 요청해요.\
   "응" 또는 "진행해줘"라고 입력하기 전까지는 아무 파일도 바뀌지 않아요.
+</Callout>
+
+---
+
+## 로컬 웹서버를 실행해서 확인해요
+
+코드가 완성되면 직접 눈으로 확인해볼 차례예요.\
+Claude에게 개발 서버를 실행해달라고 말하면 돼요.
+
+```
+> 로컬에서 실행해서 확인해볼게. 개발 서버 켜줘.
+```
+
+Claude가 아래처럼 실행해줘요:
+
+```
+⏺ 개발 서버를 실행할게요.
+
+  $ npm run dev
+
+  ▲ Next.js 15.0.0
+  - Local: http://localhost:3000
+```
+
+브라우저에서 **http://localhost:3000** 을 열어 직접 확인하세요.\
+잘못된 부분이 보이면 바로 말해줘도 돼요.
+
+```
+> Hero 섹션 글씨가 너무 작아. 좀 더 크게 해줘.
+
+> 프로젝트 카드 배경색이 이상해. 다크 모드에서 텍스트가 안 보여.
+```
+
+Claude가 수정하고 개발 서버가 자동으로 반영돼요.\
+원하는 모습이 될 때까지 계속 대화하면서 조정하면 돼요.
+
+<Callout type="tip">
+  브라우저를 열어두면 코드가 바뀔 때마다 자동으로 새로고침돼요.\
+  Claude에게 수정을 요청하면서 실시간으로 결과를 확인할 수 있어요.
+</Callout>
+
+---
+
+## 완성됐으면 commit하고 push해요
+
+만족스러운 결과가 나왔다면 변경사항을 저장하고 GitHub에 올릴 차례예요.\
+Claude에게 그냥 말하면 돼요.
+
+```
+> 좋아, 이대로 커밋하고 푸시해줘.
+```
+
+Claude가 변경된 파일을 확인하고 커밋 메시지를 제안해줘요:
+
+```
+⏺ 변경사항을 확인했어요. 아래 내용으로 커밋할게요.
+
+  feat: 포트폴리오 사이트 초기 구현
+
+  - Hero, Projects, Contact 섹션 추가
+  - 다크 모드 및 모바일 반응형 대응
+  - 프로젝트 데이터 구조 정의
+
+  커밋하고 push할까요?
+```
+
+```
+> 응, 해줘.
+```
+
+```
+⏺ git add .
+  git commit -m "feat: 포트폴리오 사이트 초기 구현"
+  git push origin main
+
+  완료됐어요. GitHub에 반영됐어요.
+```
+
+<Callout type="tip">
+  <span className="inline-block text-xs font-semibold tracking-widest uppercase px-2 py-0.5 mb-2 bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">Best Practice</span>
+  커밋 메시지는 Claude가 자동으로 만들어주지만, 원하는 메시지가 있으면 직접 알려줘도 돼요.\
+  **"'초기 포트폴리오 세팅 완료'로 커밋해줘"** 처럼 말하면 그대로 써줘요.
+</Callout>
+
+이제 GitHub에 코드가 올라간 상태예요.\
+다음 단계에서는 Vercel에 연결해서 실제 URL로 배포해볼 거예요.
+
+---
+
+## 마지막으로 CLAUDE.md를 업데이트해요
+
+구현이 마무리됐다면 CLAUDE.md도 최신 상태로 맞춰주는 게 좋아요.\
+코드가 바뀌었으니 Claude가 다음 대화에서 프로젝트를 다시 파악하는 데 걸리는 시간을 줄여줘요.
+
+```
+> 지금까지 만든 내용 기준으로 CLAUDE.md 업데이트해줘.
+```
+
+Claude가 현재 코드를 분석해서 CLAUDE.md를 새로 써줘요:
+
+```
+⏺ 현재 프로젝트 구조를 분석하고 CLAUDE.md를 업데이트할게요.
+
+  ✦ CLAUDE.md 업데이트 중...
+
+  아래 내용을 반영했어요:
+  - 기술 스택 (Next.js App Router, TypeScript, Tailwind CSS, shadcn/ui)
+  - 주요 파일 구조 및 역할
+  - 개발 서버 실행 명령어
+  - 프로젝트 데이터 수정 위치 (data/projects.ts)
+```
+
+<Callout type="tip">
+  <span className="inline-block text-xs font-semibold tracking-widest uppercase px-2 py-0.5 mb-2 bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">Best Practice</span>
+  기능을 크게 추가하거나 구조가 바뀔 때마다 CLAUDE.md를 업데이트해두면,\
+  다음 대화를 새로 시작해도 Claude가 프로젝트 맥락을 빠르게 파악할 수 있어요.
 </Callout>
 
 

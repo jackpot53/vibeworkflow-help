@@ -1,0 +1,346 @@
+---
+title: 07. 에러 수정하기
+description: 개발 중 마주치는 다양한 에러를 Claude Code로 빠르게 해결하는 방법을 알아봐요.
+---
+
+import { Callout, Tabs } from 'nextra/components'
+
+# 07. 에러 수정하기
+
+바이브코딩을 하다 보면 에러는 반드시 만나게 돼요. 당황하지 않아도 돼요.\
+에러 메시지를 Claude Code에 그대로 던져주면 대부분 해결해줘요.
+
+---
+
+## 에러가 나면 이렇게 하세요
+
+에러를 만났을 때 가장 좋은 순서는 이거예요.
+
+**1. 에러 메시지 전체를 복사해요**
+
+빨간 글씨 일부만 복사하면 안 돼요. 스택 트레이스, 코드 프레임, 파일 경로까지 전부 포함해야 Claude가 정확히 진단할 수 있어요.
+
+**2. 어떤 상황에서 났는지 같이 알려줘요**
+
+```
+이 에러가 났어. 고쳐줘.
+
+[에러 메시지 전체 붙여넣기]
+```
+
+상황을 추가하면 더 빨라요:
+
+```
+DB 연결 설정하고 나서 dev 서버 띄우니까 이 에러가 났어. 고쳐줘.
+
+[에러 메시지 전체 붙여넣기]
+```
+
+**3. 수정 후 재현 여부를 확인해요**
+
+Claude가 고쳐줬으면 같은 동작을 다시 해보세요. 에러가 사라졌다면 성공이에요. 비슷한 에러가 또 나면 그 에러도 똑같이 붙여넣어요.
+
+<Callout type="tip">
+  에러를 무서워하지 마세요. 바이브코딩에서 에러는 "Claude에게 다음 할 일을 알려주는 신호"예요.\
+  에러가 날수록 코드가 완성에 가까워지고 있는 거예요.
+</Callout>
+
+---
+
+## 에러 유형별 예제
+
+<Tabs items={['Next.js / Turbopack', 'TypeScript', 'Hydration', '모듈 / 패키지', 'DB / Supabase']}>
+
+<Tabs.Tab>
+
+### 빌드 에러 — 모듈을 찾을 수 없어요
+
+```
+Module not found: Can't resolve '@/components/ui/button'
+
+  1 | import { Button } from '@/components/ui/button'
+    |                         ^
+```
+
+**Claude Code에 이렇게 입력해요:**
+```
+이 에러 고쳐줘.
+
+Module not found: Can't resolve '@/components/ui/button'
+  1 | import { Button } from '@/components/ui/button'
+```
+
+Claude가 해당 컴포넌트가 없는 건지, 경로가 틀린 건지 파악해서 설치하거나 경로를 수정해줘요.
+
+---
+
+### Turbopack 런타임 에러
+
+```
+Error: Expected component `Steps` to be defined: you likely forgot to import,
+pass, or provide it.
+It's referenced in your code at `85:1-233:9`
+```
+
+**Claude Code에 이렇게 입력해요:**
+```
+dev 서버에서 이 에러가 났어. 고쳐줘.
+
+Error: Expected component `Steps` to be defined: you likely forgot to import,
+pass, or provide it.
+It's referenced in your code at `85:1-233:9` in `.../db.mdx`
+```
+
+컴포넌트 import가 빠졌거나 이미 삭제된 컴포넌트가 코드에 남아있는 경우예요. Claude가 해당 파일을 열어 import를 추가하거나 사용하지 않는 태그를 제거해줘요.
+
+---
+
+### 페이지 렌더링 에러
+
+```
+Error: Cannot read properties of undefined (reading 'map')
+  at CareerList (components/career-list.tsx:24:20)
+```
+
+**Claude Code에 이렇게 입력해요:**
+```
+경력 목록 페이지 열면 이 에러가 나. 고쳐줘.
+
+Error: Cannot read properties of undefined (reading 'map')
+  at CareerList (components/career-list.tsx:24:20)
+```
+
+DB에서 데이터를 못 받아온 상태에서 `.map()`을 호출한 경우가 많아요. Claude가 데이터 로딩 상태 처리를 추가해줘요.
+
+</Tabs.Tab>
+
+<Tabs.Tab>
+
+### 타입 에러 — 타입이 맞지 않아요
+
+```
+Type 'string | null' is not assignable to type 'string'.
+  Type 'null' is not assignable to type 'string'.
+
+  at lib/supabase.ts:14:5
+```
+
+**Claude Code에 이렇게 입력해요:**
+```
+빌드하니까 TypeScript 에러가 났어. 고쳐줘.
+
+Type 'string | null' is not assignable to type 'string'.
+  Type 'null' is not assignable to type 'string'.
+  at lib/supabase.ts:14:5
+```
+
+DB에서 가져온 값이 `null`일 수 있는데 타입 선언에 `null`이 빠진 경우예요. Claude가 타입을 `string | null`로 수정하거나 null 체크를 추가해줘요.
+
+---
+
+### 암시적 any 에러
+
+```
+Parameter 'e' implicitly has an 'any' type.
+  at components/career-form.tsx:31:20
+```
+
+**Claude Code에 이렇게 입력해요:**
+```
+이 TypeScript 에러 고쳐줘.
+
+Parameter 'e' implicitly has an 'any' type.
+  at components/career-form.tsx:31:20
+```
+
+이벤트 핸들러에 타입 선언이 빠진 거예요. Claude가 `React.ChangeEvent<HTMLInputElement>` 같은 올바른 타입을 붙여줘요.
+
+</Tabs.Tab>
+
+<Tabs.Tab>
+
+### Hydration 불일치 — 서버와 클라이언트 내용이 달라요
+
+```
+A tree hydrated but some attributes of the server rendered HTML didn't match
+the client properties.
+
+<body
+-  data-new-gr-c-s-check-loaded="14.1290.0"
+-  data-gr-ext-installed=""
+>
+```
+
+**Claude Code에 이렇게 입력해요:**
+```
+콘솔에 이 hydration 에러가 나. 고쳐줘.
+
+A tree hydrated but some attributes of the server rendered HTML didn't match
+the client properties.
+
+<body
+-  data-new-gr-c-s-check-loaded="14.1290.0"
+-  data-gr-ext-installed=""
+>
+```
+
+브라우저 확장(Grammarly 등)이 DOM을 수정해서 생기는 경우예요. Claude가 `suppressHydrationWarning` 속성을 추가해줘요.
+
+---
+
+### Script 태그 경고
+
+```
+Encountered a script tag while rendering React component.
+Scripts inside React components are never executed when rendering on the client.
+```
+
+**Claude Code에 이렇게 입력해요:**
+```
+콘솔에 이 경고가 계속 나와. 원인이랑 해결방법 알려줘.
+
+Encountered a script tag while rendering React component.
+Scripts inside React components are never executed when rendering on the client.
+```
+
+React 19에서 컴포넌트 안의 `<script>` 태그에 경고를 띄우는 거예요. Claude가 스크립트를 레이아웃으로 이동하는 등 적절한 방법을 안내해줘요.
+
+</Tabs.Tab>
+
+<Tabs.Tab>
+
+### 패키지를 찾을 수 없어요
+
+```
+Cannot find module 'drizzle-orm' or its corresponding type declarations.
+```
+
+**Claude Code에 이렇게 입력해요:**
+```
+이 에러 고쳐줘.
+
+Cannot find module 'drizzle-orm' or its corresponding type declarations.
+```
+
+패키지가 설치되지 않은 거예요. Claude가 `npm install drizzle-orm`을 실행하고 필요한 설정도 함께 처리해줘요.
+
+---
+
+### 버전 충돌
+
+```
+npm error ERESOLVE unable to resolve dependency tree
+
+npm error Found: react@19.0.0
+npm error Could not resolve dependency:
+npm error peer react@"^18.0.0" from some-package@1.2.3
+```
+
+**Claude Code에 이렇게 입력해요:**
+```
+npm install 하니까 이런 에러 났어. 어떻게 해야 해?
+
+npm error ERESOLVE unable to resolve dependency tree
+npm error Found: react@19.0.0
+npm error Could not resolve dependency:
+npm error peer react@"^18.0.0" from some-package@1.2.3
+```
+
+패키지가 React 19를 아직 지원하지 않는 경우예요. Claude가 `--legacy-peer-deps` 옵션 사용 여부, 대체 패키지, 또는 버전 다운그레이드를 제안해줘요.
+
+</Tabs.Tab>
+
+<Tabs.Tab>
+
+### DB 연결 실패
+
+```
+Error: getaddrinfo ENOTFOUND db.xxxx.supabase.co
+  at TCPConnectWrap.afterConnect
+```
+
+**Claude Code에 이렇게 입력해요:**
+```
+DB 연결할 때 이 에러 나. 고쳐줘.
+
+Error: getaddrinfo ENOTFOUND db.xxxx.supabase.co
+```
+
+`.env.local`의 DB URL이 잘못됐거나 비밀번호에 `[YOUR-PASSWORD]`가 그대로 남아 있는 경우예요. Claude가 환경변수 설정을 점검하고 올바른 형식을 알려줘요.
+
+---
+
+### RLS(Row Level Security) 에러
+
+```
+{
+  "code": "42501",
+  "message": "new row violates row-level security policy for table \"career\""
+}
+```
+
+**Claude Code에 이렇게 입력해요:**
+```
+경력 추가하면 이 에러가 나. 고쳐줘.
+
+{
+  "code": "42501",
+  "message": "new row violates row-level security policy for table \"career\""
+}
+```
+
+Supabase의 Row Level Security 정책이 설정되지 않아 삽입이 거부된 거예요. Claude가 Supabase 대시보드에서 RLS 정책을 설정하는 방법이나 임시로 RLS를 비활성화하는 방법을 안내해줘요.
+
+---
+
+### 환경변수가 없어요
+
+```
+Error: supabaseUrl is required.
+  at createClient (node_modules/@supabase/supabase-js/...)
+```
+
+**Claude Code에 이렇게 입력해요:**
+```
+페이지 열면 이 에러가 나. 고쳐줘.
+
+Error: supabaseUrl is required.
+  at createClient (node_modules/@supabase/supabase-js/...)
+```
+
+`.env.local`에 `NEXT_PUBLIC_SUPABASE_URL`이 없거나 dev 서버를 재시작하지 않은 경우예요. Claude가 환경변수 설정과 서버 재시작을 안내해줘요.
+
+</Tabs.Tab>
+
+</Tabs>
+
+---
+
+## 에러가 해결이 안 될 때
+
+Claude가 한 번에 못 고칠 때도 있어요. 이럴 때는 이렇게 해봐요.
+
+**더 많은 정보를 줘요**
+
+```
+아까 그 에러가 아직도 나. 
+내 .env.local 파일이랑 supabase 클라이언트 코드도 같이 봐줘.
+```
+
+**다른 관점으로 물어봐요**
+
+```
+이 에러의 근본 원인이 뭔지 설명해줘.
+어떤 파일들을 확인해야 해?
+```
+
+**단계를 나눠요**
+
+```
+일단 에러 원인만 찾아줘. 수정은 그 다음에 하자.
+```
+
+<Callout type="info">
+  같은 에러가 수정 후에도 계속 나온다면 dev 서버를 재시작해봐요.\
+  터미널에서 **Ctrl + C**로 서버를 끄고 `npm run dev`를 다시 실행하면 해결되는 경우가 많아요.
+</Callout>

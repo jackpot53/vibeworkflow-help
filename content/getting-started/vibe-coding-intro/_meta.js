@@ -6,4 +6,5 @@ export default {
   'deploy': '04. 배포하기',
   'commands': '05. 자주 사용하는 명령어',
   'db': '06. DB 연동',
+  'errors': '07. 에러 수정하기',
 }
