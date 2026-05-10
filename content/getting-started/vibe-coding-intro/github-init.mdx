@@ -1,0 +1,207 @@
+---
+title: GitHub 프로젝트 시작하기
+description: GitHub에서 저장소를 만들고 내 컴퓨터로 불러오는 방법을 알아봐요.
+---
+
+import { Callout, Tabs } from 'nextra/components'
+
+# GitHub 프로젝트 시작하기
+
+바이브코딩으로 만든 코드를 저장하고 관리하려면 **GitHub**가 필요해요.\
+이 단계에서는 GitHub에 프로젝트(저장소)를 만들고, 내 컴퓨터로 불러오는 방법을 배워봐요.
+
+<Callout type="info">
+  **GitHub란?** 코드를 저장하고 다른 사람과 협업할 수 있는 온라인 플랫폼이에요.\
+  구글 드라이브처럼 파일을 보관하지만, 코드의 **변경 이력을 모두 기록** 해줘서 "언제, 무엇을, 왜 바꿨는지" 언제든 확인하고 되돌릴 수 있어요.
+</Callout>
+
+---
+
+## 1. GitHub에서 새 프로젝트 만들기
+
+### github.com으로 이동해 로그인해요
+
+<Callout type="info">
+  [github.com](https://github.com)으로 이동하세요.\
+  아직 계정이 없다면 [시작 전 준비물 - Git & GitHub 설치하기](/getting-started/시작전-준비물/git-setup)를 먼저 진행해 주세요.
+</Callout>
+
+우측 상단 **`+`** 버튼 클릭 → **`New repository`** 선택하면 다음과 같은 화면이 나와요.
+
+![GitHub 새 저장소 만들기 버튼](https://carpentries-incubator.github.io/git-Rstudio-course/fig/github-create-a-repo.png)
+
+<Callout type="info">
+  **Repository(저장소)란?** 하나의 프로젝트를 담는 폴더예요.\
+  코드 파일, 이미지, 설정 파일 등을 담고, 변경 이력까지 모두 기록해줘요. 줄여서 **repo(레포)** 라고도 불러요.
+</Callout>
+
+각 항목을 아래 탭에 맞춰 입력해주세요.
+
+<Tabs items={['1.이름 입력', '2.설명 입력', '3.공개 여부', '4.README 추가', '5.저장소 생성']}>
+  <Tabs.Tab>
+
+**`Repository name`** 에 프로젝트 이름을 입력해요.
+
+```
+portfolio
+```
+
+이름은 영문 소문자와 하이픈(`-`)을 사용하는 게 관례예요. 예: `my-portfolio`, `blog-site`\
+원하는 이름으로 자유롭게 짓되, 공백 없이 입력하세요.
+
+![Repository name 입력 화면](https://docs.github.com/assets/images/help/repository/create-repository-name.png)
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+
+**`Description`** 에 프로젝트 설명을 적어요. (선택 사항)
+
+```
+바이브코딩 테스트를 위한 포트폴리오 사이트 만들기
+```
+
+나중에 GitHub에서 어떤 프로젝트인지 한눈에 알 수 있어서 있으면 편해요.
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+
+**`Public`** 또는 **`Private`** 을 선택해요.
+
+**Public** — 누구나 볼 수 있어요. 포트폴리오 용도라면 Public을 추천해요.
+
+**Private** — 나만 볼 수 있어요.
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+
+**`Add a README file`** 에 체크해요.
+
+<Callout type="tip">
+  README 파일은 프로젝트를 소개하는 첫 페이지예요.\
+  이걸 체크해야 저장소가 빈 상태가 아닌 채로 시작되고, 바로 clone(복사)할 수 있어요.
+</Callout>
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+
+**`Create repository`** 버튼을 클릭해요.
+
+🎉 GitHub에 내 첫 번째 저장소가 만들어졌어요!
+
+  </Tabs.Tab>
+</Tabs>
+
+---
+
+## 2. 내 컴퓨터에서 프로젝트 불러오기
+
+GitHub에 있는 프로젝트를 내 컴퓨터로 복사해오는 작업을 **`git clone`** 이라고 해요.
+
+<Callout type="info">
+  **git이란?** 코드 변경 이력을 기록하는 **버전 관리 시스템**이에요.\
+  마치 구글 문서의 "버전 기록" 기능처럼, 코드를 언제든 이전 상태로 되돌릴 수 있게 해줘요. GitHub는 git으로 관리하는 코드를 온라인에 올려두는 공간이에요.
+</Callout>
+
+<Tabs items={['1. SSH 주소 복사', '2. 터미널 폴더 만들기', '3. git clone', '4. Antigravity 열기']}>
+  <Tabs.Tab>
+
+방금 만든 저장소 페이지(`github.com/내계정명/portfolio`)로 이동하세요.
+
+저장소 페이지 상단의 초록색 **`<> Code`** 버튼을 클릭해요.
+
+<img src="https://docs.github.com/assets/images/help/repository/code-button.png" alt="GitHub Code 버튼" width={320} />
+
+팝업이 열리면 **`SSH`** 탭을 선택하고, 오른쪽 복사 아이콘을 클릭해요.
+
+<img src="https://docs.github.com/assets/images/help/repository/https-url-clone-cli.png" alt="GitHub 클론 URL 복사" width={360} />
+
+<Callout type="warning">
+  위 화면에서 **HTTPS 탭이 아닌 SSH 탭**을 선택해야 해요! SSH 탭을 누르면 `git@github.com:...` 형태의 주소가 나타납니다.
+</Callout>
+
+복사한 주소는 이런 형태예요:
+
+```
+git@github.com:내계정명/portfolio.git
+```
+
+<Callout type="tip">
+  SSH 탭이 보이지 않거나 SSH 키가 설정되지 않았다면 [시작 전 준비물 - Git & GitHub 설치하기](/getting-started/시작전-준비물/git-setup)의 SSH 키 설정 단계를 먼저 완료하세요.
+</Callout>
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+
+터미널을 열고 아래 명령어를 순서대로 입력해요.
+
+```bash
+mkdir dev
+cd dev
+```
+
+**`mkdir dev`** — `dev`라는 이름의 폴더를 만들어요.
+
+**`cd dev`** — 그 폴더 안으로 이동해요.
+
+<Callout type="info">
+  `dev`는 development(개발)의 줄임말이에요. 앞으로 만드는 모든 프로젝트를 이 폴더 안에서 관리할 거예요.
+</Callout>
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+
+1번에서 복사한 SSH 주소를 붙여넣어 실행해요.
+
+```bash
+git clone git@github.com:내계정명/portfolio.git
+```
+
+<Callout type="warning">
+  `git@github.com:내계정명/portfolio.git` 부분은 복사한 **내 SSH 주소**로 바꿔서 입력하세요!
+</Callout>
+
+실행하면 이런 메시지가 쭉 나와요:
+
+```
+Cloning into 'portfolio'...
+remote: Enumerating objects: 3, done.
+remote: Counting objects: 100% (3/3), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+Receiving objects: 100% (3/3), done.
+```
+
+이 메시지가 나오면 성공이에요! `dev` 폴더 안에 `portfolio` 폴더가 생겼을 거예요.
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+
+Antigravity를 실행한 후 **`Open Folder`** 를 클릭하고 `dev/portfolio` 폴더를 선택하면 끝이에요.
+
+<img src="https://antigravity.codes/_next/image?url=%2Fimages%2Ftutorial%2Fwelcome-screen.png&w=1920&q=75" alt="Antigravity IDE 시작 화면" width={480} />
+
+  </Tabs.Tab>
+</Tabs>
+
+---
+
+## 3. 클로드 코드로 git 명령하기
+
+프로젝트 폴더에서 `claude` 를 실행하면 git 명령어를 직접 외울 필요 없이 말로 할 수 있어요.
+
+| git 명령어 | 하고 싶은 것 | 클로드 코드에게 이렇게 말해요 |
+|---|---|---|
+| `git add . && git commit` | 변경사항 저장하기 | "변경사항 확인하고 커밋 메시지 작성해서 커밋해줘" |
+| `git add . && git commit` | 메시지 직접 지정해서 저장 | "변경사항 커밋해줘, 메시지는 'feat: 메인 페이지 추가'로 해줘" |
+| `git push` | GitHub에 올리기 | "현재 브랜치 GitHub에 푸시해줘" |
+| `git pull` | 최신 내용 가져오기 | "GitHub에서 최신 내용 받아와줘" |
+| `git checkout -b` | 새 브랜치 만들기 | "feature/메인페이지 브랜치 만들고 이동해줘" |
+| `git branch` | 브랜치 목록 보기 | "지금 브랜치 목록 보여줘" |
+| `git status` | 변경된 파일 확인 | "어떤 파일이 수정됐는지 알려줘" |
+| `gh pr create` | PR 만들기 | "변경사항 요약해서 PR 만들어줘" |
+| `git revert HEAD` | 이전 상태로 되돌리기 | "마지막 커밋 전으로 되돌려줘" |
+
+---
+
+이제 GitHub 저장소가 내 컴퓨터와 연결되었어요! 🎉\
+앞으로 바이브코딩으로 만든 코드는 모두 이 폴더에 저장되고, GitHub에 올려서 관리할 수 있어요.
