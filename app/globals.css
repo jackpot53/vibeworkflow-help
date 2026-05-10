@@ -189,3 +189,11 @@ pre.not-prose code.nextra-code {
   font-family: inherit !important;
 }
 
+/* VibeBlock: strip header + code block */
+.vibe-block pre.not-prose,
+.vibe-block figure,
+.vibe-block > :not(:first-child) {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+

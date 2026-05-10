@@ -87,10 +87,11 @@ Plan 모드를 시작하기 **전에** 모델을 **Opus Plan Mode**로 바꿔두
 
 **1단계 — Claude Code 터미널에서 `/model`을 입력해요**
 
-<span className="inline-block text-xs font-semibold tracking-widest uppercase px-2 py-0.5 mb-2 bg-violet-500/15 text-violet-600 dark:text-violet-400 border border-violet-500/30">VIBE</span>
+<VibeBlock>
 ```
 > /model
 ```
+</VibeBlock>
 
 **2단계 — 메뉴에서 `Opus Plan Mode`를 선택해요**
 
@@ -107,10 +108,11 @@ Plan 모드를 시작하기 **전에** 모델을 **Opus Plan Mode**로 바꿔두
 
 `/plan`을 입력하거나, **Shift + Tab**을 두 번 눌러도 돼요.
 
-<span className="inline-block text-xs font-semibold tracking-widest uppercase px-2 py-0.5 mb-2 bg-violet-500/15 text-violet-600 dark:text-violet-400 border border-violet-500/30">VIBE</span>
+<VibeBlock>
 ```
 > /plan
 ```
+</VibeBlock>
 
 이렇게 하면 계획은 Opus가, 코드 작성은 Sonnet이 담당하는 최적의 조합이 만들어져요.
 
@@ -146,48 +148,54 @@ Plan 모드에서 자연어로 원하는 것을 설명하면 돼요.\
 
 아래는 포트폴리오 사이트를 시작할 때 쓸 수 있는 예시들이에요:
 
-<span className="inline-block text-xs font-semibold tracking-widest uppercase px-2 py-0.5 mb-2 bg-violet-500/15 text-violet-600 dark:text-violet-400 border border-violet-500/30">VIBE</span>
+<VibeBlock>
 ```
 나만의 포트폴리오가 있는 웹사이트를 만들고 싶어.
 ```
+</VibeBlock>
 
-<span className="inline-block text-xs font-semibold tracking-widest uppercase px-2 py-0.5 mb-2 bg-violet-500/15 text-violet-600 dark:text-violet-400 border border-violet-500/30">VIBE</span>
+<VibeBlock>
 ```
 개발자 포트폴리오 사이트 만들어줘.
 자기소개, 프로젝트 목록, 연락처 섹션이 있었으면 좋겠어.
 ```
+</VibeBlock>
 
-<span className="inline-block text-xs font-semibold tracking-widest uppercase px-2 py-0.5 mb-2 bg-violet-500/15 text-violet-600 dark:text-violet-400 border border-violet-500/30">VIBE</span>
+<VibeBlock>
 ```
 심플하고 깔끔한 포트폴리오 웹사이트를 만들고 싶어.
 Next.js 쓰고 싶고, 다크 모드도 지원하면 좋겠어.
 프로젝트 카드들이 그리드로 보이는 레이아웃이면 좋겠어.
 ```
+</VibeBlock>
 
-<span className="inline-block text-xs font-semibold tracking-widest uppercase px-2 py-0.5 mb-2 bg-violet-500/15 text-violet-600 dark:text-violet-400 border border-violet-500/30">VIBE</span>
+<VibeBlock>
 ```
 포트폴리오 사이트 만들어줘.
 히어로 섹션에 내 이름이랑 한 줄 소개가 나오고,
 아래에 내가 만든 프로젝트들이 카드 형태로 보이는 구성이면 돼.
 GitHub 링크도 넣을 수 있으면 좋겠어.
 ```
+</VibeBlock>
 
 기술 스택을 명시하면 Claude가 세팅부터 맞춰줘요:
 
-<span className="inline-block text-xs font-semibold tracking-widest uppercase px-2 py-0.5 mb-2 bg-violet-500/15 text-violet-600 dark:text-violet-400 border border-violet-500/30">VIBE</span>
+<VibeBlock>
 ```
 Next.js + TypeScript + Tailwind CSS + shadcn/ui로
 포트폴리오 사이트 만들어줘.
 자기소개, 프로젝트 목록, 연락처 섹션이 있었으면 좋겠어.
 ```
+</VibeBlock>
 
-<span className="inline-block text-xs font-semibold tracking-widest uppercase px-2 py-0.5 mb-2 bg-violet-500/15 text-violet-600 dark:text-violet-400 border border-violet-500/30">VIBE</span>
+<VibeBlock>
 ```
 Next.js App Router, TypeScript, Tailwind CSS, shadcn/ui 스택으로
 심플한 개발자 포트폴리오 만들어줘.
 데이터는 Supabase에 저장하고 Vercel로 배포할 거야.
 프로젝트 카드들이 그리드로 보이고 다크 모드도 지원하면 좋겠어.
 ```
+</VibeBlock>
 
 이번 실습에서는 아래 프롬프트를 그대로 사용할 거예요:
 
@@ -197,12 +205,13 @@ Next.js App Router, TypeScript, Tailwind CSS, shadcn/ui 스택으로
   Claude가 질문을 던지면 그때 답하면서 구체화하는 것이 자연스러운 흐름이에요.
 </Callout>
 
-<span className="inline-block text-xs font-semibold tracking-widest uppercase px-2 py-0.5 mb-2 bg-violet-500/15 text-violet-600 dark:text-violet-400 border border-violet-500/30">VIBE</span>
+<VibeBlock>
 ```
 나만의 포트폴리오가 있는 웹사이트를 만들고 싶어.
 Next.js App Router, TypeScript, Tailwind CSS, shadcn/ui 기술스택을 사용할거고
 DB연동은 Supabase, 배포는 Vercel을 이용할 거야.
 ```
+</VibeBlock>
 
 ---
 
@@ -216,12 +225,13 @@ Plan 모드를 시작하면 Claude가 바로 코드를 짜지 않아요.\
 
 ### 1단계 — 내가 무엇을 만들고 싶은지 말해요
 
-<span className="inline-block text-xs font-semibold tracking-widest uppercase px-2 py-0.5 mb-2 bg-violet-500/15 text-violet-600 dark:text-violet-400 border border-violet-500/30">VIBE</span>
+<VibeBlock>
 ```
 > 나만의 포트폴리오가 있는 웹사이트를 만들고 싶어.
   Next.js App Router, TypeScript, Tailwind CSS, shadcn/ui 기술스택을 사용할거고
   DB연동은 Supabase, 배포는 Vercel을 이용할 거야.
 ```
+</VibeBlock>
 
 ---
 
@@ -251,22 +261,24 @@ Claude가 모호한 부분을 스스로 가정하지 않고 먼저 확인해요.
 `>` 뒤에 타이핑하고 Enter를 누르면 돼요.\
 완벽하게 답하지 않아도 괜찮아요. 생각나는 대로 말하면 Claude가 맞춰줘요.
 
-<span className="inline-block text-xs font-semibold tracking-widest uppercase px-2 py-0.5 mb-2 bg-violet-500/15 text-violet-600 dark:text-violet-400 border border-violet-500/30">VIBE</span>
+<VibeBlock>
 ```
 > 섹션은 자기소개, 프로젝트 목록, 연락처면 충분해.
   프로젝트 데이터는 일단 코드에 직접 쓸게.
   다크 모드랑 모바일 대응 둘 다 필요해.
 ```
+</VibeBlock>
 
 모르거나 정해지지 않은 건 그냥 말해도 돼요:
 
-<span className="inline-block text-xs font-semibold tracking-widest uppercase px-2 py-0.5 mb-2 bg-violet-500/15 text-violet-600 dark:text-violet-400 border border-violet-500/30">VIBE</span>
+<VibeBlock>
 ```
 > DB 연동은 나중에 추가하고 싶은데 일단 없이 시작해도 될까?
 
 ⏺ 네, 전혀 문제없어요. 지금은 코드에 데이터를 직접 작성하고,
   나중에 Supabase 연동이 필요하면 그때 추가하는 방식으로 할게요.
 ```
+</VibeBlock>
 
 ---
 
@@ -307,7 +319,7 @@ Claude가 모호한 부분을 스스로 가정하지 않고 먼저 확인해요.
 
 수정이 필요할 때:
 
-<span className="inline-block text-xs font-semibold tracking-widest uppercase px-2 py-0.5 mb-2 bg-violet-500/15 text-violet-600 dark:text-violet-400 border border-violet-500/30">VIBE</span>
+<VibeBlock>
 ```
 > Skills 섹션도 추가해줘. 그리고 프로젝트 카드에 GitHub 링크도 넣어줘.
 
@@ -317,13 +329,15 @@ Claude가 모호한 부분을 스스로 가정하지 않고 먼저 확인해요.
 
   이 계획대로 진행할까요?
 ```
+</VibeBlock>
 
 바로 승인할 때:
 
-<span className="inline-block text-xs font-semibold tracking-widest uppercase px-2 py-0.5 mb-2 bg-violet-500/15 text-violet-600 dark:text-violet-400 border border-violet-500/30">VIBE</span>
+<VibeBlock>
 ```
 > 응, 이대로 진행해줘.
 ```
+</VibeBlock>
 
 ---
 
@@ -351,10 +365,11 @@ Claude가 모호한 부분을 스스로 가정하지 않고 먼저 확인해요.
 코드가 완성되면 직접 눈으로 확인해볼 차례예요.\
 Claude에게 개발 서버를 실행해달라고 말하면 돼요.
 
-<span className="inline-block text-xs font-semibold tracking-widest uppercase px-2 py-0.5 mb-2 bg-violet-500/15 text-violet-600 dark:text-violet-400 border border-violet-500/30">VIBE</span>
+<VibeBlock>
 ```
 > 로컬에서 실행해서 확인해볼게. 개발 서버 켜줘.
 ```
+</VibeBlock>
 
 Claude가 아래처럼 실행해줘요:
 
@@ -370,12 +385,13 @@ Claude가 아래처럼 실행해줘요:
 브라우저에서 **http://localhost:3000** 을 열어 직접 확인하세요.\
 잘못된 부분이 보이면 바로 말해줘도 돼요.
 
-<span className="inline-block text-xs font-semibold tracking-widest uppercase px-2 py-0.5 mb-2 bg-violet-500/15 text-violet-600 dark:text-violet-400 border border-violet-500/30">VIBE</span>
+<VibeBlock>
 ```
 > Hero 섹션 글씨가 너무 작아. 좀 더 크게 해줘.
 
 > 프로젝트 카드 배경색이 이상해. 다크 모드에서 텍스트가 안 보여.
 ```
+</VibeBlock>
 
 Claude가 수정하고 개발 서버가 자동으로 반영돼요.\
 원하는 모습이 될 때까지 계속 대화하면서 조정하면 돼요.
@@ -392,10 +408,11 @@ Claude가 수정하고 개발 서버가 자동으로 반영돼요.\
 만족스러운 결과가 나왔다면 변경사항을 저장하고 GitHub에 올릴 차례예요.\
 Claude에게 그냥 말하면 돼요.
 
-<span className="inline-block text-xs font-semibold tracking-widest uppercase px-2 py-0.5 mb-2 bg-violet-500/15 text-violet-600 dark:text-violet-400 border border-violet-500/30">VIBE</span>
+<VibeBlock>
 ```
 > 좋아, 이대로 커밋하고 푸시해줘.
 ```
+</VibeBlock>
 
 Claude가 변경된 파일을 확인하고 커밋 메시지를 제안해줘요:
 
@@ -411,10 +428,11 @@ Claude가 변경된 파일을 확인하고 커밋 메시지를 제안해줘요:
   커밋하고 push할까요?
 ```
 
-<span className="inline-block text-xs font-semibold tracking-widest uppercase px-2 py-0.5 mb-2 bg-violet-500/15 text-violet-600 dark:text-violet-400 border border-violet-500/30">VIBE</span>
+<VibeBlock>
 ```
 > 응, 해줘.
 ```
+</VibeBlock>
 
 ```
 ⏺ git add .
@@ -440,10 +458,11 @@ Claude가 변경된 파일을 확인하고 커밋 메시지를 제안해줘요:
 구현이 마무리됐다면 CLAUDE.md도 최신 상태로 맞춰주는 게 좋아요.\
 코드가 바뀌었으니 Claude가 다음 대화에서 프로젝트를 다시 파악하는 데 걸리는 시간을 줄여줘요.
 
-<span className="inline-block text-xs font-semibold tracking-widest uppercase px-2 py-0.5 mb-2 bg-violet-500/15 text-violet-600 dark:text-violet-400 border border-violet-500/30">VIBE</span>
+<VibeBlock>
 ```
 > 지금까지 만든 내용 기준으로 CLAUDE.md 업데이트해줘.
 ```
+</VibeBlock>
 
 Claude가 현재 코드를 분석해서 CLAUDE.md를 새로 써줘요:
 

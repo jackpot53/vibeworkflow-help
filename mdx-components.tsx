@@ -9,6 +9,7 @@ import { HeroSection } from '@/components/hero-section'
 import { LottieAnimation } from '@/components/lottie-animation'
 import { TimelineTabs } from '@/components/timeline-tabs'
 import { ClaudeMdDemo } from '@/components/claude-md-demo'
+import { VibeBlock } from '@/components/vibe-block'
 
 export function useMDXComponents() {
   return getDocsMDXComponents({
@@ -16,6 +17,7 @@ export function useMDXComponents() {
     CommandCard,
     Screenshot,
     StepBadge,
+    VibeBlock,
     GitFlowDiagram,
     PRFlowDiagram,
     HeroSection,
