@@ -1,6 +1,6 @@
 ---
 title: /model — 모델 변경
-description: 현재 세션에서 사용할 Claude 모델을 바꾸는 명령어예요.
+description: 현재 세션과 이후 세션에서 사용할 Claude 모델을 바꾸는 명령어예요.
 ---
 
 import { Callout } from 'nextra/components'
@@ -9,20 +9,19 @@ import { Callout } from 'nextra/components'
 
 <CommandCard
   command="/model"
-  description="현재 세션에서 사용할 Claude 모델을 변경합니다."
-  example="/model claude-opus-4-5"
+  description="사용할 Claude 모델을 변경합니다. 현재 세션과 이후 세션 모두에 적용돼요."
+  example="/model"
 />
 
 ---
 
 ## 언제 쓰나요?
 
-기본 모델보다 더 강력한 모델이 필요할 때, 또는 응답 속도를 높이고 싶을 때 사용해요.\
-세션이 끝나면 설정이 초기화되고, 다음 세션에서는 기본 모델로 돌아와요.
+기본 모델보다 더 강력한 모델이 필요할 때, 또는 응답 속도를 높이고 싶을 때 사용해요.
 
 <Callout type="info">
-  Claude Code의 기본 모델은 **claude-sonnet-4-5**예요.\
-  복잡한 설계나 코드 리뷰에는 Opus, 빠른 단순 작업에는 Haiku가 적합해요.
+  `/model`로 변경한 설정은 **현재 세션과 이후 세션 모두에 유지**돼요.\
+  특정 모델 ID를 직접 지정하려면 `--model` 플래그를 사용해요.
 </Callout>
 
 ---
@@ -33,29 +32,48 @@ import { Callout } from 'nextra/components'
 > /model
 ```
 
-인자 없이 실행하면 현재 사용 중인 모델을 보여주고, 변경할 모델을 선택할 수 있어요.
-
-모델 ID를 직접 지정할 수도 있어요:
+인자 없이 실행하면 아래와 같은 선택 메뉴가 나타나요:
 
 ```
-> /model claude-opus-4-5
-> /model claude-haiku-4-5-20251001
+Select model
+Switch between Claude models. Applies to this session and future Claude Code
+sessions. For other/previous model names, specify with --model.
+
+  1. Default (recommended)  Opus 4.7 with 1M context · Most capable for
+                            complex work
+  2. Sonnet                 Sonnet 4.6 · Best for everyday tasks
+  3. Haiku                  Haiku 4.5 · Fastest for quick answers
+❯ 4. Opus Plan Mode ✔       Use Opus in plan mode, Sonnet otherwise
 ```
+
+방향키로 선택하고 Enter를 누르면 바로 적용돼요.
 
 ---
 
-## 모델 비교
+## 모델 옵션
 
-| 모델 | 특징 | 추천 용도 |
-|------|------|-----------|
-| **claude-opus-4-7** | 가장 강력함 | 복잡한 설계, 아키텍처 리뷰 |
-| **claude-sonnet-4-6** | 균형 잡힌 성능 (기본값) | 일반적인 코딩 작업 |
-| **claude-haiku-4-5** | 빠르고 가벼움 | 간단한 수정, 빠른 응답 |
+| 번호 | 이름 | 모델 ID | 특징 |
+|------|------|---------|------|
+| 1 | **Default** | claude-opus-4-7 (1M context) | 복잡한 작업에 가장 강력함 |
+| 2 | **Sonnet** | claude-sonnet-4-6 | 일상적인 작업에 최적 (기본값) |
+| 3 | **Haiku** | claude-haiku-4-5 | 빠른 답변이 필요할 때 |
+| 4 | **Opus Plan Mode** | Opus (계획) + Sonnet (실행) | 설계는 Opus, 구현은 Sonnet |
 
 <Callout type="tip">
-  대부분의 작업은 기본 모델인 **Sonnet**으로 충분해요.\
-  긴 코드베이스 분석이나 복잡한 리팩터링에는 **Opus**로 바꿔보세요.
+  **Opus Plan Mode**는 `/plan` 단계에선 Opus를 쓰고, 실제 코드 작성 단계에선 Sonnet을 써요.\
+  품질과 속도를 동시에 잡고 싶을 때 추천해요.
 </Callout>
+
+---
+
+## 모델 ID 직접 지정
+
+이전 버전 모델이나 목록에 없는 모델은 `--model` 플래그로 지정해요:
+
+```bash
+claude --model claude-opus-4-5
+claude --model claude-haiku-4-5-20251001
+```
 
 ---
 
