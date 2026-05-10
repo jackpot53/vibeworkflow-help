@@ -43,22 +43,63 @@ import { Callout } from 'nextra/components'
 
 `/plan`을 입력하면 Claude가 읽기 전용 모드로 전환돼요.
 
+```
+> /plan
+⏺ Entering plan mode. I'll analyze your codebase without making changes.
+```
+
 **2. 코드베이스 분석 및 질문**
 
 Claude가 관련 파일을 읽고 파악한 뒤, 요구사항이 불명확한 부분은 질문해요.
+
+```
+⏺ I've reviewed the project structure. A few questions before I plan:
+
+  1. Should the new login system replace the existing one, or run alongside it?
+  2. Do you need OAuth (Google/GitHub) support, or email/password only?
+```
 
 **3. 구현 계획 생성**
 
 작업 단계, 수정할 파일, 의존 관계 등을 정리한 구체적인 계획을 만들어줘요.
 
+```
+⏺ Here's my implementation plan:
+
+  ## Plan: Add User Authentication
+
+  ### Files to modify
+  - src/auth/login.ts      — Add JWT token generation
+  - src/middleware/auth.ts — Create auth middleware
+  - src/routes/user.ts    — Add protected routes
+
+  ### Steps
+  1. Create JWT utility (src/utils/jwt.ts)
+  2. Update login handler to return signed token
+  3. Add auth middleware to verify tokens
+  4. Protect existing user routes
+```
+
 **4. 계획 확인 및 수정**
 
 계획 내용을 직접 수정하거나 피드백을 줄 수 있어요.
+
+```
+> Step 3에 refresh token 처리도 추가해줘
+
+⏺ Updated plan — added refresh token rotation to Step 3.
+```
 
 **5. Plan 모드 종료 및 실행**
 
 **Shift + Tab**을 다시 눌러 종료하면 Claude가 실행 여부를 확인해요.\
 승인하면 계획대로 코드 수정을 시작해요.
+
+```
+⏺ Exiting plan mode. Proceed with the plan above?
+  ❯ Yes, execute the plan
+    No, stay in plan mode
+```
 
 <Callout type="tip">
   Plan 모드를 종료할 때 Claude가 실행 전 반드시 확인을 요청해요.\
