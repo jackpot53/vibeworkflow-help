@@ -1,0 +1,70 @@
+---
+title: /status — 세션 상태 확인
+description: 현재 Claude Code 세션의 버전, 모델, 계정 연결 상태를 확인하는 명령어예요.
+---
+
+import { Callout } from 'nextra/components'
+
+# /status
+
+<CommandCard
+  command="/status"
+  description="현재 세션 정보를 표시합니다. 사용 중인 Claude 버전, 모델, 계정 연결 상태를 한눈에 확인할 수 있어요."
+  example="/status"
+/>
+
+---
+
+## 언제 쓰나요?
+
+지금 어떤 모델을 쓰고 있는지, Claude Code가 제대로 연결돼 있는지 빠르게 확인하고 싶을 때 사용해요.
+
+**이런 상황에서 쓰세요:**
+
+- 내가 어떤 Claude 모델을 쓰고 있는지 확인하고 싶을 때
+- Claude Code 버전을 확인해야 할 때
+- 계정이 제대로 연결되어 있는지 확인할 때
+
+---
+
+## 사용법
+
+```
+> /status
+```
+
+실행하면 현재 세션 정보가 출력돼요:
+
+```
+● Session Status
+  Version:   1.x.x
+  Model:     claude-sonnet-4-6
+  Account:   john@example.com (Pro)
+  API:       Connected ✓
+```
+
+---
+
+## 표시 항목
+
+| 항목 | 설명 |
+|------|------|
+| **Version** | 현재 설치된 Claude Code 버전 |
+| **Model** | 현재 대화에서 사용 중인 Claude 모델 |
+| **Account** | 로그인된 계정 및 구독 플랜 |
+| **API** | Anthropic 서버 연결 상태 |
+
+<Callout type="info">
+  토큰 사용량이나 비용 내역은 `/usage`에서 확인하세요.\
+  `/status`는 세션 설정과 연결 상태를 빠르게 체크하는 용도예요.
+</Callout>
+
+---
+
+## 관련 명령어
+
+| 명령어 | 설명 |
+|--------|------|
+| `/usage` | 토큰 사용량 및 비용 상세 확인 |
+| `/context` | 컨텍스트 창 사용률 시각적으로 확인 |
+| `/model` | 사용 모델 변경 |
