@@ -132,3 +132,32 @@ Claude가 방향을 잡아줄 거예요.\
   막막할 때 `/plan` 모드에서 먼저 방향을 잡아보세요.\
   Claude가 코드를 건드리지 않고 어떻게 접근할지 설명해줘요.
 </Callout>
+
+---
+
+## 수정할 위치를 정확히 알려줘요 — devlabel
+
+컴포넌트가 많아지면 "그 파란 버튼 있는 카드 수정해줘"처럼 설명이 모호해지기 쉬워요.\
+AI는 파일과 컴포넌트 이름을 보고 위치를 추론하는데, 비슷한 이름이 여러 개면 헷갈려요.
+
+`Header`, `MainHeader`, `PageHeader`, `SiteHeader`가 다 있을 때 `"Header 수정해줘"`라고 하면 AI가 어디를 고쳐야 할지 몰라요.
+
+**devlabel**을 붙이면 이 문제가 해결돼요.\
+각 영역 모서리에 컴포넌트 이름이 작게 표시되고, 클릭하면 Claude Code가 바로 이해할 수 있는 형태로 클립보드에 복사돼요.\
+로컬 개발 환경에서만 보이고 실제 배포 사이트에선 자동으로 사라져요.
+
+아래 프롬프트를 한 번만 실행해두면 돼요:
+
+```
+페이지에 리액트 컴포넌트명이 명시적으로 보이도록 devlabel을 붙여줘.
+devlabel 클릭시 Claude Code가 어디 영역인지 잘 파악할 수 있는 형태로 클립보드에 복사하는 기능도 있어야 해.
+그리고 해당 라벨은 로컬에서만 보이도록 해주고 앞으로 컴포넌트 만들 때마다 자동으로 추가되도록 CLAUDE.md에도 넣어줘.
+```
+
+이후에는 화면에서 영역을 클릭하고 Claude Code에 붙여넣기만 하면 정확한 위치를 바로 전달할 수 있어요.
+
+<Callout type="tip">
+  <span className="inline-block text-xs font-semibold tracking-widest uppercase px-2 py-0.5 mb-2 bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">Best Practice</span>
+  devlabel은 프로젝트 초반에 한 번만 세팅해두세요.\
+  CLAUDE.md에 규칙으로 등록되면 이후 새 컴포넌트를 만들 때마다 자동으로 붙어요.
+</Callout>
