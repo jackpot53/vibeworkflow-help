@@ -8,6 +8,7 @@ import { PRFlowDiagram } from '@/components/pr-flow-diagram'
 import { HeroSection } from '@/components/hero-section'
 import { LottieAnimation } from '@/components/lottie-animation'
 import { TimelineTabs } from '@/components/timeline-tabs'
+import { ClaudeMdDemo } from '@/components/claude-md-demo'
 
 export function useMDXComponents() {
   return getDocsMDXComponents({
@@ -20,5 +21,6 @@ export function useMDXComponents() {
     HeroSection,
     LottieAnimation,
     TimelineTabs,
+    ClaudeMdDemo,
   })
 }
