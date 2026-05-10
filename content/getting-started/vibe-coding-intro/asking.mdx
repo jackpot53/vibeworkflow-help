@@ -20,12 +20,68 @@ import { Callout } from 'nextra/components'
 Claude는 맥락이 많을수록 정확하게 동작해요.\
 "만들어줘" 한 마디보다 목적, 조건, 제약을 함께 말해주면 훨씬 나은 결과가 나와요.
 
-| 모호한 요청 | 구체적인 요청 |
-|-------------|--------------|
-| 버튼 만들어줘 | 로그인 버튼 만들어줘. 클릭하면 `/api/auth` 로 POST 요청 보내고, 로딩 중엔 비활성화돼야 해. |
-| 에러 고쳐줘 | `TypeError: Cannot read properties of undefined` 이 에러 고쳐줘. `user.name`을 읽으려는데 `user`가 null일 때 발생해. |
-| 리스트 보여줘 | 프로젝트 목록을 카드 형태로 보여줘. 카드마다 제목, 설명, GitHub 링크가 있어야 해. |
-| 디자인 바꿔줘 | Hero 섹션 배경을 짙은 남색으로 바꾸고, 텍스트는 흰색으로 해줘. 다크 모드에서도 같은 색이면 돼. |
+<div className="not-prose my-6 space-y-3 text-sm">
+  <div className="grid grid-cols-2 gap-3 px-1">
+    <div className="text-xs font-semibold text-muted-foreground uppercase tracking-widest">모호한 요청</div>
+    <div className="text-xs font-semibold text-muted-foreground uppercase tracking-widest">구체적인 요청</div>
+  </div>
+
+  <div className="grid grid-cols-2 gap-3">
+    <VibeBlock>
+    ```
+    버튼 만들어줘
+    ```
+    </VibeBlock>
+
+    <VibeBlock>
+    ```
+    로그인 버튼 만들어줘. 클릭하면 /api/auth 로 POST 요청 보내고, 로딩 중엔 비활성화돼야 해.
+    ```
+    </VibeBlock>
+  </div>
+
+  <div className="grid grid-cols-2 gap-3">
+    <VibeBlock>
+    ```
+    에러 고쳐줘
+    ```
+    </VibeBlock>
+
+    <VibeBlock>
+    ```
+    TypeError: Cannot read properties of undefined 이 에러 고쳐줘. user.name을 읽으려는데 user가 null일 때 발생해.
+    ```
+    </VibeBlock>
+  </div>
+
+  <div className="grid grid-cols-2 gap-3">
+    <VibeBlock>
+    ```
+    리스트 보여줘
+    ```
+    </VibeBlock>
+
+    <VibeBlock>
+    ```
+    프로젝트 목록을 카드 형태로 보여줘. 카드마다 제목, 설명, GitHub 링크가 있어야 해.
+    ```
+    </VibeBlock>
+  </div>
+
+  <div className="grid grid-cols-2 gap-3">
+    <VibeBlock>
+    ```
+    디자인 바꿔줘
+    ```
+    </VibeBlock>
+
+    <VibeBlock>
+    ```
+    Hero 섹션 배경을 짙은 남색으로 바꾸고, 텍스트는 흰색으로 해줘. 다크 모드에서도 같은 색이면 돼.
+    ```
+    </VibeBlock>
+  </div>
+</div>
 
 ---
 
@@ -64,17 +120,27 @@ Claude가 의도를 파악하고 알아서 구현해줘요.\
 
 <div className="not-prose grid grid-cols-1 sm:grid-cols-2 gap-px bg-border my-6 border border-border text-sm">
   <div className="bg-background px-5 py-4">
-    <div className="font-semibold text-foreground mb-2">한 번에 다 요청할 때</div>
-    <div className="text-muted-foreground">로그인 페이지 만들어줘. 이메일이랑 비밀번호 입력창 있고, 로그인 버튼 누르면 Supabase로 인증하고, 실패하면 에러 메시지 보여주고, 성공하면 대시보드로 이동하고, 소셜 로그인도 있고, 비밀번호 찾기 링크도 있어야 해.</div>
+    <div className="font-semibold text-foreground mb-3">한 번에 다 요청할 때</div>
+
+    <VibeBlock>
+    ```
+    로그인 페이지 만들어줘. 이메일이랑 비밀번호 입력창 있고, 로그인 버튼 누르면 Supabase로 인증하고, 실패하면 에러 메시지 보여주고, 성공하면 대시보드로 이동하고, 소셜 로그인도 있고, 비밀번호 찾기 링크도 있어야 해.
+    ```
+    </VibeBlock>
+
   </div>
   <div className="bg-background px-5 py-4">
-    <div className="font-semibold text-foreground mb-2">하나씩 요청할 때</div>
-    <div className="text-muted-foreground">
-      1. 이메일/비밀번호 입력창이 있는 로그인 폼 만들어줘.<br/>
-      2. 로그인 버튼 누르면 Supabase 인증 연결해줘.<br/>
-      3. 실패 시 에러 메시지, 성공 시 대시보드 이동 추가해줘.<br/>
-      4. Google 소셜 로그인 추가해줘.
-    </div>
+    <div className="font-semibold text-foreground mb-3">하나씩 요청할 때</div>
+
+    <VibeBlock>
+    ```
+    1. 이메일/비밀번호 입력창이 있는 로그인 폼 만들어줘.
+    2. 로그인 버튼 누르면 Supabase 인증 연결해줘.
+    3. 실패 시 에러 메시지, 성공 시 대시보드 이동 추가해줘.
+    4. Google 소셜 로그인 추가해줘.
+    ```
+    </VibeBlock>
+
   </div>
 </div>
 
