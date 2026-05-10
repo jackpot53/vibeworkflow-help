@@ -5,5 +5,6 @@ export default {
   'planning-guide': '바이브기획 가이드',
   'vibe-coding-workflow': '바이브코딩 가이드',
   'design-guide': '바이브디자인 가이드',
+  'deep-dive': '심화/딥다이브',
   reference: '레퍼런스',
 }

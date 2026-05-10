@@ -29,7 +29,7 @@ export default async function RootLayout({
         strategy="afterInteractive"
       />
 <body suppressHydrationWarning>
-        <Layout pageMap={pageMap} sidebar={{ defaultMenuCollapseLevel: 3 }}>
+        <Layout pageMap={pageMap} sidebar={{ defaultMenuCollapseLevel: 1 }}>
           {children}
         </Layout>
       </body>
