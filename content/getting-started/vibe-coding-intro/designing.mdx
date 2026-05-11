@@ -3,10 +3,131 @@ title: 디자인하기
 description: 준비 중인 페이지입니다.
 ---
 
+import { Tabs } from 'nextra/components'
+
 # 디자인하기
+
+## 디자인 가이드
 
 다음 가이드를 참고하세요.
 
-- [페이지 단위: 섹션(Section)](/design-guide/section)
-- [재사용 단위: 컴포넌트](/design-guide/component)
-- [DESIGN.md 만들기](/design-guide/design-md)
+| 가이드 | 설명 |
+|--------|------|
+| [페이지 단위: 섹션(Section)](/design-guide/section) | Hero·Pricing·Footer 등 페이지를 세로로 나누는 구역 이름과 역할을 정리해요. 섹션 이름을 알면 Claude에게 정확한 위치를 지정할 수 있어요. |
+| [재사용 단위: 컴포넌트](/design-guide/component) | 버튼·카드·입력창 같은 작은 UI 조각을 컴포넌트라고 해요. 섹션과 컴포넌트를 함께 쓰면 Claude가 훨씬 정확하게 동작해요. |
+| [DESIGN.md 만들기](/design-guide/design-md) | 색상·폰트·간격·컴포넌트 스타일을 파일로 정리해두면 Claude가 일관된 UI를 만들어줘요. 피그마·URL·이미지 등 다양한 방법으로 만들 수 있어요. |
+
+## 히어로 섹션 꾸미기
+
+**히어로 섹션(Hero Section)** 은 웹사이트에 처음 접속했을 때 가장 먼저 보이는 최상단 영역이에요. 보통 서비스 이름, 한 줄 소개 문구, CTA(Call to Action) 버튼으로 구성되고, 방문자의 첫인상을 결정하는 가장 중요한 공간이에요.
+
+이 히어로 섹션에 움직이는 애니메이션을 넣으면 첫인상이 훨씬 풍부해져요. [LottieFiles](https://lottiefiles.com/)는 무료로 사용할 수 있는 고품질 애니메이션을 제공하는 서비스예요.
+
+<Tabs items={['1. 가입', '2. 애니메이션 찾기', '3. 저장하기', '4. Claude Code에 적용']}>
+  <Tabs.Tab>
+    ### LottieFiles 가입
+
+    [lottiefiles.com](https://lottiefiles.com/)에 접속해서 계정을 만드세요. Google 계정으로 빠르게 가입할 수 있어요.
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ### 원하는 애니메이션 찾기
+
+    [무료 추천 애니메이션](https://lottiefiles.com/featured-free-animations) 페이지에서 프로젝트 분위기에 맞는 애니메이션을 검색해보세요.
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ### 애니메이션 저장하기
+
+    원하는 애니메이션을 클릭하면 상세 페이지로 이동해요. 여기서 **Asset & Embedded** 탭을 클릭한 뒤, **Save to Workspace** 버튼을 눌러 내 워크스페이스에 저장하세요.
+
+    <Screenshot
+      src="/images/lottiefiles_move_dashboard.png"
+      alt="LottieFiles Asset & Embedded 탭에서 Save to Workspace 클릭"
+    />
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ### Claude Code에 적용하기
+
+    상세 페이지에서 **`</> Handoff`** 탭을 클릭하면 하단에 **Embed HTML** 코드가 나타나요. 이 코드를 복사한 뒤 아래 예시처럼 Claude Code에 함께 전달하면 바로 적용돼요.
+
+    <Screenshot
+      src="/images/lottiefiles_embed_to_webpage.png"
+      alt="LottieFiles Handoff 탭의 Embed HTML 코드 복사 화면"
+    />
+
+    <VibeBlock>
+    ```
+    Hero 섹션 배경에 다음 Lottie 애니메이션을 추가해줘.
+    기존 텍스트 콘텐츠 뒤에 배치하고, 화면 너비에 맞게 반응형으로 조정해줘. 
+    ```
+    </VibeBlock>
+
+    ```html
+    <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.9.14/dist/dotlottie-wc.js" type="module"></script>
+    <dotlottie-wc src="https://lottie.host/e4d8d1eb-9e43-45ea-82af-82caa824fc3a/6OyOWgo3AX.lottie" style="width: 300px;height: 300px" autoplay loop></dotlottie-wc>
+```
+
+  </Tabs.Tab>
+</Tabs>
+
+## 아이콘으로 텍스트 강조하기
+
+섹션 제목, 기능 설명, 버튼 옆에 아이콘을 붙이면 텍스트만 있을 때보다 훨씬 눈에 잘 들어와요.
+
+| 라이브러리 | 특징 | 아이콘 탐색 |
+|------------|------|-------------|
+| **lucide-react** | 깔끔한 선 스타일, React 친화적, shadcn/ui 기본 채택 | [lucide.dev](https://lucide.dev/icons/) |
+| **react-icons** | Font Awesome·Material·Bootstrap 등 수십 개 팩 통합 | [react-icons.github.io](https://react-icons.github.io/react-icons/) |
+| **heroicons** | Tailwind CSS 팀 제작, solid·outline 두 가지 스타일 | [heroicons.com](https://heroicons.com/) |
+
+원하는 아이콘 이름을 찾아서 Claude Code에 전달하면 돼요.
+
+<Tabs items={['단색 아이콘', '컬러 아이콘']}>
+  <Tabs.Tab>
+    텍스트와 같은 색으로 아이콘을 넣고 싶을 때 사용해요. `currentColor`를 따라가기 때문에 다크모드에서도 자동으로 맞춰져요.
+
+    <VibeBlock>
+    ```
+    lucide-react를 사용해서 아이콘을 추가해줘.
+
+    - Features 섹션 제목 앞에 Sparkles 아이콘
+    - Pricing 섹션 제목 앞에 Tag 아이콘
+    - FAQ 섹션 제목 앞에 CircleHelp 아이콘
+
+    아이콘은 텍스트와 같은 단색으로, 제목 왼쪽에 인라인으로 붙여줘.
+    ```
+    </VibeBlock>
+
+    <VibeBlock>
+    ```
+    lucide-react로 각 섹션 타이틀 옆에 내용에 어울리는 아이콘을 알아서 골라 넣어줘.
+    아이콘은 단색으로, 제목 왼쪽에 인라인으로 붙이고 텍스트와 세로 정렬해줘.
+    ```
+    </VibeBlock>
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    아이콘마다 색상을 지정해서 시각적으로 구분하고 싶을 때 사용해요.
+
+    <VibeBlock>
+    ```
+    lucide-react를 사용해서 아이콘을 추가해줘.
+
+    - Features 섹션 제목 앞에 Sparkles 아이콘 (색상: #6366f1, 보라)
+    - Pricing 섹션 제목 앞에 Tag 아이콘 (색상: #10b981, 초록)
+    - FAQ 섹션 제목 앞에 CircleHelp 아이콘 (색상: #f59e0b, 노랑)
+
+    아이콘은 제목 왼쪽에 인라인으로 붙이고, 텍스트와 세로 정렬(align-middle)해줘.
+    ```
+    </VibeBlock>
+
+    <VibeBlock>
+    ```
+    lucide-react로 각 섹션 타이틀 옆에 내용에 어울리는 아이콘을 알아서 골라 넣어줘.
+    아이콘 색상도 섹션 분위기에 맞게 적절히 지정하고, 제목 왼쪽에 인라인으로 붙여줘.
+    ```
+    </VibeBlock>
+  </Tabs.Tab>
+</Tabs>
