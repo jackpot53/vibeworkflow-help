@@ -67,9 +67,10 @@ portfolio
 
 **`Public`** 또는 **`Private`** 을 선택해요.
 
-**Public** — 누구나 볼 수 있어요. 포트폴리오 용도라면 Public을 추천해요.
-
-**Private** — 나만 볼 수 있어요.
+| 옵션 | 공개 범위 | 추천 상황 |
+|------|-----------|-----------|
+| **Public** | 누구나 볼 수 있어요 | 포트폴리오 용도라면 Public을 추천해요 |
+| **Private** | 나만 볼 수 있어요 | 공개하고 싶지 않은 프로젝트에 사용해요 |
 
   </Tabs.Tab>
   <Tabs.Tab>
@@ -99,7 +100,8 @@ GitHub에 있는 프로젝트를 내 컴퓨터로 복사해오는 작업을 **`g
 
 <Callout type="info">
   **git이란?** 코드 변경 이력을 기록하는 **버전 관리 시스템**이에요.\
-  마치 구글 문서의 "버전 기록" 기능처럼, 코드를 언제든 이전 상태로 되돌릴 수 있게 해줘요. GitHub는 git으로 관리하는 코드를 온라인에 올려두는 공간이에요.
+  마치 구글 문서의 "버전 기록" 기능처럼, 코드를 언제든 이전 상태로 되돌릴 수 있게 해줘요.\
+  GitHub는 git으로 관리하는 코드를 온라인에 올려두는 공간이에요.
 </Callout>
 
 <Tabs items={['1. SSH 주소 복사', '2. 터미널 폴더 만들기', '3. git clone', '4. Antigravity 열기']}>
@@ -107,10 +109,7 @@ GitHub에 있는 프로젝트를 내 컴퓨터로 복사해오는 작업을 **`g
 
 방금 만든 저장소 페이지(`github.com/내계정명/portfolio`)로 이동하세요.
 
-저장소 페이지 상단의 초록색 **`<> Code`** 버튼을 클릭해요.
-
-<img src="https://docs.github.com/assets/images/help/repository/code-button.png" alt="GitHub Code 버튼" width={320} />
-
+저장소 페이지 상단의 초록색 **`<> Code`** 버튼을 클릭해요.\
 팝업이 열리면 **`SSH`** 탭을 선택하고, 오른쪽 복사 아이콘을 클릭해요.
 
 <img src="https://docs.github.com/assets/images/help/repository/https-url-clone-cli.png" alt="GitHub 클론 URL 복사" width={360} />
@@ -188,6 +187,8 @@ Antigravity를 실행한 후 **`Open Folder`** 를 클릭하고 `dev/portfolio` 
 ## 3. 클로드 코드로 git 명령하기
 
 프로젝트 폴더에서 `claude` 를 실행하면 git 명령어를 직접 외울 필요 없이 말로 할 수 있어요.
+
+<ClaudeGitDemo />
 
 | git 명령어 | 하고 싶은 것 | 클로드 코드에게 이렇게 말해요 |
 |---|---|---|
