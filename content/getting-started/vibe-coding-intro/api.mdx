@@ -31,15 +31,15 @@ API 키는 [사람인 채용정보 API 가이드](https://oapi.saramin.co.kr/gui
 
 ---
 
-## API를 Claude Code로 구현하는 가장 현명한 방법
+## API를 클로드코드로 구현하는 가장 현명한 방법
 
-API를 Claude Code로 구현할 때 가장 흔한 실수는 **"사람인 API 연동해줘"라고만 하는 거예요.**
+API를 클로드코드로 구현할 때 가장 흔한 실수는 **"사람인 API 연동해줘"라고만 하는 거예요.**
 
 Claude가 API 스펙을 모르는 상태에서 코드를 짜면 엔드포인트, 파라미터 이름, 응답 구조를 틀리게 추측해요. 그러면 틀린 코드를 고치는 데 시간을 더 쓰게 돼요.
 
 <Callout type="tip">
   <span className="inline-block text-xs font-semibold tracking-widest uppercase px-2 py-0.5 mb-2 bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">Best Practice</span>
-  Claude Code에게 API를 구현하도록 시키기 **전에**, API 공식 문서를 `docs/api/` 폴더에 `spec.md` 파일로 저장해두세요.\
+  클로드코드에게 API를 구현하도록 시키기 **전에**, API 공식 문서를 `docs/api/` 폴더에 `spec.md` 파일로 저장해두세요.\
   DB의 ERD 파일처럼, Claude가 스펙 파일을 참고하면 추측 없이 정확한 코드를 짜줘요.
 </Callout>
 
@@ -47,7 +47,7 @@ Claude가 API 스펙을 모르는 상태에서 코드를 짜면 엔드포인트,
 
 ## spec.md 파일 만들기
 
-### 1단계 — Claude Code에게 스펙 파일을 만들어달라고 해요
+### 1단계 — 클로드코드에게 스펙 파일을 만들어달라고 해요
 
 두 가지 방법 중 편한 걸 쓰면 돼요.
 
@@ -173,7 +173,7 @@ GET https://oapi.saramin.co.kr/job
 
 ## API 구현하기
 
-스펙 파일이 준비됐으면 Claude Code에게 구현을 맡겨요.
+스펙 파일이 준비됐으면 클로드코드에게 구현을 맡겨요.
 
 ### 기본 연동
 
@@ -219,9 +219,9 @@ API 키는 환경변수 SARAMIN_API_KEY로 관리해줘.
 
 이 방법은 사람인 API에만 쓰는 게 아니에요. 어떤 API든 같은 순서로 하면 돼요.
 
-1. API 공식 문서 링크를 Claude Code에 붙여넣어요
+1. API 공식 문서 링크를 클로드코드에 붙여넣어요
 2. `docs/api/` 폴더에 스펙 파일을 만들어달라고 해요
 3. CLAUDE.md에 스펙 파일 참고하라고 지침을 추가해요
 4. 구현을 맡겨요
 
-공공데이터 포털, 카카오맵, 날씨 API, 유튜브 API 등 어떤 API든 이 방식으로 Claude Code와 함께 빠르게 연동할 수 있어요.
+공공데이터 포털, 카카오맵, 날씨 API, 유튜브 API 등 어떤 API든 이 방식으로 클로드코드와 함께 빠르게 연동할 수 있어요.

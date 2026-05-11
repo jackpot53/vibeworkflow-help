@@ -78,13 +78,13 @@ Region : Northeast Asia (Seoul)
 
 ---
 
-## Claude Code로 Supabase 연결하기
+## 클로드코드로 Supabase 연결하기
 
-프로젝트가 준비됐으면 Claude Code에게 연결 작업을 맡겨요.
+프로젝트가 준비됐으면 클로드코드에게 연결 작업을 맡겨요.
 
 ### 환경설정 파일 만들기
 
-Claude Code에 다음과 같이 입력해요.
+클로드코드에 다음과 같이 입력해요.
 
 <VibeBlock>
 ```
@@ -108,9 +108,9 @@ DATABASE_URL=postgresql://postgres.[project-ref]:[YOUR-PASSWORD]@aws-1-ap-northe
 
 Supabase 대시보드 상단의 **Connect** 버튼을 클릭하면 연결 설정 화면이 나와요.
 
-여기서 핵심은 **Copy prompt** 버튼이에요. 탭마다 이 버튼이 있는데, 클릭하면 "이렇게 설정해줘"라는 지시문이 클립보드에 복사돼요. 이걸 Claude Code에 그대로 붙여넣으면 설치·설정을 알아서 다 해줘요. 코드를 직접 건드릴 필요가 없어요.
+여기서 핵심은 **Copy prompt** 버튼이에요. 탭마다 이 버튼이 있는데, 클릭하면 "이렇게 설정해줘"라는 지시문이 클립보드에 복사돼요. 이걸 클로드코드에 그대로 붙여넣으면 설치·설정을 알아서 다 해줘요. 코드를 직접 건드릴 필요가 없어요.
 
-아래 4개 탭을 순서대로 진행해요. 각 탭에서 **Copy prompt**를 클릭하고 Claude Code에 붙여넣으면 돼요.
+아래 4개 탭을 순서대로 진행해요. 각 탭에서 **Copy prompt**를 클릭하고 클로드코드에 붙여넣으면 돼요.
 
 <Tabs items={['1. Framework', '2. Direct Connection', '3. ORM', '4. MCP']}>
   <Tabs.Tab>
@@ -130,7 +130,7 @@ Supabase 대시보드 상단의 **Connect** 버튼을 클릭하면 연결 설정
     └─────────────────────────────────────────────────────┘
     ```
 
-    `Use a client library`가 선택된 상태에서 **Copy prompt**를 클릭하고 Claude Code에 붙여넣어요.
+    `Use a client library`가 선택된 상태에서 **Copy prompt**를 클릭하고 클로드코드에 붙여넣어요.
 
     복사되는 프롬프트 예시:
     ```
@@ -156,7 +156,7 @@ Supabase 대시보드 상단의 **Connect** 버튼을 클릭하면 연결 설정
     └─────────────────────────────────────────────────────┘
     ```
 
-    `Connect Method`를 **Transaction pooler**로 변경한 뒤 **Copy prompt**를 클릭하고 Claude Code에 붙여넣어요.
+    `Connect Method`를 **Transaction pooler**로 변경한 뒤 **Copy prompt**를 클릭하고 클로드코드에 붙여넣어요.
 
     서버리스 환경(Vercel 등)에서 DB 연결 수를 효율적으로 관리해줘요.
   </Tabs.Tab>
@@ -175,7 +175,7 @@ Supabase 대시보드 상단의 **Connect** 버튼을 클릭하면 연결 설정
     └─────────────────────────────────────────────────────┘
     ```
 
-    `ORM`을 **Drizzle**로 선택한 뒤 **Copy prompt**를 클릭하고 Claude Code에 붙여넣어요.
+    `ORM`을 **Drizzle**로 선택한 뒤 **Copy prompt**를 클릭하고 클로드코드에 붙여넣어요.
 
     SQL 대신 TypeScript로 DB를 다룰 수 있게 해주는 도구예요.
   </Tabs.Tab>
@@ -194,9 +194,9 @@ Supabase 대시보드 상단의 **Connect** 버튼을 클릭하면 연결 설정
     └─────────────────────────────────────────────────────┘
     ```
 
-    별도 설정 없이 **Copy prompt**를 클릭하고 Claude Code에 붙여넣어요.
+    별도 설정 없이 **Copy prompt**를 클릭하고 클로드코드에 붙여넣어요.
 
-    연결하면 Claude Code가 Supabase 대시보드 없이도 테이블 생성·조회 같은 DB 작업을 직접 실행할 수 있어요.
+    연결하면 클로드코드가 Supabase 대시보드 없이도 테이블 생성·조회 같은 DB 작업을 직접 실행할 수 있어요.
   </Tabs.Tab>
 </Tabs>
 
@@ -238,7 +238,7 @@ DATABASE_URL=postgresql://postgres.[project-ref]:myActualPassword123!@aws-1-ap-n
 
 ### DB 테이블 만들기
 
-Claude Code에 다음과 같이 입력해요.
+클로드코드에 다음과 같이 입력해요.
 
 <VibeBlock>
 ```
