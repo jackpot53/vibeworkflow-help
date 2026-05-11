@@ -151,6 +151,12 @@ article * {
   border-radius: 9999px !important;
 }
 
+/* Nextra Cards radius 복원 */
+.nextra-card,
+.nextra-card * {
+  border-radius: 0.5rem !important;
+}
+
 article h1 { font-size: 1.375rem !important; line-height: 1.25 !important; }
 article h2 { font-size: 1.125rem !important; line-height: 1.25 !important; }
 article h3 { font-size: 1rem !important;     line-height: 1.25 !important; }
