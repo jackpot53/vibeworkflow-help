@@ -69,17 +69,13 @@ curl -fsSL https://claude.ai/install.sh | bash
 ✅ Installation complete!
 ```
 
-**PATH 설정**
-
-`claude` 명령어를 어느 위치의 터미널에서든 실행할 수 있도록 PATH를 등록합니다.
+**PATH 설정** : `claude` 명령어를 어느 위치의 터미널에서든 실행할 수 있도록 PATH를 등록합니다.
 
 ```shell
 echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc && source ~/.zshrc
 ```
 
-**설치 확인**
-
-다음 명령어 입력 시 버전이 표시되면 설치가 완료된 것입니다.
+**설치 확인** : 다음 명령어 입력 시 버전이 표시되면 설치가 완료된 것입니다.
 
 ```shell
 claude -v
@@ -184,9 +180,9 @@ Quick safety check: Is this a project you created or one you trust?
 - 세션 비용을 추적할 때
 - Git 브랜치 및 상태를 항상 확인하고 싶을 때
 
-![상태 표시줄 예시](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWqg8L617ifUkENUpob4pUw3lV_qLHe6QpdA&s)
+![상태 표시줄 예시](https://discuss.pytorch.kr/uploads/default/original/2X/8/867108570b65996d2393ad60d60b2715278762b7.jpeg)
 
-클로드코드 CLI 안에서 `/statusline` 명령어에 원하는 내용을 자연어로 입력합니다.
+클로드코드 CLI 안에서 [`/statusline`](/reference/commands/statusline) 명령어에 원하는 내용을 자연어로 입력합니다.
 
 ```shell
 /statusline 모델 이름, 컨텍스트 진행 상태 바, 현재 디렉토리, Git 브랜치, 그리고 현재 시간을 표시해라

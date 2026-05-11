@@ -139,6 +139,18 @@ article * {
   border-radius: 0 !important;
 }
 
+/* Nextra Steps 순서 번호 원형 복원 */
+.nextra-steps h2::before,
+.nextra-steps h3::before,
+.nextra-steps h4::before {
+  border-radius: calc(infinity * 1px) !important;
+}
+
+/* TimelineTabs 단계 번호 원형 복원 */
+.timeline-step-circle {
+  border-radius: 9999px !important;
+}
+
 article h1 { font-size: 1.375rem !important; line-height: 1.25 !important; }
 article h2 { font-size: 1.125rem !important; line-height: 1.25 !important; }
 article h3 { font-size: 1rem !important;     line-height: 1.25 !important; }
