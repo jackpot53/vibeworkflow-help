@@ -3,7 +3,7 @@ title: 08. API 연동
 description: 취업공고 API를 연동해서 포트폴리오 사이트에 실시간 채용정보를 보여줘요.
 ---
 
-import { Callout } from 'nextra/components'
+import { Callout, Tabs } from 'nextra/components'
 
 # 08. API 연동
 
@@ -26,8 +26,106 @@ import { Callout } from 'nextra/components'
 API 키는 [사람인 채용정보 API 가이드](https://oapi.saramin.co.kr/guide/job-search)에서 신청할 수 있어요.
 
 <Callout type="info">
-  API 키 발급에 1~2일 정도 소요될 수 있어요. 미리 신청해두는 게 좋아요.
+  API 키 발급에 1~2일 정도 소요될 수 있어요. 미리 신청해두는 게 좋아요.\
+  API 이용신청을 했는데 메일로 아직 답변이 없네요 ^^ 
 </Callout>
+
+---
+
+## RapidAPI란?
+
+한 번 가입해두면 채용 API뿐 아니라 날씨·번역·이미지 등 수천 개의 API를 같은 키 하나로 쓸 수 있는 API 마켓플레이스예요.\
+아래 순서대로 하면 가입부터 호출까지 10분 안에 할 수 있어요.
+
+<Tabs items={['1. 가입', '2. API 검색', '3. 플레이그라운드 테스트', '4. 구독 및 API 키 확인', '5. API 프로토콜 확인']}>
+  <Tabs.Tab>
+    ### RapidAPI 가입
+
+    [rapidapi.com](https://rapidapi.com)에 접속해서 우측 상단 **Sign Up** 클릭.\
+    Google 계정으로 소셜 로그인하면 가장 빠르게 가입할 수 있어요.
+
+  <Screenshot
+      src="https://images.squarespace-cdn.com/content/v1/61bb339d051b8439ed279711/13d8bc98-c3a2-4192-a838-84b9dfbd9c39/rapid_api_hub_signup_options.png"
+      width="half"
+    />
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ### API 검색
+
+    상단 검색창에 원하는 API 키워드를 입력해요. (예: `jobs`, `weather`, `translate`)\
+    검색 결과에서 API를 고를 때 확인할 것들:
+
+    | 항목 | 설명 |
+    |------|------|
+    | **Popularity** | 별점·구독자 수가 많을수록 안정적 |
+    | **Latency** | 응답 속도 |
+    | **Free tier** | 무료 요청 한도 확인 |
+
+    <Screenshot
+      src="/images/rapidapi-search.png"
+      alt="RapidAPI에서 'job' 키워드로 검색한 결과 화면"
+    />
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ### 플레이그라운드에서 테스트
+
+    API 상세 페이지 왼쪽 패널에서 엔드포인트를 선택하면 오른쪽에 테스트 UI가 나타나요.
+
+    1. **Required params** 항목을 채워요
+    2. 버튼을 클릭해요
+       - 구독한 API: 파란색 **Test Endpoint** 버튼
+       - 구독 전: **Subscribe to Test** 버튼 (먼저 4단계에서 구독해야 해요)
+    3. 우측 하단 응답 패널에서 실제 JSON 응답 확인
+
+    <Screenshot
+      src="/images/rapidapi-playground.png"
+      alt="RapidAPI 플레이그라운드에서 API 테스트하는 화면"
+    />
+
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ### 구독 및 API 키 확인
+
+    API를 실제로 쓰려면 구독(Subscribe)이 필요해요.
+
+    <Screenshot
+      src="/images/rapidapi-playground.png"
+      alt="RapidAPI 플레이그라운드에서 API 테스트하는 화면"
+    />
+    
+    1. **Subscribe** 버튼 클릭 → 무료 플랜(basic plan) 선택
+    2. API 키(`X-RapidAPI-Key`) 확인
+
+    <Callout type="info">
+      RapidAPI의 API 키는 서비스마다 다른 게 아니에요. 내 계정에 연결된 키 **하나**로 구독한 모든 API를 호출해요.
+    </Callout>
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ### API 프로토콜 확인
+
+    **Code Snippets** 탭을 열면 언어별 호출 코드가 자동 생성돼요.\
+    여기서 확인해야 할 것:
+
+    | 항목 | 위치 |
+    |------|------|
+    | **엔드포인트 URL** | `url` 값 |
+    | **필수 헤더** | `X-RapidAPI-Key`, `X-RapidAPI-Host` |
+    | **요청 파라미터** | `querystring` 또는 `params` 객체 |
+    | **응답 구조** | 플레이그라운드 응답 패널 참고 |
+
+    좌측 패널에서 **API Overview**를 클릭하면 엔드포인트·헤더·파라미터 등 API 상세 프로토콜을 한눈에 확인할 수 있어요.
+
+    <Screenshot
+      src="/images/rapidapi-overview.png"
+      alt="RapidAPI API 프로토콜 확인 화면"
+    />
+
+    이 정보를 복사해서 Claude에게 넘겨주거나 `docs/api/spec.md` 파일로 저장해두면 바로 구현에 활용할 수 있어요.
+  </Tabs.Tab>
+</Tabs>
 
 ---
 

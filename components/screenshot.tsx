@@ -2,13 +2,15 @@ export function Screenshot({
   src,
   alt,
   caption,
+  width = 'full',
 }: {
   src: string
   alt: string
   caption?: string
+  width?: 'full' | 'half'
 }) {
   return (
-    <figure className="my-6">
+    <figure className={`my-6 ${width === 'half' ? 'max-w-[50%]' : ''}`}>
       <div className="rounded-lg border overflow-hidden shadow-sm">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img

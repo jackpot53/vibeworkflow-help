@@ -5,7 +5,12 @@
       "WebFetch(domain:serverspace.us)",
       "Bash(curl -s \"http://localhost:3000/reference/commands/statusline\")",
       "Bash(git commit -m ' *)",
-      "Bash(python3 -c ' *)"
+      "Bash(python3 -c ' *)",
+      "Bash(sips --resampleWidth 1340 /Users/amiz/Desktop/rapid_api_search.png --out /Users/amiz/dev/vibeworkflow-help/public/images/rapidapi-search.png)",
+      "Bash(sips -g pixelWidth -g pixelHeight /Users/amiz/Desktop/rapi_api_playgournd.png)",
+      "Bash(sips --resampleWidth 1407 /Users/amiz/Desktop/rapi_api_playgournd.png --out /Users/amiz/dev/vibeworkflow-help/public/images/rapidapi-playground.png)",
+      "Bash(sips -g pixelWidth -g pixelHeight /Users/amiz/Desktop/rapid_api_overview.png)",
+      "Bash(sips --resampleWidth 1094 /Users/amiz/Desktop/rapid_api_overview.png --out /Users/amiz/dev/vibeworkflow-help/public/images/rapidapi-overview.png)"
     ]
   }
 }
