@@ -15,9 +15,39 @@ import { DevLabelDemo } from '@/components/devlabel-demo'
 import { SectionMap } from '@/components/section-map'
 import { ShadcnComponentGrid } from '@/components/shadcn-component-grid'
 import { ComponentNameGrid } from '@/components/component-name-grid'
+import { PlanTable } from '@/components/plan-table'
+
+const SHELL_LANGS = new Set(['shell', 'bash', 'zsh', 'sh', 'fish'])
+const { pre: DefaultPre } = getDocsMDXComponents()
+
+function CodePre(props: ComponentProps<'pre'> & { 'data-language'?: string }) {
+  const Pre = DefaultPre as React.ComponentType<typeof props>
+  const lang = props['data-language']
+  if (lang && SHELL_LANGS.has(lang)) {
+    return (
+      <div className="shell-block" data-language={lang}>
+        <Pre {...props} />
+      </div>
+    )
+  }
+  if (lang === 'output') {
+    return (
+      <div className="output-block">
+        <div className="flex items-center bg-[#0d1117] border-b border-zinc-500/20 px-3 py-1.5">
+          <span className="inline-block text-xs font-semibold tracking-widest uppercase px-2 py-0.5 bg-zinc-500/15 text-zinc-400 border border-zinc-500/30">
+            출력
+          </span>
+        </div>
+        <Pre {...props} />
+      </div>
+    )
+  }
+  return <Pre {...props} />
+}
 
 export function useMDXComponents() {
   return getDocsMDXComponents({
+    pre: CodePre,
     Callout,
     CommandCard,
     Screenshot,
@@ -27,6 +57,7 @@ export function useMDXComponents() {
     SectionMap,
     ShadcnComponentGrid,
     ComponentNameGrid,
+    PlanTable,
     GitFlowDiagram,
     PRFlowDiagram,
     HeroSection,

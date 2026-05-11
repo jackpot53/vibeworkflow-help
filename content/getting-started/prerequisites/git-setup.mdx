@@ -65,7 +65,7 @@ ssh-keygen -t ed25519 -C "내이메일@example.com"
 
 프롬프트가 나타나면 엔터를 몇 번 눌러 기본 경로에 저장합니다.
 
-```
+```output
 ~/.ssh/id_ed25519      # 개인키 (절대 공유하지 마세요)
 ~/.ssh/id_ed25519.pub  # 공개키 (GitHub에 등록할 키)
 ```
@@ -104,7 +104,7 @@ ssh -T git@github.com
 처음엔 호스트 신뢰 여부를 묻는 메시지가 나옵니다. `yes`를 입력하세요.\
 아래 메시지가 나오면 인증 성공입니다.
 
-```
+```output
 Hi username! You've successfully authenticated, but GitHub does not provide shell access.
 ```
 
@@ -217,7 +217,7 @@ gh auth login --web --scopes repo,read:org,workflow
 3. 화면에 표시된 **일회용 코드** 복사
 4. 브라우저가 열리면 코드를 입력해 인증 완료
 
-```
+```output
 ✓ Authentication complete.
 ✓ Configured git protocol
 ✓ Logged in as username

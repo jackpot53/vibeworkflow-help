@@ -189,6 +189,40 @@ pre.not-prose code.nextra-code {
   font-family: inherit !important;
 }
 
+/* Shell/bash blocks: $ prompt prefix + slight radius */
+.shell-block:not(:first-child) {
+  margin-top: 1.25em;
+}
+
+.shell-block pre.not-prose {
+  border-radius: 0.25rem !important;
+}
+
+.shell-block pre.not-prose code.nextra-code > span::before {
+  content: "$ ";
+  color: rgba(230, 237, 243, 0.4);
+  user-select: none;
+  -webkit-user-select: none;
+  margin-right: 0.25rem;
+  font-weight: 500;
+}
+
+/* Output blocks: 출력 badge + radius */
+.output-block:not(:first-child) {
+  margin-top: 1.25em;
+}
+
+.output-block {
+  border-radius: 0.25rem !important;
+  overflow: hidden;
+}
+
+.output-block pre.not-prose,
+.output-block > :not(:first-child) {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
 /* VibeBlock: strip header + code block */
 .vibe-block pre.not-prose,
 .vibe-block figure,
