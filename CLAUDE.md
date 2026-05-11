@@ -60,8 +60,11 @@ Registered globally in `mdx-components.tsx` — use in any MDX file without impo
 | `<Screenshot src="..." alt="..." caption="...">` | Image with caption |
 | `<StepBadge step={1}>` | Numbered step badge |
 | `<VibeBlock>` | Claude Code CLI 입력 예시 코드 블록 — 사용자가 직접 터미널에 입력하는 명령어나 프롬프트를 보여줄 때 사용. 보라색 VIBE 헤더 바가 코드 블록 위에 붙어서 표시됨 |
+| `<ClaudeBlock>` | Claude Code CLI 출력 예시 코드 블록 — Claude가 응답한 내용을 보여줄 때 사용. 파란색 CLAUDE 헤더 바가 코드 블록 위에 붙어서 표시됨 |
 
 **VibeBlock 사용 기준**: Claude에게 보내는 자연어 프롬프트 예시에 사용. 일반 코드 예시(출력 결과, 설정 파일, API 응답 등)에는 사용하지 않음.
+
+**ClaudeBlock 사용 기준**: Claude가 응답한 텍스트나 출력 내용 예시에 사용. 셸 명령 출력(`output` 코드 블록)과 구분하여, Claude의 대화/분석/계획 응답에만 사용.
 
 ```mdx
 <VibeBlock>
@@ -69,6 +72,12 @@ Registered globally in `mdx-components.tsx` — use in any MDX file without impo
 > /plan
 \`\`\`
 </VibeBlock>
+
+<ClaudeBlock>
+\`\`\`
+현재 태스크를 분석하겠습니다...
+\`\`\`
+</ClaudeBlock>
 ```
 
 ### Known Patch

@@ -12,6 +12,7 @@ import { TimelineTabs } from '@/components/timeline-tabs'
 import { ClaudeMdDemo } from '@/components/claude-md-demo'
 import { ClaudeGitDemo } from '@/components/claude-git-demo'
 import { VibeBlock } from '@/components/vibe-block'
+import { ClaudeBlock } from '@/components/claude-block'
 import { DevLabelDemo } from '@/components/devlabel-demo'
 import { SectionMap } from '@/components/section-map'
 import { ShadcnComponentGrid } from '@/components/shadcn-component-grid'
@@ -54,6 +55,7 @@ export function useMDXComponents() {
     Screenshot,
     StepBadge,
     VibeBlock,
+    ClaudeBlock,
     DevLabelDemo,
     SectionMap,
     ShadcnComponentGrid,
