@@ -241,10 +241,13 @@ pre.not-prose code.nextra-code {
   margin-bottom: 0 !important;
 }
 
-/* VibeBlock: strip header + code block */
+/* VibeBlock / ClaudeBlock: strip header + code block */
 .vibe-block pre.not-prose,
 .vibe-block figure,
-.vibe-block > :not(:first-child) {
+.vibe-block > :not(:first-child),
+.claude-block pre.not-prose,
+.claude-block figure,
+.claude-block > :not(:first-child) {
   margin-top: 0 !important;
   margin-bottom: 0 !important;
 }
