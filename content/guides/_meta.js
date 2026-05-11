@@ -1,4 +1,5 @@
 export default {
+  'index': '클로드코드 가이드 소개',
   '01-environment-setup': '01. 환경 설정 및 클로드 실행 명령어',
   '02-tools': '02. 내장 도구(TOOL)',
   '03-commands': '03. 세션 명령어(COMMAND)',
