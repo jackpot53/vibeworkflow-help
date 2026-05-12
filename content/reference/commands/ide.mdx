@@ -1,0 +1,65 @@
+---
+title: /ide — IDE 연동
+description: 외부 터미널에서 실행 중인 Claude Code를 VS Code 또는 JetBrains IDE에 연결하는 명령어예요.
+---
+
+import { Callout } from 'nextra/components'
+
+# /ide
+
+<CommandCard
+  command="/ide"
+  description="외부 터미널에서 실행 중인 Claude Code를 VS Code 또는 JetBrains IDE에 연결합니다."
+  example="/ide"
+/>
+
+---
+
+## 언제 쓰나요?
+
+VS Code나 JetBrains의 **내장 터미널**에서 Claude Code를 실행하면 IDE와 자동으로 연동됩니다.
+
+반면 **별도의 외부 터미널**(예: macOS Terminal, iTerm2, Windows Terminal 등)에서 Claude Code를 실행하면 IDE와 연결되지 않은 상태로 시작됩니다. 이때 `/ide`를 입력하면 외부 터미널의 Claude Code를 열려 있는 IDE에 수동으로 연결할 수 있어요.
+
+---
+
+## 연결되면 뭐가 달라지나요?
+
+IDE와 연결되면 다음 기능들이 활성화됩니다.
+
+| 기능 | 설명 |
+|------|------|
+| **인라인 diff** | Claude가 파일을 수정할 때 변경 사항을 VS Code 에디터 안에서 바로 확인 가능 |
+| **진단 정보 공유** | IDE의 린터·타입 체커가 감지한 에러와 경고를 Claude가 자동으로 참조 |
+| **파일 열기 연동** | Claude가 특정 파일을 언급할 때 IDE에서 해당 파일이 자동으로 열림 |
+
+<Callout type="tip">
+  IDE 연동이 활성화되면 Claude가 에러 위치를 직접 파악할 수 있어서, "이 에러 고쳐줘"처럼 간단하게 요청해도 정확하게 수정해줍니다.
+</Callout>
+
+---
+
+## 사용법
+
+외부 터미널에서 Claude Code를 실행한 상태에서 `/ide`를 입력하세요.
+
+```
+> /ide
+```
+
+VS Code 또는 JetBrains IDE가 열려 있으면 자동으로 감지해서 연결합니다. 연결이 완료되면 현재 연동 상태를 화면에 표시해줍니다.
+
+<Callout type="info">
+  VS Code 내장 터미널에서 `claude`를 실행하면 `/ide` 없이도 자동으로 연동됩니다.\
+  외부 터미널을 주로 쓰는 경우에만 필요한 명령어예요.
+</Callout>
+
+---
+
+## 관련 명령어
+
+| 명령어 | 설명 |
+|--------|------|
+| `/diff` | 저장되지 않은 변경 사항을 대화형 뷰어로 확인 |
+| `/status` | 현재 세션 상태 및 연결 정보 확인 |
+| `/doctor` | Claude Code 설치 및 연동 상태 진단 |
