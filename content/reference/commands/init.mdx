@@ -32,9 +32,11 @@ Claude가 코드 파일들을 스스로 읽어보고 프로젝트 구조·기술
 
 프로젝트 폴더에서 `claude`를 실행한 뒤 입력해요.
 
+<SlashBlock>
 ```
 > /init
 ```
+</SlashBlock>
 
 <Callout type="warning">
   반드시 **프로젝트 폴더 안에서** `claude`를 실행해야 해요.\
@@ -90,6 +92,46 @@ Claude가 코드 파일들을 스스로 읽어보고 프로젝트 구조·기술
   - 건드리지 말아야 할 파일이나 폴더
   - 커밋 메시지 형식이나 브랜치 규칙
 </Callout>
+
+---
+
+## 빈 프로젝트에서 실행할 때
+
+분석할 코드가 없는 빈 폴더라면 Claude가 먼저 확인을 요청해요.
+
+<SlashBlock>
+```
+> /init
+```
+</SlashBlock>
+
+<ClaudeBlock>
+```
+⏺ The directory appears to be empty. There's no code to analyze, so there's
+  nothing to document in a CLAUDE.md.
+
+  Would you like me to initialize a minimal CLAUDE.md as a placeholder for when
+  you add code to this project?
+```
+</ClaudeBlock>
+
+`yes`를 입력하면 최소한의 CLAUDE.md가 생성돼요.
+
+<VibeBlock>
+```
+> yes
+```
+</VibeBlock>
+
+생성된 파일은 기본 안내 문구만 담은 최소한의 형태예요:
+
+```markdown
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+```
+
+이 파일을 출발점 삼아 프로젝트에 맞게 내용을 직접 채워나가면 돼요.
 
 ---
 
