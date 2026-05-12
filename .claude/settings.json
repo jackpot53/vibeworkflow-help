@@ -23,7 +23,25 @@
       "WebFetch(domain:claudionary.com)",
       "WebFetch(domain:read.engineerscodex.com)",
       "WebFetch(domain:codingcocoon.com)",
-      "Read(//temp/readonly/**)"
+      "Read(//temp/readonly/**)",
+      "Bash(shell\\\\|)",
+      "Bash(zsh\" /Users/amiz/dev/vibeworkflow-help/content/ 2>/dev/null | head -15)",
+      "Bash(grep -rn \"```shell\\\\|```bash\\\\|```zsh\" /Users/amiz/dev/vibeworkflow-help/content/ 2>/dev/null | head -15)",
+      "Bash(\" /Users/amiz/dev/vibeworkflow-help/content/getting-started/vibe-coding-intro/db.mdx 2>/dev/null | head -20)",
+      "Bash(grep -rn \"```\" /Users/amiz/dev/vibeworkflow-help/content/getting-started/vibe-coding-intro/db.mdx 2>/dev/null | head -20)",
+      "Bash(grep -v '^--$')",
+      "Bash(grep -rn '^```\\\\\\(markdown\\\\|md\\\\|json\\\\|yaml\\\\|yml\\\\|toml\\\\\\)' /Users/amiz/dev/vibeworkflow-help/content --include=\"*.mdx\")",
+      "Bash(grep -rnE '```\\(markdown|md|json|yaml|yml|toml\\)' /Users/amiz/dev/vibeworkflow-help/content --include=\"*.mdx\")",
+      "Bash(grep -rnE '```\\(bash|sh\\)' /Users/amiz/dev/vibeworkflow-help/content --include=\"*.mdx\")",
+      "Bash(grep -rnE '```\\\\s*$' /Users/amiz/dev/vibeworkflow-help/content --include=\"*.mdx\")",
+      "Bash(grep -n '```' /Users/amiz/dev/vibeworkflow-help/content/guides/environment-setup/settings.mdx)",
+      "Bash(grep -n '```markdown\\\\|```\\\\n# CLAUDE\\\\|# CLAUDE.md' /Users/amiz/dev/vibeworkflow-help/content/guides/claude-md/writing.mdx)",
+      "Bash(grep -n '```json\\\\|```' /Users/amiz/dev/vibeworkflow-help/content/reference/commands/statusline.mdx)",
+      "Bash(grep -n '```json\\\\|```' /Users/amiz/dev/vibeworkflow-help/content/reference/commands/config.mdx)",
+      "Bash(grep -n '```json\\\\|```' /Users/amiz/dev/vibeworkflow-help/content/reference/commands/permissions.mdx)",
+      "Bash(grep -n 'settings\\\\.json\\\\|```json' /Users/amiz/dev/vibeworkflow-help/content/guides/environment-setup/settings.mdx)",
+      "Bash(grep -n '```markdown\\\\|```\\\\n' /Users/amiz/dev/vibeworkflow-help/content/design-guide/design-md.mdx)",
+      "Bash(grep -n '```json' /Users/amiz/dev/vibeworkflow-help/content/guides/environment-setup/settings.mdx)"
     ]
   }
 }
