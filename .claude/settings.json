@@ -15,7 +15,14 @@
       "Bash(sips -g pixelWidth -g pixelHeight -g fileSize /Users/amiz/Desktop/lottiefiles_move_dashboard.png)",
       "Bash(sips --resampleWidth 1400 /Users/amiz/Desktop/lottiefiles_move_dashboard.png --out /Users/amiz/dev/vibeworkflow-help/public/images/lottiefiles_move_dashboard.png)",
       "Bash(sips -g pixelWidth -g pixelHeight /Users/amiz/Desktop/lottiefiles_embed_to_webpage.png)",
-      "Bash(sips --resampleWidth 1400 /Users/amiz/Desktop/lottiefiles_embed_to_webpage.png --out /Users/amiz/dev/vibeworkflow-help/public/images/lottiefiles_embed_to_webpage.png)"
+      "Bash(sips --resampleWidth 1400 /Users/amiz/Desktop/lottiefiles_embed_to_webpage.png --out /Users/amiz/dev/vibeworkflow-help/public/images/lottiefiles_embed_to_webpage.png)",
+      "WebFetch(domain:deepakness.com)",
+      "WebFetch(domain:lust.dev)",
+      "WebFetch(domain:danielmiessler.com)",
+      "WebFetch(domain:www.rushis.com)",
+      "WebFetch(domain:claudionary.com)",
+      "WebFetch(domain:read.engineerscodex.com)",
+      "WebFetch(domain:codingcocoon.com)"
     ]
   }
 }
