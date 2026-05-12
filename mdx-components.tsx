@@ -17,6 +17,7 @@ import { VibeBlock } from '@/components/vibe-block'
 import { ClaudeBlock } from '@/components/claude-block'
 import { ShellBlock } from '@/components/shell-block'
 import { SlashBlock } from '@/components/slash-block'
+import { FileBlock } from '@/components/file-block'
 import { DevLabelDemo } from '@/components/devlabel-demo'
 import { SectionMap } from '@/components/section-map'
 import { ShadcnComponentGrid } from '@/components/shadcn-component-grid'
@@ -63,6 +64,7 @@ export function useMDXComponents() {
     ClaudeBlock,
     ShellBlock,
     SlashBlock,
+    FileBlock,
     DevLabelDemo,
     SectionMap,
     ShadcnComponentGrid,

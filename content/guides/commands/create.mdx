@@ -71,10 +71,11 @@ description: 자주 쓰는 작업을 자동화합니다
 
 ---
 
-### commit.md — 커밋 메시지 생성기
+### 커밋 메시지 생성기
 
 staged된 변경 사항을 분석해 한국어 커밋 메시지를 작성합니다.
 
+<FileBlock filename="commit.md">
 ```markdown
 ---
 name: commit
@@ -85,6 +86,7 @@ allowed-tools: Bash(git diff), Bash(git status)
 현재 staged된 변경 사항을 분석해서 명확하고 간결한 커밋 메시지를 작성해줘.
 형식: <타입>: <요약> (한국어로)
 ```
+</FileBlock>
 
 <SlashBlock>
 ```
@@ -94,10 +96,11 @@ allowed-tools: Bash(git diff), Bash(git status)
 
 ---
 
-### pr-draft.md — PR 설명 초안
+### PR 설명 초안
 
 비교할 브랜치를 인수로 넘기면 diff를 분석해 PR 설명을 초안합니다.
 
+<FileBlock filename="pr-draft.md">
 ```markdown
 ---
 name: pr-draft
@@ -111,6 +114,7 @@ model: sonnet
 - 테스트 방법
 - 주의 사항
 ```
+</FileBlock>
 
 <SlashBlock>
 ```
@@ -120,10 +124,11 @@ model: sonnet
 
 ---
 
-### translate.md — 번역 명령어
+### 번역 명령어
 
 단순 번역처럼 가벼운 작업은 Haiku로 지정해 응답 속도를 높입니다.
 
+<FileBlock filename="translate.md">
 ```markdown
 ---
 name: translate
@@ -134,6 +139,7 @@ effort: low
 
 다음 텍스트를 자연스러운 한국어로 번역해줘: $ARGUMENTS
 ```
+</FileBlock>
 
 <SlashBlock>
 ```

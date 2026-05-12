@@ -89,7 +89,35 @@ CLAUDE.md 파일은 여러 위치에 있을 수 있으며, 각 위치는 다른 
 
 Claude가 프로젝트를 살펴보고 빌드 명령, 테스트 지침, 프로젝트 규칙 등을 담은 파일을 생성합니다.
 
-코드가 없는 빈 프로젝트에서 실행하면 분석할 내용이 없으므로, 기본 구조만 갖춘 최소한의 CLAUDE.md가 생성됩니다. 이 파일을 출발점 삼아 직접 내용을 채워나가면 됩니다.
+코드가 없는 빈 프로젝트에서 실행하면 Claude가 먼저 확인을 요청해요.
+
+<ClaudeBlock>
+```
+⏺ The directory appears to be empty. There's no code to analyze, so there's
+  nothing to document in a CLAUDE.md.
+
+  Would you like me to initialize a minimal CLAUDE.md as a placeholder for when
+  you add code to this project?
+```
+</ClaudeBlock>
+
+`yes`를 입력하면 최소한의 CLAUDE.md가 만들어져요.
+
+<VibeBlock>
+```
+> yes
+```
+</VibeBlock>
+
+<FileBlock filename="CLAUDE.md">
+```markdown
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+```
+</FileBlock>
+
+이 파일을 출발점 삼아 직접 내용을 채워나가면 됩니다.
 
 CLAUDE.md가 이미 존재하면 `/init`은 파일을 덮어쓰지 않고 개선할 수 있는 사항을 제안합니다. Claude가 스스로 발견하지 못한 지침이 있다면 그 제안을 바탕으로 내용을 보완해나가세요.
 

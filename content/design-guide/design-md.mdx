@@ -46,6 +46,7 @@ DESIGN.md는 크게 5가지 항목으로 구성해요.
 
 브랜드 색상과 역할을 정의해요. 색상 이름보다 **용도 중심**으로 쓰는 게 중요해요.
 
+<FileBlock filename="DESIGN.md — Colors">
 ```md
 ## Colors
 - Primary: #6366F1 — 주요 버튼, 링크, 강조 요소
@@ -53,11 +54,13 @@ DESIGN.md는 크게 5가지 항목으로 구성해요.
 - Muted: #F4F4F5 — 보조 배경, 비활성 영역
 - Destructive: #EF4444 — 삭제, 오류, 경고
 ```
+</FileBlock>
 
 ### 2. 타이포그래피 (Typography)
 
 폰트 종류와 크기 체계를 정해요. Claude가 텍스트 요소를 만들 때 이 규칙을 따라요.
 
+<FileBlock filename="DESIGN.md — Typography">
 ```md
 ## Typography
 - Font: Pretendard (sans-serif)
@@ -66,11 +69,13 @@ DESIGN.md는 크게 5가지 항목으로 구성해요.
 - 본문: 16px / font-normal
 - 보조 텍스트: 14px / text-muted-foreground
 ```
+</FileBlock>
 
 ### 3. 간격 (Spacing)
 
 레이아웃의 리듬을 만드는 간격 기준이에요. 8px 단위 시스템이 가장 많이 쓰여요.
 
+<FileBlock filename="DESIGN.md — Spacing">
 ```md
 ## Spacing
 - 기본 단위: 8px (Tailwind 기준 2)
@@ -78,11 +83,13 @@ DESIGN.md는 크게 5가지 항목으로 구성해요.
 - 섹션 간 간격: 64px (16)
 - 카드 간 gap: 24px (6)
 ```
+</FileBlock>
 
 ### 4. 컴포넌트 스타일 (Components)
 
 자주 쓰는 컴포넌트의 기본 스타일 규칙을 적어요.
 
+<FileBlock filename="DESIGN.md — Components">
 ```md
 ## Components
 - Button: rounded-lg, size default, primary variant 기본
@@ -90,16 +97,19 @@ DESIGN.md는 크게 5가지 항목으로 구성해요.
 - Input: rounded-md, h-10, focus:ring-primary
 - Badge: rounded-full, text-xs
 ```
+</FileBlock>
 
 ### 5. 톤 & 무드 (Tone & Mood)
 
 전체적인 디자인 방향성을 한두 문장으로 정의해요. Claude가 새 UI를 제안할 때 이 방향을 기준으로 삼아요.
 
+<FileBlock filename="DESIGN.md — Tone & Mood">
 ```md
 ## Tone & Mood
 미니멀하고 깔끔한 SaaS 스타일. 불필요한 장식 없이 콘텐츠 중심.
 다크 모드 우선. 여백을 충분히 활용해서 호흡감을 줘요.
 ```
+</FileBlock>
 
 <Callout type="tip">
 처음부터 완벽하게 채울 필요 없어요. 색상과 폰트만 있어도 Claude의 결과물이 달라져요. 프로젝트를 진행하면서 조금씩 채워가면 돼요.

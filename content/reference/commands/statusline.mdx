@@ -39,8 +39,8 @@ import { Callout } from 'nextra/components'
 상태표시줄은 `settings.json`에 쉘 스크립트를 연결하는 방식으로 동작해요.\
 클로드코드가 실행될 때마다 해당 스크립트를 호출하고, 출력 결과를 상태표시줄에 표시해요.
 
+<FileBlock filename="~/.claude/settings.json">
 ```json
-// ~/.claude/settings.json
 {
   "statusLine": {
     "type": "command",
@@ -49,6 +49,7 @@ import { Callout } from 'nextra/components'
   }
 }
 ```
+</FileBlock>
 
 | 옵션 | 설명 |
 |------|------|
