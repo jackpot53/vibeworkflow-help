@@ -1,0 +1,191 @@
+---
+title: 설정 범위 (Scope)
+description: 설정 파일의 위치에 따라 누구와 무엇을 공유할지 결정하는 Claude Code의 범위(Scope) 개념을 알아봅니다.
+---
+
+import { Callout } from 'nextra/components'
+
+# 설정 범위 (Scope)
+
+Claude Code는 설정, 서브에이전트, MCP 서버, 플러그인, CLAUDE.md 등 다양한 요소를 사용자의 필요에 맞게 구성할 수 있습니다.
+
+이 구성 요소들이 **어느 폴더에 저장되느냐**에 따라 "누구에게 적용되는지"가 달라집니다. 이것이 바로 **범위(Scope)** 개념입니다.
+
+---
+
+## 세 가지 범위
+
+Claude Code의 범위는 크게 세 가지로 나뉩니다.
+
+<div className="overflow-x-auto bordered-table">
+
+| 범위 | 적용 대상 | 저장 위치 | 예시 |
+| :--- | :--- | :--- | :--- |
+| **사용자 (User)** | 나 혼자만, 모든 프로젝트 | `~/.claude/` | "항상 한국어로 답해줘"처럼 어느 프로젝트에서든 유지하고 싶은 개인 취향 |
+| **프로젝트 (Project)** | 팀원 모두, 이 프로젝트만 | `.claude/` (Git 커밋) | "이 프로젝트는 항상 TypeScript 사용"처럼 팀 전체가 지켜야 할 공통 규칙 |
+| **로컬 (Local)** | 나 혼자만, 이 프로젝트만 | `.claude/` (Git 제외) | "나만 디버그 로그 켜두기"처럼 팀과 공유하지 않는 개인 작업 방식 |
+
+</div>
+
+---
+
+## 범위별 파일 위치
+
+각 구성 요소가 어디에 저장되는지 한눈에 볼 수 있습니다.
+
+<div className="overflow-x-auto bordered-table">
+
+| 구성 요소 | 사용자 (나만) | 프로젝트 (팀 공유) | 로컬 (나만 + 미공유) |
+| :--- | :--- | :--- | :--- |
+| **Settings** | `~/.claude/settings.json` | `.claude/settings.json` | `.claude/settings.local.json` |
+| **Subagents** | `~/.claude/agents/` | `.claude/agents/` | — |
+| **MCP servers** | `~/.claude.json` | `.mcp.json` | `~/.claude.json` (프로젝트별) |
+| **Plugins** | `~/.claude/settings.json` | `.claude/settings.json` | `.claude/settings.local.json` |
+| **Skills** | `~/.claude/skills/` | `.claude/skills/` | — |
+| **CLAUDE.md** | `~/.claude/CLAUDE.md` | `CLAUDE.md` 또는 `.claude/CLAUDE.md` | — |
+
+</div>
+
+<div className="my-6 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden font-mono text-[0.8125rem]">
+  <div className="bg-gray-100 dark:bg-gray-800/80 px-4 py-2.5 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
+    <span className="text-xs font-sans font-medium text-gray-500 dark:text-gray-400">파일 시스템 구조</span>
+    <div className="flex items-center gap-3 text-[11px] font-sans text-gray-500 dark:text-gray-400">
+      <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-gray-400 inline-block shrink-0"></span>사용자</span>
+      <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-blue-400 inline-block shrink-0"></span>프로젝트</span>
+      <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-violet-400 inline-block shrink-0"></span>로컬</span>
+    </div>
+  </div>
+  <div className="px-5 py-4 bg-white dark:bg-gray-950 space-y-0.5 leading-7">
+    <div className="flex items-baseline justify-between gap-4">
+      <span className="text-gray-800 dark:text-gray-200 font-semibold">~/</span>
+      <span className="text-[11px] font-sans text-gray-400 dark:text-gray-500 shrink-0">홈 디렉터리</span>
+    </div>
+    <div className="flex items-baseline justify-between gap-4">
+      <span><span className="text-gray-300 dark:text-gray-600">├── </span><span className="text-gray-700 dark:text-gray-300">.claude.json</span></span>
+      <span className="flex items-center gap-1.5 text-[11px] font-sans text-gray-500 dark:text-gray-400 shrink-0"><span className="w-1.5 h-1.5 rounded-full bg-gray-400 inline-block shrink-0"></span>사용자 · MCP servers</span>
+    </div>
+    <div className="flex items-baseline justify-between gap-4">
+      <span><span className="text-gray-300 dark:text-gray-600">└── </span><span className="text-amber-600 dark:text-amber-400">.claude/</span></span>
+      <span className="text-[11px] font-sans text-gray-300 dark:text-gray-600 shrink-0">디렉터리</span>
+    </div>
+    <div className="flex items-baseline justify-between gap-4">
+      <span className="whitespace-pre"><span className="text-gray-300 dark:text-gray-600">    ├── </span><span className="text-gray-700 dark:text-gray-300">settings.json</span></span>
+      <span className="flex items-center gap-1.5 text-[11px] font-sans text-gray-500 dark:text-gray-400 shrink-0"><span className="w-1.5 h-1.5 rounded-full bg-gray-400 inline-block shrink-0"></span>사용자 · Settings / Plugins</span>
+    </div>
+    <div className="flex items-baseline justify-between gap-4">
+      <span className="whitespace-pre"><span className="text-gray-300 dark:text-gray-600">    ├── </span><span className="text-amber-600 dark:text-amber-400">agents/</span></span>
+      <span className="flex items-center gap-1.5 text-[11px] font-sans text-gray-500 dark:text-gray-400 shrink-0"><span className="w-1.5 h-1.5 rounded-full bg-gray-400 inline-block shrink-0"></span>사용자 · Subagents</span>
+    </div>
+    <div className="flex items-baseline justify-between gap-4">
+      <span className="whitespace-pre"><span className="text-gray-300 dark:text-gray-600">    ├── </span><span className="text-amber-600 dark:text-amber-400">skills/</span></span>
+      <span className="flex items-center gap-1.5 text-[11px] font-sans text-gray-500 dark:text-gray-400 shrink-0"><span className="w-1.5 h-1.5 rounded-full bg-gray-400 inline-block shrink-0"></span>사용자 · Skills</span>
+    </div>
+    <div className="flex items-baseline justify-between gap-4">
+      <span className="whitespace-pre"><span className="text-gray-300 dark:text-gray-600">    └── </span><span className="text-gray-700 dark:text-gray-300">CLAUDE.md</span></span>
+      <span className="flex items-center gap-1.5 text-[11px] font-sans text-gray-500 dark:text-gray-400 shrink-0"><span className="w-1.5 h-1.5 rounded-full bg-gray-400 inline-block shrink-0"></span>사용자 · CLAUDE.md</span>
+    </div>
+    <div className="py-1.5 border-t border-dashed border-gray-100 dark:border-gray-800 my-1"></div>
+    <div className="flex items-baseline justify-between gap-4">
+      <span className="text-gray-800 dark:text-gray-200 font-semibold">~/my-project/</span>
+      <span className="text-[11px] font-sans text-gray-400 dark:text-gray-500 shrink-0">프로젝트 폴더</span>
+    </div>
+    <div className="flex items-baseline justify-between gap-4">
+      <span><span className="text-gray-300 dark:text-gray-600">├── </span><span className="text-gray-700 dark:text-gray-300">.mcp.json</span></span>
+      <span className="flex items-center gap-1.5 text-[11px] font-sans text-blue-500 dark:text-blue-400 shrink-0"><span className="w-1.5 h-1.5 rounded-full bg-blue-400 inline-block shrink-0"></span>프로젝트 · MCP servers</span>
+    </div>
+    <div className="flex items-baseline justify-between gap-4">
+      <span><span className="text-gray-300 dark:text-gray-600">├── </span><span className="text-gray-700 dark:text-gray-300">CLAUDE.md</span></span>
+      <span className="flex items-center gap-1.5 text-[11px] font-sans text-blue-500 dark:text-blue-400 shrink-0"><span className="w-1.5 h-1.5 rounded-full bg-blue-400 inline-block shrink-0"></span>프로젝트 · CLAUDE.md</span>
+    </div>
+    <div className="flex items-baseline justify-between gap-4">
+      <span><span className="text-gray-300 dark:text-gray-600">└── </span><span className="text-amber-600 dark:text-amber-400">.claude/</span></span>
+      <span className="text-[11px] font-sans text-gray-300 dark:text-gray-600 shrink-0">디렉터리</span>
+    </div>
+    <div className="flex items-baseline justify-between gap-4">
+      <span className="whitespace-pre"><span className="text-gray-300 dark:text-gray-600">    ├── </span><span className="text-gray-700 dark:text-gray-300">settings.json</span></span>
+      <span className="flex items-center gap-1.5 text-[11px] font-sans text-blue-500 dark:text-blue-400 shrink-0"><span className="w-1.5 h-1.5 rounded-full bg-blue-400 inline-block shrink-0"></span>프로젝트 · Settings / Plugins</span>
+    </div>
+    <div className="flex items-baseline justify-between gap-4">
+      <span className="whitespace-pre"><span className="text-gray-300 dark:text-gray-600">    ├── </span><span className="text-violet-600 dark:text-violet-400">settings.local.json</span></span>
+      <span className="flex items-center gap-1.5 text-[11px] font-sans text-violet-500 dark:text-violet-400 shrink-0"><span className="w-1.5 h-1.5 rounded-full bg-violet-400 inline-block shrink-0"></span>로컬 · Settings / Plugins</span>
+    </div>
+    <div className="flex items-baseline justify-between gap-4">
+      <span className="whitespace-pre"><span className="text-gray-300 dark:text-gray-600">    ├── </span><span className="text-amber-600 dark:text-amber-400">agents/</span></span>
+      <span className="flex items-center gap-1.5 text-[11px] font-sans text-blue-500 dark:text-blue-400 shrink-0"><span className="w-1.5 h-1.5 rounded-full bg-blue-400 inline-block shrink-0"></span>프로젝트 · Subagents</span>
+    </div>
+    <div className="flex items-baseline justify-between gap-4">
+      <span className="whitespace-pre"><span className="text-gray-300 dark:text-gray-600">    ├── </span><span className="text-amber-600 dark:text-amber-400">skills/</span></span>
+      <span className="flex items-center gap-1.5 text-[11px] font-sans text-blue-500 dark:text-blue-400 shrink-0"><span className="w-1.5 h-1.5 rounded-full bg-blue-400 inline-block shrink-0"></span>프로젝트 · Skills</span>
+    </div>
+    <div className="flex items-baseline justify-between gap-4">
+      <span className="whitespace-pre"><span className="text-gray-300 dark:text-gray-600">    └── </span><span className="text-gray-700 dark:text-gray-300">CLAUDE.md</span></span>
+      <span className="flex items-center gap-1.5 text-[11px] font-sans text-blue-500 dark:text-blue-400 shrink-0"><span className="w-1.5 h-1.5 rounded-full bg-blue-400 inline-block shrink-0"></span>프로젝트 · CLAUDE.md</span>
+    </div>
+  </div>
+</div>
+
+<Callout type="tip">
+  팀 공유가 필요한 설정은 **프로젝트 범위**에, 개인 취향이나 민감한 정보(API 키 등)는 **사용자 또는 로컬 범위**에 저장하세요.
+</Callout>
+
+---
+
+## 충돌하면 어느 쪽이 이길까?
+
+같은 항목을 여러 범위에서 동시에 설정했을 때는 **더 좁은 범위(=구체적인 것)가 항상 이깁니다.**
+
+<div className="my-6 flex items-stretch gap-0">
+  {/* 로컬 */}
+  <div className="flex-1 rounded-l-lg border border-violet-300 dark:border-violet-700 bg-violet-50 dark:bg-violet-950/40 p-4 flex flex-col items-center gap-1.5">
+    <span className="text-[10px] font-bold tracking-widest text-violet-400 dark:text-violet-500 uppercase">가장 강함</span>
+    <span className="text-base font-bold text-violet-700 dark:text-violet-300">로컬</span>
+    <span className="text-xs text-violet-500 dark:text-violet-400 text-center leading-snug">나만 · 이 프로젝트만<br/>Git 미포함</span>
+  </div>
+  {/* 화살표 */}
+  <div className="flex items-center px-1 text-gray-300 dark:text-gray-600 text-lg select-none">›</div>
+  {/* 프로젝트 */}
+  <div className="flex-1 border border-blue-200 dark:border-blue-800 bg-blue-50 dark:bg-blue-950/40 p-4 flex flex-col items-center gap-1.5">
+    <span className="text-[10px] font-bold tracking-widest text-blue-400 dark:text-blue-500 uppercase">중간</span>
+    <span className="text-base font-bold text-blue-700 dark:text-blue-300">프로젝트</span>
+    <span className="text-xs text-blue-500 dark:text-blue-400 text-center leading-snug">팀 전체 · 이 프로젝트만<br/>Git 포함</span>
+  </div>
+  {/* 화살표 */}
+  <div className="flex items-center px-1 text-gray-300 dark:text-gray-600 text-lg select-none">›</div>
+  {/* 사용자 */}
+  <div className="flex-1 rounded-r-lg border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900/40 p-4 flex flex-col items-center gap-1.5">
+    <span className="text-[10px] font-bold tracking-widest text-gray-400 dark:text-gray-500 uppercase">가장 약함</span>
+    <span className="text-base font-bold text-gray-600 dark:text-gray-400">사용자</span>
+    <span className="text-xs text-gray-400 dark:text-gray-500 text-center leading-snug">나만 · 모든 프로젝트<br/>기본 기준선</span>
+  </div>
+</div>
+
+쉽게 생각하면 이렇습니다.
+
+- 회사 규정(사용자 범위)보다 팀 규칙(프로젝트 범위)이 더 구체적이면 팀 규칙을 따릅니다.
+- 팀 규칙보다 내 로컬 메모(로컬 범위)가 더 구체적이면 내 메모를 따릅니다.
+
+### 실제 예시
+
+<Callout type="info">
+  **예시 — CLAUDE.md 우선순위**\
+  Claude는 대화를 시작할 때 여러 위치의 CLAUDE.md를 모두 읽습니다.\
+  단, 내용이 겹칠 경우 프로젝트 폴더에 가까운 것이 우선합니다.
+
+  읽는 순서: `~/.claude/CLAUDE.md` → `.claude/CLAUDE.md` → `CLAUDE.md`
+</Callout>
+
+---
+
+## 언제 어떤 범위를 써야 할까?
+
+| 상황 | 권장 범위 |
+| :--- | :--- |
+| 어떤 프로젝트에서든 내가 쓰고 싶은 설정 | 사용자 |
+| 팀원 모두가 동일하게 지켜야 할 규칙 | 프로젝트 |
+| API 키나 개인 토큰처럼 Git에 올리면 안 되는 것 | 로컬 |
+| 같은 프로젝트에서 나만 쓰는 편의 설정 | 로컬 |
+
+<Callout type="warning">
+  민감한 정보(API 키, 토큰 등)는 절대 프로젝트 범위에 저장하지 마세요.\
+  Git에 커밋되면 팀원 모두에게 노출됩니다. 반드시 **로컬 또는 사용자 범위**를 사용하세요.
+</Callout>

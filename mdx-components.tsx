@@ -1,5 +1,7 @@
 import type { ComponentProps } from 'react'
 import { useMDXComponents as getDocsMDXComponents } from 'nextra-theme-docs'
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion'
+import { Badge } from '@/components/ui/badge'
 import { Callout } from '@/components/callout'
 import { CommandCard } from '@/components/command-card'
 import { Screenshot } from '@/components/screenshot'
@@ -18,6 +20,7 @@ import { SectionMap } from '@/components/section-map'
 import { ShadcnComponentGrid } from '@/components/shadcn-component-grid'
 import { ComponentNameGrid } from '@/components/component-name-grid'
 import { PlanTable } from '@/components/plan-table'
+import { ToolsDemo } from '@/components/tools-demo'
 
 const SHELL_LANGS = new Set(['shell', 'bash', 'zsh', 'sh', 'fish'])
 const { pre: DefaultPre } = getDocsMDXComponents()
@@ -68,5 +71,11 @@ export function useMDXComponents() {
     TimelineTabs,
     ClaudeMdDemo,
     ClaudeGitDemo,
+    ToolsDemo,
+    Accordion,
+    AccordionItem,
+    AccordionTrigger,
+    AccordionContent,
+    Badge,
   })
 }
