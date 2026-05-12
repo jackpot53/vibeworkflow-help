@@ -22,7 +22,8 @@
       "WebFetch(domain:www.rushis.com)",
       "WebFetch(domain:claudionary.com)",
       "WebFetch(domain:read.engineerscodex.com)",
-      "WebFetch(domain:codingcocoon.com)"
+      "WebFetch(domain:codingcocoon.com)",
+      "Read(//temp/readonly/**)"
     ]
   }
 }

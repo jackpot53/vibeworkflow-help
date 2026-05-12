@@ -7,6 +7,7 @@ export default {
   exit: '/exit',
   ide: '/ide',
   init: '/init',
+  memory: '/memory',
   model: '/model',
   permissions: '/permissions',
   plan: '/plan',
