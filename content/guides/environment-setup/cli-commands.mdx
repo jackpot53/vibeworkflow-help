@@ -1,0 +1,96 @@
+---
+title: CLI 명령어 & 단축키
+description: 클로드코드 CLI에서 자주 쓰는 명령어와 플래그를 상황별로 알아봅니다.
+---
+
+import { Callout } from 'nextra/components'
+
+# CLI 명령어 & 단축키
+
+터미널에서 `claude` 명령어 뒤에 옵션을 붙여 동작을 바꿀 수 있습니다.
+처음엔 복잡해 보이지만 실제로 자주 쓰는 명령어는 손에 꼽습니다.
+
+---
+
+## CLI 명령어
+
+이러한 명령어를 사용하여 세션을 시작하고, 콘텐츠를 파이프하고, 대화를 재개하고, 업데이트를 관리할 수 있습니다.
+
+| 명령어 | 설명 | 예시 |
+|---|---|---|
+| `claude` | 대화형 세션 시작 | `claude` |
+| `claude "질문"` | 초기 프롬프트로 대화형 세션 시작 | `claude "explain this project"` |
+| `claude -p "질문"` | 답변만 출력하고 종료 (자동화에 유용) | `claude -p "explain this function"` |
+| `cat 파일 \| claude -p "질문"` | 파이프된 파일 내용 처리 | `cat logs.txt \| claude -p "explain"` |
+| `claude -c` | 현재 디렉터리의 가장 최근 대화 이어하기 | `claude -c` |
+| `claude -c -p "질문"` | 최근 대화를 이어서 답변만 출력 | `claude -c -p "Check for type errors"` |
+| `claude -r "세션" "질문"` | ID 또는 이름으로 세션 재개 | `claude -r "auth-refactor" "Finish this PR"` |
+| `claude update` | 최신 버전으로 업데이트 | `claude update` |
+| `claude auth login` | Anthropic 계정에 로그인. `--email`로 이메일 입력, `--sso`로 SSO 인증 강제 가능 | `claude auth login --email user@example.com --sso` |
+| `claude auth logout` | Anthropic 계정에서 로그아웃 | `claude auth logout` |
+| `claude auth status` | 인증 상태 확인. `--text`를 붙이면 읽기 쉬운 형태로 출력 | `claude auth status` |
+| `claude agents` | 설정된 모든 서브에이전트를 소스별로 목록 출력 | `claude agents` |
+| `claude mcp` | MCP(Model Context Protocol) 서버 설정 | — |
+| `claude remote-control` | Claude.ai 또는 Claude 앱에서 로컬 클로드코드를 원격 제어하는 세션 시작 | `claude remote-control` |
+
+---
+
+## CLI 플래그
+
+명령줄 플래그를 사용하여 클로드코드의 동작을 세부적으로 조정할 수 있습니다.
+
+| 플래그 | 설명 | 예시 |
+|---|---|---|
+| `--add-dir` | Claude가 접근할 추가 작업 디렉터리 지정 | `claude --add-dir ../apps ../lib` |
+| `--agent` | 현재 세션에서 사용할 에이전트 지정 | `claude --agent my-custom-agent` |
+| `--agents` | JSON 형식으로 서브에이전트를 동적으로 정의 | `claude --agents '{"reviewer":{"description":"코드 리뷰","prompt":"..."}}` |
+| `--allow-dangerously-skip-permissions` | 권한 우회 옵션 활성화 (즉시 적용은 아님, `--permission-mode`와 함께 사용) | `claude --permission-mode plan --allow-dangerously-skip-permissions` |
+| `--allowedTools` | 권한 확인 없이 실행할 도구 지정 | `"Bash(git log *)" "Read"` |
+| `--append-system-prompt` | 기본 시스템 프롬프트 끝에 텍스트 추가 | `claude --append-system-prompt "항상 TypeScript 사용"` |
+| `--append-system-prompt-file` | 파일에서 추가 시스템 프롬프트 로드 | `claude --append-system-prompt-file ./extra-rules.txt` |
+| `--betas` | API 요청에 포함할 베타 헤더 (API 키 사용자 전용) | `claude --betas interleaved-thinking` |
+| `--chrome` | 웹 자동화를 위한 Chrome 브라우저 연동 활성화 | `claude --chrome` |
+| `--continue`, `-c` | 현재 디렉터리의 가장 최근 대화 이어하기 | `claude --continue` |
+| `--dangerously-skip-permissions` | 모든 권한 확인 건너뛰기 (주의해서 사용) | `claude --dangerously-skip-permissions` |
+| `--debug` | 디버그 모드 활성화. 카테고리 필터 가능 (`"api,hooks"`, `"!statsig"`) | `claude --debug "api,mcp"` |
+| `--disable-slash-commands` | 이 세션에서 모든 스킬·슬래시 명령어 비활성화 | `claude --disable-slash-commands` |
+| `--disallowedTools` | 모델이 사용할 수 없도록 제거할 도구 지정 | `"Bash(git log *)" "Edit"` |
+| `--fallback-model` | 기본 모델 과부하 시 자동으로 대체할 모델 지정 (인쇄 모드 전용) | `claude -p --fallback-model sonnet "query"` |
+| `--fork-session` | 재개 시 원본 세션을 유지하고 새 세션 ID 생성 (`--resume`/`--continue`와 함께 사용) | `claude --resume abc123 --fork-session` |
+| `--from-pr` | 특정 GitHub PR에 연결된 세션 재개. PR 번호 또는 URL 입력 | `claude --from-pr 123` |
+| `--ide` | 시작 시 유효한 IDE에 자동 연결 | `claude --ide` |
+| `--init` | 초기화 훅 실행 후 대화형 모드 시작 | `claude --init` |
+| `--init-only` | 초기화 훅만 실행하고 종료 (대화 없음) | `claude --init-only` |
+| `--include-partial-messages` | 스트리밍 중간 결과를 출력에 포함 (`--print`·`--output-format=stream-json` 필요) | `claude -p --output-format stream-json --include-partial-messages "query"` |
+| `--input-format` | 인쇄 모드의 입력 형식 지정 (`text`, `stream-json`) | `claude -p --input-format stream-json` |
+| `--json-schema` | 작업 완료 후 JSON Schema와 일치하는 검증된 JSON 출력 (인쇄 모드 전용) | `claude -p --json-schema '{"type":"object"}' "query"` |
+| `--maintenance` | 유지 관리 훅 실행 후 종료 | `claude --maintenance` |
+| `--max-budget-usd` | API 호출 최대 비용 한도 설정 (인쇄 모드 전용) | `claude -p --max-budget-usd 5.00 "query"` |
+| `--max-turns` | 에이전트 턴 수 제한. 한도 도달 시 오류로 종료 (인쇄 모드 전용) | `claude -p --max-turns 3 "query"` |
+| `--mcp-config` | JSON 파일 또는 문자열에서 MCP 서버 로드 | `claude --mcp-config ./mcp.json` |
+| `--model` | 사용할 모델 지정 (`sonnet`, `opus` 또는 전체 모델명) | `claude --model claude-sonnet-4-6` |
+| `--no-chrome` | 이 세션에서 Chrome 브라우저 연동 비활성화 | `claude --no-chrome` |
+| `--no-session-persistence` | 세션을 디스크에 저장하지 않음 (재개 불가, 인쇄 모드 전용) | `claude -p --no-session-persistence "query"` |
+| `--output-format` | 인쇄 모드의 출력 형식 지정 (`text`, `json`, `stream-json`) | `claude -p "query" --output-format json` |
+| `--permission-mode` | 지정한 권한 모드로 시작 | `claude --permission-mode plan` |
+| `--permission-prompt-tool` | 비대화형 모드에서 권한 확인을 처리할 MCP 도구 지정 | `claude -p --permission-prompt-tool mcp_auth_tool "query"` |
+| `--plugin-dir` | 이 세션에만 적용할 플러그인 디렉터리 지정 (반복 사용 가능) | `claude --plugin-dir ./my-plugins` |
+| `--print`, `-p` | 대화형 모드 없이 답변만 출력하고 종료 | `claude -p "query"` |
+| `--remote` | 제공된 작업 설명으로 claude.ai에서 새 웹 세션 생성 | `claude --remote "로그인 버그 수정"` |
+| `--resume`, `-r` | ID 또는 이름으로 특정 세션 재개. 세션 선택기 표시 가능 | `claude --resume auth-refactor` |
+| `--session-id` | 대화에 특정 세션 ID 지정 (유효한 UUID 형식 필요) | `claude --session-id "550e8400-..."` |
+| `--setting-sources` | 로드할 설정 소스 지정 (`user`, `project`, `local`) | `claude --setting-sources user,project` |
+| `--settings` | 추가 설정 JSON 파일 또는 JSON 문자열 경로 지정 | `claude --settings ./settings.json` |
+| `--strict-mcp-config` | `--mcp-config`의 MCP 서버만 사용하고 나머지 MCP 설정 무시 | `claude --strict-mcp-config --mcp-config ./mcp.json` |
+| `--system-prompt` | 전체 시스템 프롬프트를 사용자 정의 텍스트로 교체 | `claude --system-prompt "You are a Python expert"` |
+| `--system-prompt-file` | 파일에서 시스템 프롬프트를 로드하여 기본 프롬프트 교체 | `claude --system-prompt-file ./custom-prompt.txt` |
+| `--teleport` | 로컬 터미널에서 웹 세션 재개 | `claude --teleport` |
+| `--teammate-mode` | 에이전트 팀 표시 방식 설정 (`auto`, `in-process`, `tmux`) | `claude --teammate-mode in-process` |
+| `--tools` | Claude가 사용할 수 있는 기본 도구 제한. `""` 전체 비활성화, `"default"` 전체 활성화 | `claude --tools "Bash,Edit,Read"` |
+| `--verbose` | 자세한 로그 출력 (문제 발생 시 디버깅용) | `claude --verbose` |
+| `--version`, `-v` | 버전 번호 출력 | `claude -v` |
+| `--worktree`, `-w` | 격리된 git worktree에서 클로드코드 실행. 이름 미지정 시 자동 생성 | `claude -w feature-auth` |
+
+<Callout type="warning">
+  `--dangerously-skip-permissions`는 클로드코드가 파일 수정·명령어 실행 등 모든 작업을 확인 없이 진행합니다. 자동화 스크립트 환경에서만 사용하고, 일반 작업에는 쓰지 않는 것을 권장합니다.
+</Callout>
