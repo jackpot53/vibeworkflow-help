@@ -10,7 +10,12 @@
       "Bash(sips -g pixelWidth -g pixelHeight /Users/amiz/Desktop/rapi_api_playgournd.png)",
       "Bash(sips --resampleWidth 1407 /Users/amiz/Desktop/rapi_api_playgournd.png --out /Users/amiz/dev/vibeworkflow-help/public/images/rapidapi-playground.png)",
       "Bash(sips -g pixelWidth -g pixelHeight /Users/amiz/Desktop/rapid_api_overview.png)",
-      "Bash(sips --resampleWidth 1094 /Users/amiz/Desktop/rapid_api_overview.png --out /Users/amiz/dev/vibeworkflow-help/public/images/rapidapi-overview.png)"
+      "Bash(sips --resampleWidth 1094 /Users/amiz/Desktop/rapid_api_overview.png --out /Users/amiz/dev/vibeworkflow-help/public/images/rapidapi-overview.png)",
+      "Bash(identify -format \"%wx%h %b\\\\n\" /Users/amiz/Desktop/lottiefiles_move_dashboard.png)",
+      "Bash(sips -g pixelWidth -g pixelHeight -g fileSize /Users/amiz/Desktop/lottiefiles_move_dashboard.png)",
+      "Bash(sips --resampleWidth 1400 /Users/amiz/Desktop/lottiefiles_move_dashboard.png --out /Users/amiz/dev/vibeworkflow-help/public/images/lottiefiles_move_dashboard.png)",
+      "Bash(sips -g pixelWidth -g pixelHeight /Users/amiz/Desktop/lottiefiles_embed_to_webpage.png)",
+      "Bash(sips --resampleWidth 1400 /Users/amiz/Desktop/lottiefiles_embed_to_webpage.png --out /Users/amiz/dev/vibeworkflow-help/public/images/lottiefiles_embed_to_webpage.png)"
     ]
   }
 }
