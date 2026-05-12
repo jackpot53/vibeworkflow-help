@@ -1,0 +1,76 @@
+---
+title: /terminal-setup — 터미널 환경 설정
+description: Claude Code에 맞게 터미널 키바인딩을 자동으로 설정하는 명령어예요.
+---
+
+import { Callout } from 'nextra/components'
+
+# /terminal-setup
+
+<CommandCard
+  command="/terminal-setup"
+  description="Claude Code에 맞게 터미널 키바인딩을 자동으로 설정합니다. Shift+Enter 줄바꿈 등 편의 기능을 활성화해요."
+  example="/terminal-setup"
+/>
+
+---
+
+## 언제 쓰나요?
+
+Claude Code에서 **Shift+Enter를 눌러도 줄바꿈이 안 되고 메시지가 전송**될 때 사용해요.
+
+Claude Code는 Enter를 누르면 메시지가 즉시 전송됩니다. 여러 줄로 된 긴 프롬프트를 작성하려면 Shift+Enter로 줄바꿈해야 하는데, 일부 터미널에서는 이 키 조합을 제대로 인식하지 못해요. `/terminal-setup`을 실행하면 사용 중인 터미널에 맞는 키바인딩을 자동으로 설정해줍니다.
+
+<Callout type="info">
+  이 명령어는 설정이 필요한 터미널에서만 목록에 표시돼요.\
+  VS Code 내장 터미널처럼 이미 키바인딩을 지원하는 환경에서는 나타나지 않습니다.
+</Callout>
+
+---
+
+## 사용법
+
+```
+> /terminal-setup
+```
+
+실행하면 현재 사용 중인 터미널을 자동으로 감지하고, 해당 터미널에 맞는 설정을 적용합니다.
+
+---
+
+## 설정되는 내용
+
+**Shift+Enter 줄바꿈**
+
+가장 핵심적인 설정이에요. Shift+Enter를 누르면 메시지를 전송하지 않고 줄바꿈만 되도록 키바인딩을 등록합니다. 여러 줄의 긴 프롬프트를 작성할 때 필수적이에요.
+
+**터미널 통합 최적화**
+
+터미널과 Claude Code 간의 연동을 개선해 더 원활한 사용 경험을 제공합니다.
+
+---
+
+## 지원 터미널
+
+| 터미널 | 지원 여부 |
+|--------|-----------|
+| iTerm2 (macOS) | ✓ |
+| VS Code 내장 터미널 | ✓ (자동 지원, 설정 불필요) |
+| Alacritty | ✓ |
+| Warp | ✓ |
+| macOS 기본 Terminal.app | 제한적 |
+
+<Callout type="tip">
+  설정 후 터미널을 재시작해야 적용되는 경우가 있어요.\
+  적용 후에도 Shift+Enter가 동작하지 않는다면 `/keybindings`에서 단축키 설정을 직접 확인해보세요.
+</Callout>
+
+---
+
+## 관련 명령어
+
+| 명령어 | 설명 |
+|--------|------|
+| [`/keybindings`](/guides/commands) | 단축키 설정 파일 열기 또는 생성 |
+| [`/vim`](/guides/commands) | Vim 편집 모드로 전환해 터미널 안에서 멀티라인 편집 |
+| [`/ide`](/reference/commands/ide) | 외부 터미널을 VS Code에 연결 |

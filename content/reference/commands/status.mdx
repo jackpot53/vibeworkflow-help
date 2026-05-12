@@ -19,6 +19,13 @@ import { Callout } from 'nextra/components'
 
 지금 어떤 모델을 쓰고 있는지, 클로드코드가 제대로 연결돼 있는지 빠르게 확인하고 싶을 때 사용해요.
 
+**이런 상황에서 쓰세요:**
+
+- Claude Code가 이상하게 동작할 때 먼저 상태 확인
+- 어떤 모델로 동작하고 있는지 확인하고 싶을 때
+- API 연결 문제가 의심될 때
+- 버전 확인이 필요할 때
+
 ---
 
 ## 사용법
@@ -68,10 +75,37 @@ import { Callout } from 'nextra/components'
 
 ---
 
+## 세션 상태 점검 명령어 모음
+
+`/status`와 함께 세션 건강 상태를 점검하는 데 유용한 명령어들이에요.
+
+| 명령어 | 역할 |
+|--------|------|
+| [`/status`](/reference/commands/status) | 버전, 모델, 연결 상태 확인 |
+| [`/context`](/reference/commands/context) | 컨텍스트 사용량을 컬러 그리드로 시각화 |
+| [`/usage`](/reference/commands/usage) | 요금제 사용 한도 및 속도 제한 근접 여부 확인 |
+| [`/doctor`](/reference/commands/doctor) | 설치 환경 및 설정 문제 자동 진단 |
+
+---
+
+## 실전 세션 체크인 루틴
+
+작업이 길어질 때 주기적으로 상태를 점검하는 습관이 좋아요.
+
+```
+> /context    # 컨텍스트 얼마나 찼는지 확인
+> /usage      # 사용 한도 근접 여부 확인
+> /status     # 전반적인 세션 상태 확인
+```
+
+컨텍스트가 많이 찼다면 [`/compact`](/reference/commands/compact)로 정리하고, 속도가 느려졌다면 [`/model`](/reference/commands/model)로 더 빠른 모델로 전환하는 식으로 활용할 수 있어요.
+
+---
+
 ## 관련 명령어
 
 | 명령어 | 설명 |
 |--------|------|
-| `/usage` | 토큰 사용량 및 비용 상세 확인 |
-| `/context` | 컨텍스트 창 사용률 시각적으로 확인 |
-| `/model` | 사용 모델 변경 |
+| [`/usage`](/reference/commands/usage) | 요금제 사용 한도 및 속도 제한 상태 확인 |
+| [`/context`](/reference/commands/context) | 컨텍스트 창 사용률 시각적으로 확인 |
+| [`/model`](/reference/commands/model) | 사용 모델 변경 |
