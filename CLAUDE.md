@@ -59,19 +59,38 @@ Registered globally in `mdx-components.tsx` — use in any MDX file without impo
 | `<CommandCard command="..." description="..." example="...">` | Slash command reference cards |
 | `<Screenshot src="..." alt="..." caption="...">` | Image with caption |
 | `<StepBadge step={1}>` | Numbered step badge |
-| `<VibeBlock>` | Claude Code CLI 입력 예시 코드 블록 — 사용자가 직접 터미널에 입력하는 명령어나 프롬프트를 보여줄 때 사용. 보라색 VIBE 헤더 바가 코드 블록 위에 붙어서 표시됨 |
-| `<ClaudeBlock>` | Claude Code CLI 출력 예시 코드 블록 — Claude가 응답한 내용을 보여줄 때 사용. 파란색 CLAUDE 헤더 바가 코드 블록 위에 붙어서 표시됨 |
+| `<VibeBlock>` | 사용자가 Claude에게 보내는 **자연어 프롬프트** 예시. 틸(teal) VIBE 헤더 바 표시 |
+| `<ClaudeBlock>` | Claude가 응답한 내용 예시. 하늘(sky) CLAUDE 헤더 바 표시 |
+| `<ShellBlock>` | 일반 shell 터미널에서 실행하는 명령 예시. 호박(amber) SHELL 헤더 바 표시. 안에 ` ```bash ` 펜스를 쓰면 `$ ` 프리픽스가 자동으로 붙음 |
+| `<SlashBlock>` | Claude Code 슬래시 명령어(`/plan`, `/clear` 등) 입력 예시. 보라(purple) /CMD 헤더 바 표시 |
 
-**VibeBlock 사용 기준**: Claude에게 보내는 자연어 프롬프트 예시에 사용. 일반 코드 예시(출력 결과, 설정 파일, API 응답 등)에는 사용하지 않음.
+**VibeBlock 사용 기준**: Claude에게 보내는 **자연어** 프롬프트에만 사용. 슬래시 명령은 SlashBlock으로, 셸 명령은 ShellBlock으로 분리.
 
 **ClaudeBlock 사용 기준**: Claude가 응답한 텍스트나 출력 내용 예시에 사용. 셸 명령 출력(`output` 코드 블록)과 구분하여, Claude의 대화/분석/계획 응답에만 사용.
+
+**ShellBlock 사용 기준**: `npm install`, `git status` 같은 일반 셸 명령 예시에 사용. 안에 ` ```bash ` 펜스를 두면 `$ ` 프리픽스가 자동으로 붙어 터미널 느낌을 낸다.
+
+**SlashBlock 사용 기준**: `/plan`, `/clear`, `/context` 같이 Claude Code CLI에서 `/`로 시작하는 명령 입력 예시에 사용. 안에 언어 태그 없는 코드 펜스를 쓰고 본문은 `> /command` 형태로 시작.
 
 ```mdx
 <VibeBlock>
 \`\`\`
-> /plan
+버튼 클릭할 때 살짝 눌리는 애니메이션 추가해줘
 \`\`\`
 </VibeBlock>
+
+<SlashBlock>
+\`\`\`
+> /plan
+\`\`\`
+</SlashBlock>
+
+<ShellBlock>
+\`\`\`bash
+npm install
+git status
+\`\`\`
+</ShellBlock>
 
 <ClaudeBlock>
 \`\`\`
