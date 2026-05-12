@@ -4,6 +4,7 @@ description: 클로드코드 CLI에서 자주 쓰는 명령어와 플래그를 �
 ---
 
 import { Callout } from 'nextra/components'
+import { Zap } from 'lucide-react'
 
 # CLI 명령어 & 단축키
 
@@ -12,32 +13,119 @@ import { Callout } from 'nextra/components'
 
 ---
 
+## 자주 쓰는 것만 모아보기
+
+<Zap size={13} className="text-yellow-500 inline align-middle mr-1" /> 표시 항목만 먼저 익혀두세요.
+
+<div className="overflow-x-auto bordered-table">
+  <table className="w-full border-collapse text-sm">
+    <thead>
+      <tr className="border-b-2 border-gray-200 dark:border-gray-700">
+        <th className="py-2 px-3 text-left font-semibold border-r border-gray-200 dark:border-gray-700">분류</th>
+        <th className="py-2 px-3 text-left font-semibold border-r border-gray-200 dark:border-gray-700">명령어 / 단축키</th>
+        <th className="py-2 px-3 text-left font-semibold">설명</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr className="bg-yellow-50 dark:bg-yellow-500/10 border-b border-gray-200 dark:border-gray-700">
+        <td className="py-2.5 px-3 text-gray-500 dark:text-gray-400 whitespace-nowrap border-r border-gray-200 dark:border-gray-700">명령어</td>
+        <td className="py-2.5 px-3 border-r border-gray-200 dark:border-gray-700"><Zap size={13} className="text-yellow-500 inline align-middle mr-1" /><code>claude</code></td>
+        <td className="py-2.5 px-3 text-gray-600 dark:text-gray-400">대화형 세션 시작</td>
+      </tr>
+      <tr className="bg-yellow-50 dark:bg-yellow-500/10 border-b border-gray-200 dark:border-gray-700">
+        <td className="py-2.5 px-3 text-gray-500 dark:text-gray-400 whitespace-nowrap border-r border-gray-200 dark:border-gray-700">단축키</td>
+        <td className="py-2.5 px-3 border-r border-gray-200 dark:border-gray-700"><Zap size={13} className="text-yellow-500 inline align-middle mr-1" /><code>Left/Right 화살표</code></td>
+        <td className="py-2.5 px-3 text-gray-600 dark:text-gray-400">대화 상자 탭 순환</td>
+      </tr>
+      <tr className="bg-yellow-50 dark:bg-yellow-500/10 border-b border-gray-200 dark:border-gray-700">
+        <td className="py-2.5 px-3 text-gray-500 dark:text-gray-400 whitespace-nowrap border-r border-gray-200 dark:border-gray-700">단축키</td>
+        <td className="py-2.5 px-3 border-r border-gray-200 dark:border-gray-700"><Zap size={13} className="text-yellow-500 inline align-middle mr-1" /><code>Up/Down 화살표</code></td>
+        <td className="py-2.5 px-3 text-gray-600 dark:text-gray-400">명령 기록 탐색</td>
+      </tr>
+      <tr className="bg-yellow-50 dark:bg-yellow-500/10 border-b border-gray-200 dark:border-gray-700">
+        <td className="py-2.5 px-3 text-gray-500 dark:text-gray-400 whitespace-nowrap border-r border-gray-200 dark:border-gray-700">단축키</td>
+        <td className="py-2.5 px-3 border-r border-gray-200 dark:border-gray-700"><Zap size={13} className="text-yellow-500 inline align-middle mr-1" /><code>Esc</code> + <code>Esc</code></td>
+        <td className="py-2.5 px-3 text-gray-600 dark:text-gray-400">되돌리기 또는 요약</td>
+      </tr>
+      <tr className="bg-yellow-50 dark:bg-yellow-500/10 border-b border-gray-200 dark:border-gray-700">
+        <td className="py-2.5 px-3 text-gray-500 dark:text-gray-400 whitespace-nowrap border-r border-gray-200 dark:border-gray-700">단축키</td>
+        <td className="py-2.5 px-3 border-r border-gray-200 dark:border-gray-700"><Zap size={13} className="text-yellow-500 inline align-middle mr-1" /><code>Shift+Tab</code></td>
+        <td className="py-2.5 px-3 text-gray-600 dark:text-gray-400">권한 모드 토글 (자동 수락 / Plan Mode / 일반)</td>
+      </tr>
+      <tr className="bg-yellow-50 dark:bg-yellow-500/10 border-b border-gray-200 dark:border-gray-700">
+        <td className="py-2.5 px-3 text-gray-500 dark:text-gray-400 whitespace-nowrap border-r border-gray-200 dark:border-gray-700">단축키</td>
+        <td className="py-2.5 px-3 border-r border-gray-200 dark:border-gray-700"><Zap size={13} className="text-yellow-500 inline align-middle mr-1" /><code>Option+P</code></td>
+        <td className="py-2.5 px-3 text-gray-600 dark:text-gray-400">모델 전환</td>
+      </tr>
+      <tr className="bg-yellow-50 dark:bg-yellow-500/10 border-b border-gray-200 dark:border-gray-700">
+        <td className="py-2.5 px-3 text-gray-500 dark:text-gray-400 whitespace-nowrap border-r border-gray-200 dark:border-gray-700">여러 줄 입력</td>
+        <td className="py-2.5 px-3 border-r border-gray-200 dark:border-gray-700"><Zap size={13} className="text-yellow-500 inline align-middle mr-1" /><code>Shift+Enter</code></td>
+        <td className="py-2.5 px-3 text-gray-600 dark:text-gray-400">줄바꿈 (iTerm2, WezTerm, Ghostty, Kitty)</td>
+      </tr>
+      <tr className="bg-yellow-50 dark:bg-yellow-500/10 border-b border-gray-200 dark:border-gray-700">
+        <td className="py-2.5 px-3 text-gray-500 dark:text-gray-400 whitespace-nowrap border-r border-gray-200 dark:border-gray-700">빠른 명령</td>
+        <td className="py-2.5 px-3 border-r border-gray-200 dark:border-gray-700"><Zap size={13} className="text-yellow-500 inline align-middle mr-1" /><code>/</code> 시작</td>
+        <td className="py-2.5 px-3 text-gray-600 dark:text-gray-400">명령 또는 skill 실행</td>
+      </tr>
+      <tr className="bg-yellow-50 dark:bg-yellow-500/10 border-b border-gray-200 dark:border-gray-700">
+        <td className="py-2.5 px-3 text-gray-500 dark:text-gray-400 whitespace-nowrap border-r border-gray-200 dark:border-gray-700">빠른 명령</td>
+        <td className="py-2.5 px-3 border-r border-gray-200 dark:border-gray-700"><Zap size={13} className="text-yellow-500 inline align-middle mr-1" /><code>!</code> 시작</td>
+        <td className="py-2.5 px-3 text-gray-600 dark:text-gray-400">Bash 명령 직접 실행</td>
+      </tr>
+      <tr className="bg-yellow-50 dark:bg-yellow-500/10 border-b border-gray-200 dark:border-gray-700">
+        <td className="py-2.5 px-3 text-gray-500 dark:text-gray-400 whitespace-nowrap border-r border-gray-200 dark:border-gray-700">빠른 명령</td>
+        <td className="py-2.5 px-3 border-r border-gray-200 dark:border-gray-700"><Zap size={13} className="text-yellow-500 inline align-middle mr-1" /><code>@</code></td>
+        <td className="py-2.5 px-3 text-gray-600 dark:text-gray-400">파일 경로 자동 완성</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+---
+
 ## CLI 명령어
 
 이러한 명령어를 사용하여 세션을 시작하고, 콘텐츠를 파이프하고, 대화를 재개하고, 업데이트를 관리할 수 있습니다.
 
-| 명령어 | 설명 | 예시 |
-|---|---|---|
-| `claude` | 대화형 세션 시작 | `claude` |
-| `claude "질문"` | 초기 프롬프트로 대화형 세션 시작 | `claude "explain this project"` |
-| `claude -p "질문"` | 답변만 출력하고 종료 (자동화에 유용) | `claude -p "explain this function"` |
-| `cat 파일 \| claude -p "질문"` | 파이프된 파일 내용 처리 | `cat logs.txt \| claude -p "explain"` |
-| `claude -c` | 현재 디렉터리의 가장 최근 대화 이어하기 | `claude -c` |
-| `claude -c -p "질문"` | 최근 대화를 이어서 답변만 출력 | `claude -c -p "Check for type errors"` |
-| `claude -r "세션" "질문"` | ID 또는 이름으로 세션 재개 | `claude -r "auth-refactor" "Finish this PR"` |
-| `claude update` | 최신 버전으로 업데이트 | `claude update` |
-| `claude auth login` | Anthropic 계정에 로그인. `--email`로 이메일 입력, `--sso`로 SSO 인증 강제 가능 | `claude auth login --email user@example.com --sso` |
-| `claude auth logout` | Anthropic 계정에서 로그아웃 | `claude auth logout` |
-| `claude auth status` | 인증 상태 확인. `--text`를 붙이면 읽기 쉬운 형태로 출력 | `claude auth status` |
-| `claude agents` | 설정된 모든 서브에이전트를 소스별로 목록 출력 | `claude agents` |
-| `claude mcp` | MCP(Model Context Protocol) 서버 설정 | — |
-| `claude remote-control` | Claude.ai 또는 Claude 앱에서 로컬 클로드코드를 원격 제어하는 세션 시작 | `claude remote-control` |
+<div className="overflow-x-auto bordered-table">
+  <table className="w-full border-collapse text-sm">
+    <thead>
+      <tr className="border-b-2 border-gray-200 dark:border-gray-700">
+        <th className="py-2 px-3 text-left font-semibold">명령어</th>
+        <th className="py-2 px-3 text-left font-semibold">설명</th>
+        <th className="py-2 px-3 text-left font-semibold">예시</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr className="bg-yellow-50 dark:bg-yellow-500/10 border-b border-gray-200 dark:border-gray-700">
+        <td className="py-2.5 px-3"><Zap size={14} className="text-yellow-500 inline align-middle mr-1" /><code>claude</code></td>
+        <td className="py-2.5 px-3">대화형 세션 시작</td>
+        <td className="py-2.5 px-3 text-gray-600 dark:text-gray-400"><code>claude</code></td>
+      </tr>
+      <tr className="border-b border-gray-200 dark:border-gray-700"><td className="py-2.5 px-3"><code>claude "질문"</code></td><td className="py-2.5 px-3">초기 프롬프트로 대화형 세션 시작</td><td className="py-2.5 px-3 text-gray-600 dark:text-gray-400"><code>claude "explain this project"</code></td></tr>
+      <tr className="border-b border-gray-200 dark:border-gray-700"><td className="py-2.5 px-3"><code>claude -p "질문"</code></td><td className="py-2.5 px-3">답변만 출력하고 종료 (자동화에 유용)</td><td className="py-2.5 px-3 text-gray-600 dark:text-gray-400"><code>claude -p "explain this function"</code></td></tr>
+      <tr className="border-b border-gray-200 dark:border-gray-700"><td className="py-2.5 px-3"><code>{"cat 파일 | claude -p \"질문\""}</code></td><td className="py-2.5 px-3">파이프된 파일 내용 처리</td><td className="py-2.5 px-3 text-gray-600 dark:text-gray-400"><code>{"cat logs.txt | claude -p \"explain\""}</code></td></tr>
+      <tr className="border-b border-gray-200 dark:border-gray-700"><td className="py-2.5 px-3"><code>claude -c</code></td><td className="py-2.5 px-3">현재 디렉터리의 가장 최근 대화 이어하기</td><td className="py-2.5 px-3 text-gray-600 dark:text-gray-400"><code>claude -c</code></td></tr>
+      <tr className="border-b border-gray-200 dark:border-gray-700"><td className="py-2.5 px-3"><code>claude -c -p "질문"</code></td><td className="py-2.5 px-3">최근 대화를 이어서 답변만 출력</td><td className="py-2.5 px-3 text-gray-600 dark:text-gray-400"><code>claude -c -p "Check for type errors"</code></td></tr>
+      <tr className="border-b border-gray-200 dark:border-gray-700"><td className="py-2.5 px-3"><code>{'claude -r "세션" "질문"'}</code></td><td className="py-2.5 px-3">ID 또는 이름으로 세션 재개</td><td className="py-2.5 px-3 text-gray-600 dark:text-gray-400"><code>{'claude -r "auth-refactor" "Finish this PR"'}</code></td></tr>
+      <tr className="border-b border-gray-200 dark:border-gray-700"><td className="py-2.5 px-3"><code>claude update</code></td><td className="py-2.5 px-3">최신 버전으로 업데이트</td><td className="py-2.5 px-3 text-gray-600 dark:text-gray-400"><code>claude update</code></td></tr>
+      <tr className="border-b border-gray-200 dark:border-gray-700"><td className="py-2.5 px-3"><code>claude auth login</code></td><td className="py-2.5 px-3">Anthropic 계정에 로그인. <code>--email</code>로 이메일 입력, <code>--sso</code>로 SSO 인증 강제 가능</td><td className="py-2.5 px-3 text-gray-600 dark:text-gray-400"><code>claude auth login --email user@example.com --sso</code></td></tr>
+      <tr className="border-b border-gray-200 dark:border-gray-700"><td className="py-2.5 px-3"><code>claude auth logout</code></td><td className="py-2.5 px-3">Anthropic 계정에서 로그아웃</td><td className="py-2.5 px-3 text-gray-600 dark:text-gray-400"><code>claude auth logout</code></td></tr>
+      <tr className="border-b border-gray-200 dark:border-gray-700"><td className="py-2.5 px-3"><code>claude auth status</code></td><td className="py-2.5 px-3">인증 상태 확인. <code>--text</code>를 붙이면 읽기 쉬운 형태로 출력</td><td className="py-2.5 px-3 text-gray-600 dark:text-gray-400"><code>claude auth status</code></td></tr>
+      <tr className="border-b border-gray-200 dark:border-gray-700"><td className="py-2.5 px-3"><code>claude agents</code></td><td className="py-2.5 px-3">설정된 모든 서브에이전트를 소스별로 목록 출력</td><td className="py-2.5 px-3 text-gray-600 dark:text-gray-400"><code>claude agents</code></td></tr>
+      <tr className="border-b border-gray-200 dark:border-gray-700"><td className="py-2.5 px-3"><code>claude mcp</code></td><td className="py-2.5 px-3">MCP(Model Context Protocol) 서버 설정</td><td className="py-2.5 px-3 text-gray-600 dark:text-gray-400">—</td></tr>
+      <tr><td className="py-2.5 px-3"><code>claude remote-control</code></td><td className="py-2.5 px-3">Claude.ai 또는 Claude 앱에서 로컬 클로드코드를 원격 제어하는 세션 시작</td><td className="py-2.5 px-3 text-gray-600 dark:text-gray-400"><code>claude remote-control</code></td></tr>
+    </tbody>
+  </table>
+</div>
 
 ---
 
 ## CLI 플래그
 
 명령줄 플래그를 사용하여 클로드코드의 동작을 세부적으로 조정할 수 있습니다.
+
+<div className="overflow-x-auto bordered-table">
 
 | 플래그 | 설명 | 예시 |
 |---|---|---|
@@ -91,6 +179,209 @@ import { Callout } from 'nextra/components'
 | `--version`, `-v` | 버전 번호 출력 | `claude -v` |
 | `--worktree`, `-w` | 격리된 git worktree에서 클로드코드 실행. 이름 미지정 시 자동 생성 | `claude -w feature-auth` |
 
+</div>
+
 <Callout type="warning">
   `--dangerously-skip-permissions`는 클로드코드가 파일 수정·명령어 실행 등 모든 작업을 확인 없이 진행합니다. 자동화 스크립트 환경에서만 사용하고, 일반 작업에는 쓰지 않는 것을 권장합니다.
 </Callout>
+
+---
+
+## 시스템 프롬프트 플래그
+
+Claude Code는 시스템 프롬프트를 사용자 정의하기 위한 4가지 플래그를 제공합니다. 4가지 모두 대화형 및 비대화형 모드에서 작동합니다.
+
+<div className="overflow-x-auto bordered-table">
+
+| 플래그 | 동작 | 사용 사례 |
+|---|---|---|
+| `--system-prompt` | **전체** 기본 프롬프트 **바꾸기** | Claude의 동작 및 지침에 대한 완전한 제어 |
+| `--system-prompt-file` | **파일 내용으로** **바꾸기** | 재현성 및 버전 제어를 위해 파일에서 프롬프트 로드 |
+| `--append-system-prompt` | **기본 프롬프트에** **추가** | 기본 Claude Code 동작을 유지하면서 특정 지침 추가 |
+| `--append-system-prompt-file` | **기본 프롬프트에 파일 내용 추가** | 기본값을 유지하면서 파일에서 추가 지침 로드 |
+
+</div>
+
+**각각을 사용할 때:**
+
+- **`--system-prompt`**: Claude의 시스템 프롬프트를 완전히 제어해야 할 때. 모든 기본 Claude Code 지침을 제거하여 백지 상태를 제공합니다.
+  ```shell
+  claude --system-prompt "You are a Python expert who only writes type-annotated code"
+  ```
+
+- **`--system-prompt-file`**: 파일에서 사용자 정의 프롬프트를 로드할 때. 팀 일관성 또는 버전 제어 프롬프트 템플릿에 유용합니다.
+  ```shell
+  claude --system-prompt-file ./prompts/code-review.txt
+  ```
+
+- **`--append-system-prompt`**: Claude Code의 기본 기능을 유지하면서 특정 지침을 추가할 때. 대부분의 사용 사례에서 가장 안전한 옵션입니다.
+  ```shell
+  claude --append-system-prompt "Always use TypeScript and include JSDoc comments"
+  ```
+
+- **`--append-system-prompt-file`**: Claude Code의 기본값을 유지하면서 파일에서 지침을 추가할 때. 버전 제어 추가에 유용합니다.
+  ```shell
+  claude --append-system-prompt-file ./prompts/style-rules.txt
+  ```
+
+<Callout type="info">
+  `--system-prompt`와 `--system-prompt-file`은 상호 배타적입니다. 추가 플래그(`--append-*`)는 바꾸기 플래그 중 하나와 함께 사용할 수 있습니다.
+</Callout>
+
+<Callout type="tip">
+  대부분의 경우 `--append-system-prompt` 또는 `--append-system-prompt-file`을 권장합니다. Claude Code의 기본 기능을 유지하면서 필요한 지침만 추가할 수 있습니다. 시스템 프롬프트를 완전히 제어해야 할 때만 `--system-prompt` 또는 `--system-prompt-file`을 사용하세요.
+</Callout>
+
+---
+
+## 대화형 모드
+
+Claude Code 세션의 키보드 단축키, 입력 모드 및 대화형 기능에 대한 완전한 참조입니다.
+
+<Callout type="info">
+  단축키가 제대로 동작하지 않는다면 두 가지를 확인하세요.
+
+  1. 클로드코드 안에서 `/terminal-setup`을 실행해 터미널 바인딩을 설치합니다.
+  2. iTerm2를 사용 중이라면 **Settings → Profiles → Keys → General** 에서 **Left Option key** 와 **Right Option key** 를 **Esc+** 로 변경합니다.
+</Callout>
+
+### 일반 제어
+
+<div className="overflow-x-auto bordered-table">
+  <table className="w-full border-collapse text-sm">
+    <thead>
+      <tr className="border-b-2 border-gray-200 dark:border-gray-700">
+        <th className="py-2 px-3 text-left font-semibold">단축키</th>
+        <th className="py-2 px-3 text-left font-semibold">설명</th>
+        <th className="py-2 px-3 text-left font-semibold">컨텍스트</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr className="border-b border-gray-200 dark:border-gray-700"><td className="py-2.5 px-3"><code>Ctrl+C</code></td><td className="py-2.5 px-3">현재 입력 또는 생성 취소</td><td className="py-2.5 px-3 text-gray-600 dark:text-gray-400">표준 중단</td></tr>
+      <tr className="border-b border-gray-200 dark:border-gray-700"><td className="py-2.5 px-3"><code>Ctrl+F</code></td><td className="py-2.5 px-3">모든 백그라운드 에이전트 종료. 3초 이내에 두 번 누르면 확인</td><td className="py-2.5 px-3 text-gray-600 dark:text-gray-400">백그라운드 에이전트 제어</td></tr>
+      <tr className="border-b border-gray-200 dark:border-gray-700"><td className="py-2.5 px-3"><code>Ctrl+D</code></td><td className="py-2.5 px-3">Claude Code 세션 종료</td><td className="py-2.5 px-3 text-gray-600 dark:text-gray-400">EOF 신호</td></tr>
+      <tr className="border-b border-gray-200 dark:border-gray-700"><td className="py-2.5 px-3"><code>Ctrl+G</code></td><td className="py-2.5 px-3">기본 텍스트 편집기에서 열기</td><td className="py-2.5 px-3 text-gray-600 dark:text-gray-400">기본 텍스트 편집기에서 프롬프트 또는 사용자 정의 응답 편집</td></tr>
+      <tr className="border-b border-gray-200 dark:border-gray-700"><td className="py-2.5 px-3"><code>Ctrl+L</code></td><td className="py-2.5 px-3">터미널 화면 지우기</td><td className="py-2.5 px-3 text-gray-600 dark:text-gray-400">대화 기록 유지</td></tr>
+      <tr className="border-b border-gray-200 dark:border-gray-700"><td className="py-2.5 px-3"><code>Ctrl+O</code></td><td className="py-2.5 px-3">상세 출력 토글</td><td className="py-2.5 px-3 text-gray-600 dark:text-gray-400">자세한 도구 사용 및 실행 표시</td></tr>
+      <tr className="border-b border-gray-200 dark:border-gray-700"><td className="py-2.5 px-3"><code>Ctrl+R</code></td><td className="py-2.5 px-3">역방향 검색 명령 기록</td><td className="py-2.5 px-3 text-gray-600 dark:text-gray-400">이전 명령을 대화형으로 검색</td></tr>
+      <tr className="border-b border-gray-200 dark:border-gray-700"><td className="py-2.5 px-3"><code>Ctrl+V</code> 또는 <code>Cmd+V</code> (iTerm2)</td><td className="py-2.5 px-3">클립보드에서 이미지 붙여넣기</td><td className="py-2.5 px-3 text-gray-600 dark:text-gray-400">이미지 또는 이미지 파일 경로 붙여넣기</td></tr>
+      <tr className="border-b border-gray-200 dark:border-gray-700"><td className="py-2.5 px-3"><code>Ctrl+B</code></td><td className="py-2.5 px-3">백그라운드 실행 작업</td><td className="py-2.5 px-3 text-gray-600 dark:text-gray-400">bash 명령 및 에이전트를 백그라운드로 실행. Tmux 사용자는 두 번 누르기</td></tr>
+      <tr className="border-b border-gray-200 dark:border-gray-700"><td className="py-2.5 px-3"><code>Ctrl+T</code></td><td className="py-2.5 px-3">작업 목록 토글</td><td className="py-2.5 px-3 text-gray-600 dark:text-gray-400">터미널 상태 영역에서 작업 목록 표시 또는 숨기기</td></tr>
+      <tr className="bg-yellow-50 dark:bg-yellow-500/10 border-b border-gray-200 dark:border-gray-700">
+        <td className="py-2.5 px-3"><Zap size={14} className="text-yellow-500 inline align-middle mr-1" /><code>Left/Right 화살표</code></td>
+        <td className="py-2.5 px-3">대화 상자 탭 순환</td>
+        <td className="py-2.5 px-3 text-gray-600 dark:text-gray-400">권한 대화 상자 및 메뉴의 탭 간 탐색</td>
+      </tr>
+      <tr className="bg-yellow-50 dark:bg-yellow-500/10 border-b border-gray-200 dark:border-gray-700">
+        <td className="py-2.5 px-3"><Zap size={14} className="text-yellow-500 inline align-middle mr-1" /><code>Up/Down 화살표</code></td>
+        <td className="py-2.5 px-3">명령 기록 탐색</td>
+        <td className="py-2.5 px-3 text-gray-600 dark:text-gray-400">이전 입력 회상</td>
+      </tr>
+      <tr className="bg-yellow-50 dark:bg-yellow-500/10 border-b border-gray-200 dark:border-gray-700">
+        <td className="py-2.5 px-3"><Zap size={14} className="text-yellow-500 inline align-middle mr-1" /><code>Esc</code> + <code>Esc</code></td>
+        <td className="py-2.5 px-3">되돌리기 또는 요약</td>
+        <td className="py-2.5 px-3 text-gray-600 dark:text-gray-400">코드 및/또는 대화를 이전 지점으로 복원하거나 선택한 메시지에서 요약</td>
+      </tr>
+      <tr className="bg-yellow-50 dark:bg-yellow-500/10 border-b border-gray-200 dark:border-gray-700">
+        <td className="py-2.5 px-3"><Zap size={14} className="text-yellow-500 inline align-middle mr-1" /><code>Shift+Tab</code></td>
+        <td className="py-2.5 px-3">권한 모드 토글</td>
+        <td className="py-2.5 px-3 text-gray-600 dark:text-gray-400">자동 수락 모드, Plan Mode 및 일반 모드 간 전환</td>
+      </tr>
+      <tr className="bg-yellow-50 dark:bg-yellow-500/10 border-b border-gray-200 dark:border-gray-700">
+        <td className="py-2.5 px-3"><Zap size={14} className="text-yellow-500 inline align-middle mr-1" /><code>Option+P</code></td>
+        <td className="py-2.5 px-3">모델 전환</td>
+        <td className="py-2.5 px-3 text-gray-600 dark:text-gray-400">프롬프트를 지우지 않고 모델 전환</td>
+      </tr>
+      <tr><td className="py-2.5 px-3"><code>Option+T</code></td><td className="py-2.5 px-3">확장 사고 토글</td><td className="py-2.5 px-3 text-gray-600 dark:text-gray-400">확장 사고 모드 활성화 또는 비활성화. 먼저 <code>/terminal-setup</code> 실행 필요</td></tr>
+    </tbody>
+  </table>
+</div>
+
+### 여러 줄 입력
+
+<div className="overflow-x-auto bordered-table">
+  <table className="w-full border-collapse text-sm">
+    <thead>
+      <tr className="border-b-2 border-gray-200 dark:border-gray-700">
+        <th className="py-2 px-3 text-left font-semibold">방법</th>
+        <th className="py-2 px-3 text-left font-semibold">단축키</th>
+        <th className="py-2 px-3 text-left font-semibold">컨텍스트</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr className="border-b border-gray-200 dark:border-gray-700">
+        <td className="py-2.5 px-3">빠른 이스케이프</td>
+        <td className="py-2.5 px-3"><code>{'\\' }</code> + <code>Enter</code></td>
+        <td className="py-2.5 px-3 text-gray-600 dark:text-gray-400">모든 터미널에서 작동</td>
+      </tr>
+      <tr className="border-b border-gray-200 dark:border-gray-700">
+        <td className="py-2.5 px-3">macOS 기본값</td>
+        <td className="py-2.5 px-3"><code>Option+Enter</code></td>
+        <td className="py-2.5 px-3 text-gray-600 dark:text-gray-400">macOS의 기본값</td>
+      </tr>
+      <tr className="bg-yellow-50 dark:bg-yellow-500/10 border-b border-gray-200 dark:border-gray-700">
+        <td className="py-2.5 px-3">Shift+Enter</td>
+        <td className="py-2.5 px-3">
+          <Zap size={14} className="text-yellow-500 inline align-middle mr-1" /><code>Shift+Enter</code>
+        </td>
+        <td className="py-2.5 px-3 text-gray-600 dark:text-gray-400">iTerm2, WezTerm, Ghostty, Kitty에서 기본적으로 작동</td>
+      </tr>
+      <tr className="border-b border-gray-200 dark:border-gray-700">
+        <td className="py-2.5 px-3">제어 시퀀스</td>
+        <td className="py-2.5 px-3"><code>Ctrl+J</code></td>
+        <td className="py-2.5 px-3 text-gray-600 dark:text-gray-400">여러 줄의 라인 피드 문자</td>
+      </tr>
+      <tr>
+        <td className="py-2.5 px-3">붙여넣기 모드</td>
+        <td className="py-2.5 px-3">직접 붙여넣기</td>
+        <td className="py-2.5 px-3 text-gray-600 dark:text-gray-400">코드 블록, 로그의 경우</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<Callout type="info">
+  `Shift+Enter`는 iTerm2, WezTerm, Ghostty, Kitty에서 별도 설정 없이 작동합니다. VS Code, Alacritty, Zed, Warp 등 다른 터미널은 `/terminal-setup`을 실행하여 바인딩을 설치하세요.
+</Callout>
+
+<div className="flex items-center gap-2 mt-8 mb-1">
+  <Zap size={18} className="text-yellow-400 shrink-0" />
+  <h3 className="text-lg font-semibold m-0">빠른 명령</h3>
+</div>
+
+세션 안에서 가장 자주 사용하는 3가지 입력 단축키입니다.
+
+<div className="overflow-x-auto bordered-table">
+  <table className="w-full border-collapse text-sm">
+    <thead>
+      <tr className="border-b-2 border-gray-200 dark:border-gray-700">
+        <th className="py-2 px-3 text-left font-semibold">단축키</th>
+        <th className="py-2 px-3 text-left font-semibold">설명</th>
+        <th className="py-2 px-3 text-left font-semibold">참고</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr className="bg-yellow-50 dark:bg-yellow-500/10 border-b border-gray-200 dark:border-gray-700">
+        <td className="py-2.5 px-3">
+          <Zap size={14} className="text-yellow-500 inline align-middle mr-1" /><code>/</code> 시작
+        </td>
+        <td className="py-2.5 px-3">명령 또는 skill</td>
+        <td className="py-2.5 px-3 text-gray-600 dark:text-gray-400">기본 제공 명령 및 skills 참조</td>
+      </tr>
+      <tr className="bg-yellow-50 dark:bg-yellow-500/10 border-b border-gray-200 dark:border-gray-700">
+        <td className="py-2.5 px-3">
+          <Zap size={14} className="text-yellow-500 inline align-middle mr-1" /><code>!</code> 시작
+        </td>
+        <td className="py-2.5 px-3">Bash 모드</td>
+        <td className="py-2.5 px-3 text-gray-600 dark:text-gray-400">명령을 직접 실행하고 실행 출력을 세션에 추가</td>
+      </tr>
+      <tr className="bg-yellow-50 dark:bg-yellow-500/10">
+        <td className="py-2.5 px-3">
+          <Zap size={14} className="text-yellow-500 inline align-middle mr-1" /><code>@</code>
+        </td>
+        <td className="py-2.5 px-3">파일 경로 언급</td>
+        <td className="py-2.5 px-3 text-gray-600 dark:text-gray-400">파일 경로 자동 완성 트리거</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

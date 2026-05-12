@@ -241,6 +241,27 @@ pre.not-prose code.nextra-code {
   margin-bottom: 0 !important;
 }
 
+/* Tables with full borders (outer border + row + column dividers) */
+.bordered-table table {
+  border-collapse: collapse !important;
+  border: 1px solid oklch(0.922 0 0) !important;
+  width: 100%;
+}
+
+.bordered-table th,
+.bordered-table td {
+  border-right: 1px solid oklch(0.922 0 0) !important;
+}
+
+.dark .bordered-table table {
+  border-color: oklch(1 0 0 / 10%) !important;
+}
+
+.dark .bordered-table th,
+.dark .bordered-table td {
+  border-right-color: oklch(1 0 0 / 10%) !important;
+}
+
 /* VibeBlock / ClaudeBlock: strip header + code block */
 .vibe-block pre.not-prose,
 .vibe-block figure,
