@@ -2,11 +2,17 @@
 
 import { useState } from 'react'
 
-const WRAP = 'not-prose rounded-2xl border border-border overflow-hidden my-6'
+function SectionPreview({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="not-prose rounded-2xl border border-border overflow-hidden my-6" data-section-preview>
+      {children}
+    </div>
+  )
+}
 
 export function NavbarDemo() {
   return (
-    <div className={WRAP}>
+    <SectionPreview>
       <nav className="flex justify-between items-center px-8 py-4 bg-white border-b border-gray-100">
         <span className="text-lg font-bold text-gray-900">MyApp</span>
         <div className="flex items-center gap-6 text-sm text-gray-600">
@@ -16,13 +22,13 @@ export function NavbarDemo() {
         </div>
         <button className="bg-black text-white text-sm px-4 py-2 rounded-lg">시작하기</button>
       </nav>
-    </div>
+    </SectionPreview>
   )
 }
 
 export function HeroDemo() {
   return (
-    <div className={WRAP}>
+    <SectionPreview>
       <section className="flex flex-col items-center text-center py-14 px-6 bg-white">
         <span className="text-xs font-medium bg-gray-100 text-gray-600 px-3 py-1 rounded-full mb-5">
           새로 출시됨
@@ -42,7 +48,7 @@ export function HeroDemo() {
           </button>
         </div>
       </section>
-    </div>
+    </SectionPreview>
   )
 }
 
@@ -53,7 +59,7 @@ export function FeaturesDemo() {
     { title: '강력한 보안', desc: '엔터프라이즈 수준의 보안을 기본 제공합니다.' },
   ]
   return (
-    <div className={WRAP}>
+    <SectionPreview>
       <section className="py-12 px-6 bg-white">
         <h2 className="text-2xl font-bold text-center text-gray-900 mb-1.5">주요 기능</h2>
         <p className="text-center text-gray-500 text-sm mb-8">팀 생산성을 높이는 핵심 기능들</p>
@@ -67,7 +73,7 @@ export function FeaturesDemo() {
           ))}
         </div>
       </section>
-    </div>
+    </SectionPreview>
   )
 }
 
@@ -78,7 +84,7 @@ export function HowItWorksDemo() {
     { n: 3, title: '배포하기', desc: '한 번의 클릭으로 전 세계에 서비스를 배포하세요.' },
   ]
   return (
-    <div className={WRAP}>
+    <SectionPreview>
       <section className="py-12 px-6 bg-gray-50">
         <h2 className="text-2xl font-bold text-center text-gray-900 mb-1.5">사용 방법</h2>
         <p className="text-center text-gray-500 text-sm mb-8">3단계로 시작하세요</p>
@@ -96,7 +102,7 @@ export function HowItWorksDemo() {
           ))}
         </div>
       </section>
-    </div>
+    </SectionPreview>
   )
 }
 
@@ -107,7 +113,7 @@ export function PricingDemo() {
     { name: 'Enterprise', price: '문의', sub: '맞춤 견적', features: ['Pro 모든 기능', '전담 매니저', 'SLA 보장'], dark: false, cta: '문의하기' },
   ]
   return (
-    <div className={WRAP}>
+    <SectionPreview>
       <section className="py-12 px-6 bg-white">
         <h2 className="text-2xl font-bold text-center text-gray-900 mb-1.5">요금제</h2>
         <p className="text-center text-gray-500 text-sm mb-8">14일 무료 체험 가능</p>
@@ -132,7 +138,7 @@ export function PricingDemo() {
           ))}
         </div>
       </section>
-    </div>
+    </SectionPreview>
   )
 }
 
@@ -143,7 +149,7 @@ export function TestimonialsDemo() {
     { quote: '"고객 지원이 빠르고 친절해요. 문제가 바로 해결됩니다."', name: '박민준', role: 'UX 디자이너' },
   ]
   return (
-    <div className={WRAP}>
+    <SectionPreview>
       <section className="py-12 px-6 bg-gray-50">
         <h2 className="text-2xl font-bold text-center text-gray-900 mb-8">사용자 후기</h2>
         <div className="grid grid-cols-3 gap-4 max-w-xl mx-auto">
@@ -162,7 +168,7 @@ export function TestimonialsDemo() {
           ))}
         </div>
       </section>
-    </div>
+    </SectionPreview>
   )
 }
 
@@ -174,7 +180,7 @@ export function FAQDemo() {
     { q: '팀 계정은 어떻게 만드나요?', a: 'Pro 플랜 이상에서 팀 초대 기능을 사용하실 수 있습니다.' },
   ]
   return (
-    <div className={WRAP}>
+    <SectionPreview>
       <section className="py-12 px-6 bg-white">
         <h2 className="text-2xl font-bold text-center text-gray-900 mb-8">자주 묻는 질문</h2>
         <div className="max-w-md mx-auto space-y-2">
@@ -194,13 +200,13 @@ export function FAQDemo() {
           ))}
         </div>
       </section>
-    </div>
+    </SectionPreview>
   )
 }
 
 export function CTADemo() {
   return (
-    <div className={WRAP}>
+    <SectionPreview>
       <section className="py-14 px-6 bg-black text-white text-center">
         <h2 className="text-3xl font-bold leading-tight max-w-xs mx-auto">
           지금 바로 시작해보세요
@@ -217,7 +223,7 @@ export function CTADemo() {
           </button>
         </div>
       </section>
-    </div>
+    </SectionPreview>
   )
 }
 
@@ -228,7 +234,7 @@ export function FooterDemo() {
     { title: '지원', links: ['문서', 'FAQ', '문의하기'] },
   ]
   return (
-    <div className={WRAP}>
+    <SectionPreview>
       <footer className="bg-white py-10 px-6">
         <div className="max-w-2xl mx-auto">
           <div className="grid grid-cols-4 gap-6 mb-8">
@@ -259,6 +265,6 @@ export function FooterDemo() {
           </div>
         </div>
       </footer>
-    </div>
+    </SectionPreview>
   )
 }
