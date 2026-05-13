@@ -24,6 +24,7 @@ import { ShadcnComponentGrid } from '@/components/shadcn-component-grid'
 import { ComponentNameGrid } from '@/components/component-name-grid'
 import { PlanTable } from '@/components/plan-table'
 import { ToolsDemo } from '@/components/tools-demo'
+import { AvatarBasicDemo, AvatarSizeDemo, AvatarBadgeDemo, AvatarGroupDemo } from '@/components/avatar-demo'
 
 const SHELL_LANGS = new Set(['shell', 'bash', 'zsh', 'sh', 'fish'])
 const { pre: DefaultPre } = getDocsMDXComponents()
@@ -78,6 +79,10 @@ export function useMDXComponents() {
     ClaudeMdDemo,
     ClaudeGitDemo,
     ToolsDemo,
+    AvatarBasicDemo,
+    AvatarSizeDemo,
+    AvatarBadgeDemo,
+    AvatarGroupDemo,
     Accordion,
     AccordionItem,
     AccordionTrigger,

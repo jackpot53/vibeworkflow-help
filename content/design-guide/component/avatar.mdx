@@ -1,0 +1,71 @@
+---
+title: "Avatar — 아바타"
+description: 사용자 프로필 이미지나 이니셜을 원형으로 표시하는 컴포넌트예요.
+---
+
+import { Callout } from 'nextra/components'
+
+# Avatar — 아바타
+
+**Avatar**는 사용자 프로필 이미지나 이니셜을 원형으로 표시하는 컴포넌트예요.\
+이미지가 없거나 로드에 실패하면 이니셜(텍스트 폴백)을 자동으로 보여줘요.
+
+## 언제 써요?
+
+| 상황 | 예시 |
+|------|------|
+| 댓글·게시물 작성자 표시 | 게시판, 피드, 채팅 |
+| 로그인한 유저를 헤더에 표시 | 네비게이션 바 오른쪽 |
+| 팀 멤버 목록 | 프로젝트 대시보드 |
+| 여러 명을 겹쳐 표시 | 공동 작업자 미리보기 (Avatar Group) |
+
+## Claude에게 이렇게 말해보세요
+
+### 기본 아바타
+
+<AvatarBasicDemo />
+
+<VibeBlock>
+```
+헤더 오른쪽에 로그인한 유저의 아바타를 넣어줘.
+이미지가 없으면 이름 첫 두 글자로 폴백 처리해줘.
+```
+</VibeBlock>
+
+### 크기 조절
+
+<AvatarSizeDemo />
+
+<VibeBlock>
+```
+댓글 목록의 아바타는 작게(sm), 프로필 페이지의 대표 아바타는 크게(lg) 해줘.
+```
+</VibeBlock>
+
+### 온라인 상태 배지
+
+<AvatarBadgeDemo />
+
+<VibeBlock>
+```
+팀 멤버 목록에 아바타를 표시하고,
+온라인이면 초록 배지, 자리비움이면 노란 배지를 붙여줘.
+```
+</VibeBlock>
+
+### 아바타 그룹
+
+<AvatarGroupDemo />
+
+<VibeBlock>
+```
+프로젝트 카드에 참여 중인 멤버 아바타를 최대 4개 겹쳐서 표시하고,
+나머지는 +N으로 보여줘.
+```
+</VibeBlock>
+
+## 더 알아보기
+
+더 자세한 Props와 사용법은 공식 문서를 참고하세요.
+
+- [shadcn/ui Avatar 공식 문서](https://ui.shadcn.com/docs/components/base/avatar)

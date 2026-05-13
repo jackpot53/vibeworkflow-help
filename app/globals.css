@@ -136,6 +136,9 @@ article {
 
 article * {
   line-height: inherit !important;
+}
+
+article *:not([data-slot^="avatar"]) {
   border-radius: 0 !important;
 }
 
