@@ -6,18 +6,28 @@ import { Badge } from '@/components/ui/badge'
 
 const WRAP = 'not-prose rounded-xl border border-border bg-card px-10 py-8 my-4 flex justify-center'
 
+const IMAGES = [
+  { src: 'https://picsum.photos/seed/carousel1/600/400', alt: '슬라이드 1' },
+  { src: 'https://picsum.photos/seed/carousel2/600/400', alt: '슬라이드 2' },
+  { src: 'https://picsum.photos/seed/carousel3/600/400', alt: '슬라이드 3' },
+  { src: 'https://picsum.photos/seed/carousel4/600/400', alt: '슬라이드 4' },
+  { src: 'https://picsum.photos/seed/carousel5/600/400', alt: '슬라이드 5' },
+]
+
 export function CarouselBasicDemo() {
   return (
     <div className={WRAP}>
       <Carousel className="w-full max-w-xs">
         <CarouselContent>
-          {Array.from({ length: 5 }, (_, i) => (
+          {IMAGES.map(({ src, alt }, i) => (
             <CarouselItem key={i}>
-              <Card>
-                <CardContent className="flex aspect-square items-center justify-center py-6">
-                  <span className="text-4xl font-semibold">{i + 1}</span>
-                </CardContent>
-              </Card>
+              <div className="overflow-hidden rounded-xl">
+                <img
+                  src={src}
+                  alt={alt}
+                  className="w-full aspect-video object-cover"
+                />
+              </div>
             </CarouselItem>
           ))}
         </CarouselContent>
