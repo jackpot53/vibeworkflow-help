@@ -1,0 +1,61 @@
+---
+title: "Collapsible — 접기/펼치기"
+description: 콘텐츠를 접고 펼칠 수 있는 토글 컴포넌트예요.
+---
+
+import { Callout } from 'nextra/components'
+
+# Collapsible — 접기/펼치기
+
+**Collapsible**은 콘텐츠를 접고 펼칠 수 있는 토글 컴포넌트예요.\
+기본적으로 숨겨둘 내용을 필요할 때만 보이게 해 화면을 깔끔하게 유지해줘요.
+
+## 언제 써요?
+
+| 상황 | 예시 |
+|------|------|
+| 자주 묻는 질문 | FAQ 섹션 |
+| 추가 옵션·필터 숨기기 | 검색 필터, 고급 설정 |
+| 설정 항목 그룹화 | 알림, 개인정보, 계정 설정 패널 |
+| 긴 콘텐츠 요약 | 더보기/접기 버튼 |
+
+## Claude에게 이렇게 말해보세요
+
+### 기본 접기/펼치기
+
+<CollapsibleBasicDemo />
+
+<VibeBlock>
+```
+카드 하단에 "자세히 보기" 버튼을 추가하고,
+클릭하면 숨겨진 상세 내용이 아래로 펼쳐지게 해줘.
+```
+</VibeBlock>
+
+### FAQ 목록
+
+<CollapsibleFaqDemo />
+
+<VibeBlock>
+```
+FAQ 섹션을 만들어줘.
+질문을 클릭하면 답변이 펼쳐지고, 다시 클릭하면 접히게 해줘.
+```
+</VibeBlock>
+
+### 설정 패널
+
+<CollapsibleSettingsDemo />
+
+<VibeBlock>
+```
+설정 페이지에서 알림, 개인정보, 계정 항목을 각각 접기/펼치기로 묶어줘.
+기본적으로는 모두 접혀 있게 해줘.
+```
+</VibeBlock>
+
+## 더 알아보기
+
+더 자세한 Props와 사용법은 공식 문서를 참고하세요.
+
+- [shadcn/ui Collapsible 공식 문서](https://ui.shadcn.com/docs/components/base/collapsible)

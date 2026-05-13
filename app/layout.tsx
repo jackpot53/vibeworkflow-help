@@ -23,15 +23,15 @@ export default async function RootLayout({
   return (
     <html lang="ko" dir="ltr" suppressHydrationWarning>
       <Head />
-      <Script
-        src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.9.10/dist/dotlottie-wc.js"
-        type="module"
-        strategy="afterInteractive"
-      />
-<body suppressHydrationWarning>
+      <body suppressHydrationWarning>
         <Layout pageMap={pageMap} sidebar={{ defaultMenuCollapseLevel: 1 }}>
           {children}
         </Layout>
+        <Script
+          src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.9.10/dist/dotlottie-wc.js"
+          type="module"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   )
