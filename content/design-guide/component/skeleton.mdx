@@ -1,0 +1,92 @@
+---
+title: "Skeleton — 스켈레톤"
+description: 콘텐츠가 로딩되는 동안 보여주는 자리표시자 애니메이션 컴포넌트예요.
+---
+
+# Skeleton — 스켈레톤
+
+**Skeleton**은 데이터를 불러오는 동안 실제 콘텐츠 대신 보여주는 자리표시자예요.\
+`animate-pulse` 애니메이션으로 로딩 중임을 자연스럽게 표현해줘요.
+
+## 언제 써요?
+
+| 상황 | 예시 |
+|------|------|
+| 데이터 패칭 중 | API 응답 대기, 이미지 로드 중 |
+| 레이아웃 안정화 | 콘텐츠 로드 전 레이아웃 유지 |
+| 목록·피드 로딩 | 게시글, 댓글, 알림 목록 |
+| 카드·대시보드 로딩 | 통계 카드, 프로필 카드 |
+
+## Claude에게 이렇게 말해보세요
+
+### 기본 스켈레톤
+
+<SkeletonBasicDemo />
+
+<VibeBlock>
+```
+shadcn Skeleton으로 프로필 카드 로딩 상태 만들어줘.
+원형 아바타(size-10), 이름 줄(w-32), 역할 줄(w-24),
+본문 텍스트 3줄, 하단에 버튼 2개 자리를 스켈레톤으로 표현해줘.
+```
+</VibeBlock>
+
+<Callout type="tip">
+Skeleton 컴포넌트가 이미 프로젝트에 있다면 크기·클래스 없이 의도만 전달해도 돼요.
+</Callout>
+
+<VibeBlock>
+```
+프로필 카드 로딩 스켈레톤 만들어줘.
+```
+</VibeBlock>
+
+### 카드 로딩
+
+<SkeletonCardDemo />
+
+<VibeBlock>
+```
+카드 3개를 가로로 나란히 스켈레톤으로 보여줘.
+각 카드에 썸네일 이미지 자리(h-32), 작성자 아바타+이름,
+제목 줄, 본문 2줄, 하단 버튼을 스켈레톤으로 채워줘.
+```
+</VibeBlock>
+
+<Callout type="tip">
+Skeleton 컴포넌트가 이미 프로젝트에 있다면 크기·클래스 없이 의도만 전달해도 돼요.
+</Callout>
+
+<VibeBlock>
+```
+블로그 카드 로딩 스켈레톤 3개 만들어줘.
+```
+</VibeBlock>
+
+### 피드 로딩
+
+<SkeletonFeedDemo />
+
+<VibeBlock>
+```
+댓글/피드 목록 4개를 스켈레톤으로 만들어줘.
+각 항목은 왼쪽에 원형 아바타(size-9),
+오른쪽에 작성자 이름+시간, 본문 3줄로 구성해줘.
+```
+</VibeBlock>
+
+<Callout type="tip">
+Skeleton 컴포넌트가 이미 프로젝트에 있다면 크기·클래스 없이 의도만 전달해도 돼요.
+</Callout>
+
+<VibeBlock>
+```
+댓글 목록 로딩 스켈레톤 만들어줘.
+```
+</VibeBlock>
+
+## 더 알아보기
+
+더 자세한 Props와 사용법은 공식 문서를 참고하세요.
+
+- [shadcn/ui Skeleton 공식 문서](https://ui.shadcn.com/docs/components/radix/skeleton)

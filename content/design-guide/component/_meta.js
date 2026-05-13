@@ -5,5 +5,6 @@ export default {
   badge: 'Badge',
   card: 'Card',
   sidebar: 'Sidebar',
+  skeleton: 'Skeleton',
   collapsible: 'Collapsible',
 }

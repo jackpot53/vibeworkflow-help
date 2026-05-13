@@ -142,6 +142,11 @@ article *:not([data-slot^="avatar"]) {
   border-radius: 0 !important;
 }
 
+/* Skeleton radius 복원 */
+article [data-slot="skeleton"] {
+  border-radius: calc(var(--radius) * 0.8) !important;
+}
+
 /* Badge radius 복원 */
 article [data-slot="badge"] {
   border-radius: 9999px !important;
