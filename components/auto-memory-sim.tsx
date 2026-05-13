@@ -1,5 +1,5 @@
 'use client'
-import { MessageCircle, Bookmark } from 'lucide-react'
+import { Bookmark } from 'lucide-react'
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
 
 function UserAvatar() {
@@ -31,17 +31,16 @@ function UserCard({ text, time, badge }: { text: string; time: string; badge?: s
             <div className="text-gray-500 text-xs">@user</div>
           </div>
         </div>
-        <MessageCircle size={15} className="text-gray-300 flex-shrink-0 mt-0.5" />
+        <div className="flex items-center gap-2 flex-shrink-0">
+          {badge && (
+            <span className="text-xs px-2 py-0.5 bg-gray-100 text-gray-500 rounded-full font-medium">
+              {badge}
+            </span>
+          )}
+          <span className="text-gray-400 text-xs">{time}</span>
+        </div>
       </div>
       <p className="text-gray-900 text-sm leading-relaxed whitespace-pre-wrap">{text}</p>
-      <div className="flex items-center gap-2 mt-3">
-        <span className="text-gray-400 text-xs">{time}</span>
-        {badge && (
-          <span className="text-xs px-2 py-0.5 bg-gray-100 text-gray-500 rounded-full font-medium">
-            {badge}
-          </span>
-        )}
-      </div>
     </div>
   )
 }
@@ -69,7 +68,7 @@ function ClaudeCard({
             <div className="text-gray-500 text-xs">claude.ai/code</div>
           </div>
         </div>
-        <span className="text-xs font-extrabold text-orange-400 tracking-tight mt-0.5">C</span>
+        <span className="text-gray-400 text-xs flex-shrink-0">{time}</span>
       </div>
 
       {memoryRead && (
@@ -95,7 +94,6 @@ function ClaudeCard({
         </div>
       )}
 
-      <div className="text-gray-400 text-xs mt-3">{time}</div>
     </div>
   )
 }
