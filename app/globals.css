@@ -138,7 +138,7 @@ article * {
   line-height: inherit !important;
 }
 
-article *:not([data-slot^="avatar"]):not([data-slot^="tabs"]) {
+article *:not([data-slot^="avatar"]):not([data-slot^="tabs"]):not([data-slot="badge"]) {
   border-radius: 0 !important;
 }
 
@@ -155,10 +155,6 @@ article [data-slot="skeleton"] {
   border-radius: calc(var(--radius) * 0.8) !important;
 }
 
-/* Badge radius 복원 */
-article [data-slot="badge"] {
-  border-radius: 9999px !important;
-}
 
 /* Sidebar radius 복원 */
 article [data-sidebar="sidebar"] {
@@ -290,6 +286,19 @@ pre.not-prose code.nextra-code {
 .output-block > :not(:first-child) {
   margin-top: 0 !important;
   margin-bottom: 0 !important;
+}
+
+/* Highlighted text (형광펜) */
+mark {
+  background-color: #fef08a;
+  color: inherit;
+  padding: 0.05em 0.25em;
+  border-radius: 2px;
+}
+
+.dark mark {
+  background-color: oklch(0.9 0.18 100 / 20%);
+  color: #fef08a;
 }
 
 /* Tables with full borders (outer border + row + column dividers) */

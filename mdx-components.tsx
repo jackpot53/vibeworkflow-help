@@ -32,6 +32,9 @@ import { SkeletonBasicDemo, SkeletonCardDemo, SkeletonFeedDemo } from '@/compone
 import { CollapsibleBasicDemo, CollapsibleFaqDemo, CollapsibleSettingsDemo } from '@/components/collapsible-demo'
 import { AlertBasicDemo, AlertIconDemo, AlertActionDemo } from '@/components/alert-demo'
 import { TabsBasicDemo, TabsSettingsDemo, TabsDashboardDemo } from '@/components/tabs-demo'
+import { TableBasicDemo, TableStatusDemo, TableFooterDemo } from '@/components/table-demo'
+import { DataTableDemo } from '@/components/data-table-demo'
+import { FileTree } from '@/components/file-tree'
 
 const SHELL_LANGS = new Set(['shell', 'bash', 'zsh', 'sh', 'fish'])
 const { pre: DefaultPre } = getDocsMDXComponents()
@@ -114,6 +117,11 @@ export function useMDXComponents() {
     TabsBasicDemo,
     TabsSettingsDemo,
     TabsDashboardDemo,
+    TableBasicDemo,
+    TableStatusDemo,
+    TableFooterDemo,
+    DataTableDemo,
+    FileTree,
     Accordion,
     AccordionItem,
     AccordionTrigger,

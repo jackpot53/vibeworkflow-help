@@ -1,6 +1,153 @@
 ---
 title: 대규모 프로젝트를 위한 CLAUDE.md 관리
-description: 준비 중인 페이지입니다.
+description: .claude/rules/ 디렉터리로 규칙을 모듈화하고, 필요한 시점에만 로드되도록 설계하는 방법을 설명해요.
 ---
 
 # 대규모 프로젝트를 위한 CLAUDE.md 관리
+
+## 왜 필요한가요?
+
+CLAUDE.md에 규칙을 계속 추가하다 보면 어느 순간 Claude가 규칙을 무시하기 시작해요.
+
+<mark>실제로 한 개발자는 모노레포 프로젝트에서 CLAUDE.md가 **47,000단어**까지 불어나면서 Claude가 점점 느려지고 규칙도 안 따르는 문제</mark>를 겪었어요.
+
+이유는 간단해요. Claude는 컨텍스트 창(context window) 안에서 동작하는데, CLAUDE.md가 길어질수록 그만큼 토큰을 차지하고 — 정작 코드와 대화에 쓸 공간이 줄어들어요. 게다가 수만 단어의 규칙 덩어리에서 지금 필요한 규칙에 집중하기도 점점 어려워져요.
+
+해결법은 단순히 파일을 쪼개는 게 아니에요. `.claude/rules/` 디렉터리의 **프론트매터(frontmatter)를 활용해 필요한 규칙만 필요한 시점에 자동으로 로딩되게 설계**하는 거예요.
+
+<Callout type="tip">
+  항상 로드될 필요 없는 작업별 지침은 [스킬(skills)](/reference/skills)로 만드세요. 스킬은 호출하거나 Claude가 관련 있다고 판단할 때만 로드돼서 컨텍스트를 아낄 수 있어요.
+</Callout>
+
+---
+
+## 규칙 설정
+
+프로젝트의 `.claude/rules/` 디렉터리에 마크다운 파일을 배치해요. 각 파일은 `testing.md`, `api-design.md`처럼 하나의 주제를 다루는 설명적인 이름으로 만들어요.
+
+<FileTree root={{
+  name: "your-project/",
+  children: [
+    { name: ".claude/", children: [
+      { name: "CLAUDE.md", note: "주 프로젝트 지침" },
+      { name: "rules/", children: [
+        { name: "code-style.md", note: "코드 스타일 가이드라인" },
+        { name: "testing.md", note: "테스트 규칙" },
+        { name: "security.md", note: "보안 요구사항" },
+      ]},
+    ]},
+  ]
+}} />
+
+<mark>`paths` 프론트매터가 없는 규칙은 `.claude/CLAUDE.md`와 동일한 우선순위로 세션 시작 시 항상 로드</mark>돼요.
+
+---
+
+## 경로별 규칙 (핵심 기능)
+
+규칙을 특정 파일에만 적용되도록 **범위를 지정**할 수 있어요. `paths` 필드가 있는 YAML 프론트매터를 사용하면, <mark>Claude가 해당 패턴과 일치하는 파일을 열 때만 그 규칙이 컨텍스트에 로드</mark>돼요.
+
+<FileBlock filename=".claude/rules/api-design.md">
+```markdown
+---
+paths:
+  - "src/api/**/*.ts"
+---
+
+# API 개발 규칙
+
+- 모든 API 엔드포인트는 입력 검증을 포함해야 합니다
+- 표준 오류 응답 형식을 사용합니다
+- OpenAPI 문서 주석을 포함합니다
+```
+</FileBlock>
+
+이렇게 하면 `src/api/` 아래의 TypeScript 파일을 열 때만 이 규칙이 로드돼요. 프론트엔드 작업 중에는 API 규칙이 컨텍스트를 차지하지 않아요.
+
+<Callout type="info">
+  경로 범위 규칙은 **모든 도구 사용 시가 아니라, 패턴과 일치하는 파일을 읽을 때** 트리거돼요.
+</Callout>
+
+---
+
+## glob 패턴 레퍼런스
+
+`paths` 필드에서 glob 패턴으로 파일을 매칭해요.
+
+| 패턴 | 일치하는 파일 |
+|------|--------------|
+| `**/*.ts` | 모든 디렉터리의 TypeScript 파일 |
+| `src/**/*` | `src/` 아래의 모든 파일 |
+| `*.md` | 프로젝트 루트의 마크다운 파일 |
+| `src/components/*.tsx` | 특정 디렉터리의 React 컴포넌트 |
+
+중괄호 확장으로 여러 확장자를 하나의 패턴에 묶을 수 있어요.
+
+<FileBlock filename=".claude/rules/frontend.md">
+```markdown
+---
+paths:
+  - "src/**/*.{ts,tsx}"
+  - "lib/**/*.ts"
+  - "tests/**/*.test.ts"
+---
+
+# 프론트엔드 규칙
+...
+```
+</FileBlock>
+
+---
+
+## 실전 구성 예시
+
+다음은 모노레포에서 규칙을 효과적으로 분리한 예시예요.
+
+<FileBlock filename=".claude/CLAUDE.md">
+```markdown
+# 프로젝트 개요
+
+이 저장소는 웹 앱, 모바일 앱, 공통 라이브러리를 포함한 모노레포예요.
+공통 규칙만 여기에, 나머지는 .claude/rules/에 분리했어요.
+```
+</FileBlock>
+
+<FileBlock filename=".claude/rules/testing.md">
+```markdown
+# 테스트 규칙
+
+- 모든 비즈니스 로직 함수는 단위 테스트를 작성합니다
+- 테스트 파일은 대상 파일과 같은 디렉터리에 `.test.ts`로 생성합니다
+- 외부 API 호출은 반드시 mock 처리합니다
+```
+</FileBlock>
+
+<FileBlock filename=".claude/rules/backend/database.md">
+```markdown
+---
+paths:
+  - "packages/server/src/**/*.ts"
+---
+
+# 데이터베이스 규칙
+
+- ORM 없이 직접 SQL을 사용합니다
+- 모든 쿼리는 파라미터 바인딩을 사용합니다 (SQL 인젝션 방지)
+- 트랜잭션이 필요한 작업은 반드시 명시적으로 처리합니다
+```
+</FileBlock>
+
+<FileBlock filename=".claude/rules/frontend/components.md">
+```markdown
+---
+paths:
+  - "packages/web/src/components/**/*.{ts,tsx}"
+---
+
+# 컴포넌트 규칙
+
+- 컴포넌트는 단일 책임 원칙을 따릅니다
+- Props 타입은 항상 명시적으로 정의합니다
+- 전역 상태는 꼭 필요한 경우에만 사용합니다
+```
+</FileBlock>
