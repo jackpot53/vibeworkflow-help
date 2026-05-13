@@ -1,0 +1,65 @@
+---
+title: "Badge — 뱃지"
+description: 상태, 카테고리, 개수 등을 짧게 표시하는 인라인 라벨 컴포넌트예요.
+---
+
+# Badge — 뱃지
+
+**Badge**는 상태·카테고리·카운트 같은 짧은 정보를 강조해서 표시하는 컴포넌트예요.\
+텍스트나 아이콘과 함께 조합하면 한눈에 의미를 전달할 수 있어요.
+
+## 언제 써요?
+
+| 상황 | 예시 |
+|------|------|
+| 새 기능·버전 표시 | NEW, BETA, v2.0 |
+| 콘텐츠 상태 | LIVE, DEPRECATED, 진행 중 |
+| 카테고리·태그 | 프론트엔드, 디자인, 공지 |
+| 알림 카운트 | 읽지 않은 메시지 수 |
+
+## Variant
+
+`variant` prop으로 뱃지의 시각적 스타일을 고를 수 있어요. 생략하면 `default`가 적용돼요.
+
+<BadgeVariantTableDemo />
+
+## Claude에게 이렇게 말해보세요
+
+### 기본 뱃지
+
+<BadgeVariantsDemo />
+
+<VibeBlock>
+```
+shadcn의 Badge 컴포넌트로 default, secondary, destructive, outline, ghost
+다섯 가지 variant를 나란히 보여줘.
+```
+</VibeBlock>
+
+### 콘텐츠 상태 표시
+
+<BadgeStatusDemo />
+
+<VibeBlock>
+```
+기능 목록 오른쪽에 NEW, BETA, HOT, DEPRECATED 상태 뱃지를 달아줘.
+각각 어울리는 variant로 구분해줘.
+```
+</VibeBlock>
+
+### 아이콘 포함 뱃지
+
+<BadgeWithIconDemo />
+
+<VibeBlock>
+```
+배포 상태 뱃지에 lucide 아이콘을 넣어줘.
+완료는 CircleCheck, 진행 중은 Clock, 실패는 CircleX 아이콘을 써줘.
+```
+</VibeBlock>
+
+## 더 알아보기
+
+더 자세한 Props와 사용법은 공식 문서를 참고하세요.
+
+- [shadcn/ui Badge 공식 문서](https://ui.shadcn.com/docs/components/radix/badge)

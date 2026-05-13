@@ -1,0 +1,64 @@
+---
+title: "Alert — 알림"
+description: 중요한 정보나 상태를 강조해서 보여주는 인라인 메시지 컴포넌트예요.
+---
+
+import { Callout } from 'nextra/components'
+
+# Alert — 알림
+
+**Alert**는 사용자가 주의를 기울여야 할 정보를 페이지 안에 인라인으로 보여주는 컴포넌트예요.\
+아이콘, 제목, 설명, 액션 버튼을 자유롭게 조합할 수 있어요.
+
+## 언제 써요?
+
+| 상황 | 예시 |
+|------|------|
+| 일반 안내·정보 메시지 | 새 기능 출시, 설정 저장 완료 |
+| 성공·완료 메시지 | 배포 완료, 결제 성공 |
+| 주의·경고 메시지 | 되돌릴 수 없는 작업, 세션 만료 예정 |
+| 오류·실패 메시지 | 요청 실패, 권한 없음 |
+
+## Claude에게 이렇게 말해보세요
+
+### 기본 알림
+
+<AlertBasicDemo />
+
+<VibeBlock>
+```
+shadcn의 Alert 컴포넌트로 정보, 주의, 경고, 오류 네 가지 타입을 만들어줘.
+정보는 파란색, 주의는 노란색, 경고는 주황색으로 하고
+오류는 빨간색으로 강조해줘.
+```
+</VibeBlock>
+
+### 아이콘으로 의미 강조
+
+<AlertIconDemo />
+
+<VibeBlock>
+```
+Alert에 lucide 아이콘 붙여줘.
+배포 안내엔 Rocket 아이콘, 사용 팁엔 Lightbulb 아이콘,
+보안 알림엔 Shield 아이콘 써줘.
+```
+</VibeBlock>
+
+### 버튼 포함 알림
+
+<AlertActionDemo />
+
+<VibeBlock>
+```
+Alert 오른쪽에 액션 버튼을 넣어줘.
+업데이트 안내엔 "업데이트" 버튼,
+세션 만료 경고엔 "연장하기" 버튼을 달아줘.
+```
+</VibeBlock>
+
+## 더 알아보기
+
+더 자세한 Props와 사용법은 공식 문서를 참고하세요.
+
+- [shadcn/ui Alert 공식 문서](https://ui.shadcn.com/docs/components/radix/alert)

@@ -25,7 +25,9 @@ import { ComponentNameGrid } from '@/components/component-name-grid'
 import { PlanTable } from '@/components/plan-table'
 import { ToolsDemo } from '@/components/tools-demo'
 import { AvatarBasicDemo, AvatarSizeDemo, AvatarBadgeDemo, AvatarGroupDemo } from '@/components/avatar-demo'
+import { BadgeVariantTableDemo, BadgeVariantsDemo, BadgeStatusDemo, BadgeWithIconDemo } from '@/components/badge-demo'
 import { CollapsibleBasicDemo, CollapsibleFaqDemo, CollapsibleSettingsDemo } from '@/components/collapsible-demo'
+import { AlertBasicDemo, AlertIconDemo, AlertActionDemo } from '@/components/alert-demo'
 
 const SHELL_LANGS = new Set(['shell', 'bash', 'zsh', 'sh', 'fish'])
 const { pre: DefaultPre } = getDocsMDXComponents()
@@ -84,9 +86,16 @@ export function useMDXComponents() {
     AvatarSizeDemo,
     AvatarBadgeDemo,
     AvatarGroupDemo,
+    BadgeVariantTableDemo,
+    BadgeVariantsDemo,
+    BadgeStatusDemo,
+    BadgeWithIconDemo,
     CollapsibleBasicDemo,
     CollapsibleFaqDemo,
     CollapsibleSettingsDemo,
+    AlertBasicDemo,
+    AlertIconDemo,
+    AlertActionDemo,
     Accordion,
     AccordionItem,
     AccordionTrigger,
