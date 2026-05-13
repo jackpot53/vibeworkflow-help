@@ -59,7 +59,7 @@ export function FileTree({ root }: { root: TreeNode }) {
               className="border-b border-gray-100 dark:border-slate-800 last:border-0 hover:bg-gray-50 dark:hover:bg-slate-800/40 transition-colors"
             >
               <td className="px-4 py-2">
-                <div className="flex items-center font-mono text-xs">
+                <div className="flex items-center text-xs">
                   <span className="text-gray-300 dark:text-slate-600 select-none whitespace-pre">{row.prefix}{row.connector}</span>
                   {row.type === 'dir'
                     ? <FolderOpen size={13} className="text-amber-500 mr-1.5 flex-shrink-0" />

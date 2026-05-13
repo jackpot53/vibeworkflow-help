@@ -1,0 +1,103 @@
+---
+title: CLAUDE.md 로드 시기
+description: CLAUDE.md 파일이 언제, 어떤 순서로 컨텍스트에 로드되는지 설명해요.
+---
+
+# CLAUDE.md 로드 시기
+
+## 세션 시작 시 자동 로드
+
+Claude Code 세션이 시작되면, Claude는 현재 작업 디렉터리를 기준으로 **자동으로 CLAUDE.md 파일을 찾아 로드**해요. 별도의 명령이나 설정 없이도 항상 실행돼요.
+
+로드 순서는 **루트에서 현재 폴더 방향으로** 위→아래 순서예요.
+
+<FileTree root={{
+  name: "my-project/",
+  children: [
+    { name: "CLAUDE.md", note: "① 가장 먼저 로드" },
+    { name: ".claude/", children: [
+      { name: "CLAUDE.md", note: "② 다음 로드" },
+    ]},
+    { name: "frontend/", children: [
+      { name: "CLAUDE.md", note: "③ 해당 폴더 작업 시 로드" },
+      { name: "src/", children: [
+        { name: "components/", children: [
+          { name: "CLAUDE.md", note: "④ 이 폴더 작업 시 로드" },
+        ]},
+      ]},
+    ]},
+  ]
+}} />
+
+`frontend/src/components/` 안에서 작업하면 ①②③④ 모두 합산돼서 로드돼요. 작업 위치가 루트에 가까울수록 로드되는 파일 수가 줄어들어요.
+
+---
+
+## 파일 종류별 로드 시점
+
+| 파일 | 로드 시점 |
+| :--- | :--- |
+| `CLAUDE.md` (루트) | 세션 시작 시 항상 |
+| `CLAUDE.local.md` | 세션 시작 시 항상 (git 미추적) |
+| `~/.claude/CLAUDE.md` | 세션 시작 시 항상 (모든 프로젝트) |
+| `.claude/rules/*.md` (`paths` 없음) | 세션 시작 시 항상 |
+| `.claude/rules/*.md` (`paths` 있음) | 매칭 파일을 열 때 |
+| 하위 폴더의 `CLAUDE.md` | 해당 폴더 안 파일을 열 때 |
+| `@path/to/file` 참조 | 세션 시작 시 즉시 (지연 없음) |
+
+---
+
+## `paths` 규칙은 언제 트리거되나요?
+
+`.claude/rules/`의 파일에 `paths` 프론트매터가 있으면, **모든 도구 사용이 아니라 파일을 읽을 때** 트리거돼요.
+
+예를 들어 아래 규칙은 `src/api/` 아래 TypeScript 파일을 **읽는 순간** 컨텍스트에 로드돼요.
+
+<FileBlock filename=".claude/rules/api.md">
+```markdown
+---
+paths:
+  - "src/api/**/*.ts"
+---
+
+# API 규칙
+...
+```
+</FileBlock>
+
+파일을 열기 전까지는 컨텍스트를 차지하지 않아요. 이 방식으로 불필요한 규칙이 처음부터 로드되는 것을 막을 수 있어요.
+
+---
+
+## `@` 참조는 언제 로드되나요?
+
+`@path/to/file` 형식으로 참조된 파일은 **세션 시작 시 즉시, 전부 로드**돼요. 지연 로딩(lazy loading)이 아니에요.
+
+<Callout type="info">
+  참조 파일의 내용과 현재 작업의 관련성에 관계없이, 세션이 시작되는 순간 모든 참조 파일이 컨텍스트에 들어와요. 자주 필요하지 않은 내용은 `@` 참조 대신 경로만 적어두는 **포인터 방식**을 사용하세요.
+</Callout>
+
+<FileBlock filename="CLAUDE.md — 포인터 방식 예시">
+```markdown
+## 인증 로직
+상세 내용은 docs/auth.md 참조. 필요시 직접 읽을 것.
+```
+</FileBlock>
+
+포인터 방식을 쓰면 Claude가 인증 관련 작업이 생겼을 때만 파일을 읽어서 컨텍스트를 아낄 수 있어요.
+
+---
+
+## 로드 우선순위
+
+같은 내용에 대해 여러 파일에서 서로 다른 지침이 있다면, **더 구체적인 위치의 파일이 우선**해요.
+
+```
+~/.claude/CLAUDE.md       ← 낮은 우선순위 (전역)
+./CLAUDE.md               ↑
+./.claude/CLAUDE.md       ↑
+./frontend/CLAUDE.md      ↑
+./frontend/src/CLAUDE.md  ← 높은 우선순위 (현재 위치에 가까울수록)
+```
+
+루트의 전역 지침 위에 하위 폴더의 지역 지침이 덮어쓰는 구조예요.

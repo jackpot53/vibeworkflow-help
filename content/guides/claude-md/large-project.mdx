@@ -15,6 +15,10 @@ CLAUDE.md에 규칙을 계속 추가하다 보면 어느 순간 Claude가 규칙
 
 해결법은 단순히 파일을 쪼개는 게 아니에요. `.claude/rules/` 디렉터리의 **프론트매터(frontmatter)를 활용해 필요한 규칙만 필요한 시점에 자동으로 로딩되게 설계**하는 거예요.
 
+<Callout type="info">
+  CLAUDE.md 파일당 **200줄 이하**를 목표로 합니다. 더 긴 파일은 더 많은 컨텍스트를 소비하고 준수를 줄입니다. 지침이 커지면 가져오기를 사용하거나 `.claude/rules/` 파일로 분할하세요.
+</Callout>
+
 <Callout type="tip">
   항상 로드될 필요 없는 작업별 지침은 [스킬(skills)](/reference/skills)로 만드세요. 스킬은 호출하거나 Claude가 관련 있다고 판단할 때만 로드돼서 컨텍스트를 아낄 수 있어요.
 </Callout>
@@ -151,3 +155,55 @@ paths:
 - 전역 상태는 꼭 필요한 경우에만 사용합니다
 ```
 </FileBlock>
+
+---
+
+## 대규모 팀을 위한 CLAUDE.md 관리
+
+팀원이 많아질수록 "누가 어떤 규칙을 따르고 있는지" 관리하기 어려워져요. 프로젝트 곳곳에 CLAUDE.md를 두고 규칙을 체계적으로 나눠두면, 팀 전체가 같은 기준으로 Claude를 사용할 수 있어요.
+
+`CLAUDE.md`는 프로젝트 루트에 하나만 있는 게 아니에요. **모든 폴더에 각각 배치할 수 있고**, Claude가 해당 폴더 안의 파일을 열 때 상위 경로의 모든 `CLAUDE.md`가 순서대로 자동 로드돼요.
+<mark>`.claude/rules/`는 경로 타겟팅으로 컨텍스트를 절약하고, 각 폴더의 `CLAUDE.md`는 해당 영역에서만 로드되는 지역 규칙 역할을 해요. 두 가지를 조합하면 팀 규모가 커져도 컨텍스트를 낭비하지 않고 규칙을 체계적으로 유지할 수 있어요.</mark>
+
+<FileTree root={{
+  name: "my-fitness-app/",
+  children: [
+    { name: "CLAUDE.md", note: "팀 공유 지침" },
+    { name: "CLAUDE.local.md", note: "개인 설정 (gitignore)" },
+    { name: ".claude/", children: [
+      { name: "rules/", note: "유일한 rules 위치", children: [
+        { name: "general.md", note: "경로 타겟팅 없음 → 항상 로드" },
+        { name: "security.md", note: "경로 타겟팅 없음 → 항상 로드" },
+        { name: "frontend/", note: "정리용 하위 폴더 (사람을 위한 구조)", children: [
+          { name: "react.md", note: "path: frontend/src/components/**" },
+          { name: "styles.md", note: "path: frontend/src/**/*.css" },
+        ]},
+        { name: "backend/", note: "정리용 하위 폴더", children: [
+          { name: "api.md", note: "path: backend/src/api/**" },
+          { name: "database.md", note: "path: backend/src/models/**" },
+        ]},
+      ]},
+    ]},
+    { name: "frontend/", children: [
+      { name: "CLAUDE.md", note: "이 폴더 작업 시 로드" },
+      { name: "src/", children: [
+        { name: "components/", children: [
+          { name: "CLAUDE.md", note: "이 폴더 작업 시 로드" },
+          { name: "AthleteProfile.tsx" },
+        ]},
+      ]},
+    ]},
+    { name: "backend/", children: [
+      { name: "CLAUDE.md" },
+      { name: "src/", children: [
+        { name: "api/", children: [
+          { name: "CLAUDE.md" },
+          { name: "athletes.ts" },
+        ]},
+        { name: "models/", children: [
+          { name: "athlete.ts" },
+        ]},
+      ]},
+    ]},
+  ]
+}} />
