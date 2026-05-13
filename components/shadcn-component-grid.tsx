@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -13,12 +14,16 @@ import { Progress } from '@/components/ui/progress'
 import { Slider } from '@/components/ui/slider'
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
 import { Skeleton } from '@/components/ui/skeleton'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert'
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card'
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion'
 import {
   ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon, CheckIcon,
   SearchIcon, XIcon, HomeIcon, FileIcon, BellIcon, SettingsIcon,
   UserIcon, PlusIcon, StarIcon, HeartIcon, MessageSquareIcon,
   ZapIcon, GripVerticalIcon, CalendarIcon, CommandIcon,
-  ArrowUpDownIcon, Loader2Icon,
+  ArrowUpDownIcon, Loader2Icon, InfoIcon,
 } from 'lucide-react'
 
 /* ─── individual demos ─── */
@@ -751,7 +756,62 @@ function TypographyDemo() {
 
 /* ─── card list ─── */
 
-const CARDS: { name: string; desc: string; preview: React.ReactNode }[] = [
+const CARDS: { name: string; desc: string; href?: string; preview: React.ReactNode }[] = [
+  { name: 'Accordion', desc: '클릭하면 펼쳐지는 접이식 콘텐츠 컴포넌트예요.', href: '/design-guide/component/accordion', preview: (
+    <Accordion defaultValue={['item-1']} className="w-full">
+      <AccordionItem value="item-1">
+        <AccordionTrigger>Claude Code란 무엇인가요?</AccordionTrigger>
+        <AccordionContent>Anthropic이 만든 AI 코딩 어시스턴트예요.</AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="item-2">
+        <AccordionTrigger>CLAUDE.md는 어디에 만드나요?</AccordionTrigger>
+        <AccordionContent>프로젝트 루트에 만들면 자동으로 로드돼요.</AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  )},
+  { name: 'Alert', desc: '중요한 메시지를 강조해서 보여주는 알림 박스예요.', href: '/design-guide/component/alert', preview: (
+    <div className="flex flex-col gap-2 w-full">
+      <Alert>
+        <InfoIcon />
+        <AlertTitle>업데이트 안내</AlertTitle>
+        <AlertDescription>새 버전이 출시됐어요. 지금 업데이트하세요.</AlertDescription>
+      </Alert>
+      <Alert variant="destructive">
+        <XIcon />
+        <AlertTitle>오류 발생</AlertTitle>
+        <AlertDescription>요청을 처리할 수 없어요.</AlertDescription>
+      </Alert>
+    </div>
+  )},
+  { name: 'Avatar', desc: '사용자 프로필 이미지를 둥글게 표시하는 컴포넌트예요.', href: '/design-guide/component/avatar', preview: (
+    <div className="flex items-center gap-3">
+      <Avatar><AvatarImage src="https://github.com/shadcn.png" /><AvatarFallback>CN</AvatarFallback></Avatar>
+      <Avatar size="sm"><AvatarFallback>AB</AvatarFallback></Avatar>
+      <Avatar size="lg"><AvatarFallback>JK</AvatarFallback></Avatar>
+    </div>
+  )},
+  { name: 'Badge', desc: '상태·카테고리·카운트 등을 짧게 표시하는 라벨이에요.', href: '/design-guide/component/badge', preview: (
+    <div className="flex flex-wrap gap-2">
+      <Badge>Default</Badge>
+      <Badge variant="secondary">Secondary</Badge>
+      <Badge variant="destructive">Destructive</Badge>
+      <Badge variant="outline">Outline</Badge>
+    </div>
+  )},
+  { name: 'Card', desc: '관련 정보를 묶어서 보여주는 컨테이너 컴포넌트예요.', href: '/design-guide/component/card', preview: (
+    <Card size="sm" className="w-full">
+      <CardHeader>
+        <CardTitle>알림 설정</CardTitle>
+        <CardDescription>알림 수신 방법을 설정해요.</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div className="flex items-center justify-between text-sm">
+          <span>이메일 알림</span>
+          <Switch defaultChecked />
+        </div>
+      </CardContent>
+    </Card>
+  )},
   { name: 'Chart', desc: '데이터를 막대/선/원형 차트로 시각화해요.', preview: <ChartDemo /> },
   { name: 'Checkbox', desc: '여러 항목을 다중 선택할 때 써요.', preview: (
     <div className="flex flex-col gap-3">
@@ -760,11 +820,11 @@ const CARDS: { name: string; desc: string; preview: React.ReactNode }[] = [
       ))}
     </div>
   )},
-  { name: 'Collapsible', desc: '클릭하면 콘텐츠가 펼쳐지는 접힘 UI예요.', preview: <CollapsibleDemo /> },
+  { name: 'Collapsible', desc: '클릭하면 콘텐츠가 펼쳐지는 접힘 UI예요.', href: '/design-guide/component/collapsible', preview: <CollapsibleDemo /> },
   { name: 'Combobox', desc: '검색 가능한 드롭다운 선택 UI예요.', preview: <ComboboxDemo /> },
   { name: 'Command', desc: '키보드로 명령어를 검색·실행하는 팔레트예요.', preview: <CommandDemo /> },
   { name: 'Context Menu', desc: '우클릭 시 나타나는 컨텍스트 메뉴예요.', preview: <ContextMenuDemo /> },
-  { name: 'Data Table', desc: '정렬·필터 기능이 있는 데이터 테이블이에요.', preview: <DataTableDemo /> },
+  { name: 'Data Table', desc: '정렬·필터 기능이 있는 데이터 테이블이에요.', href: '/design-guide/component/data-table', preview: <DataTableDemo /> },
   { name: 'Date Picker', desc: '캘린더에서 날짜를 선택하는 UI예요.', preview: <DatePickerDemo /> },
   { name: 'Dialog', desc: '중요한 작업을 확인하는 모달 대화상자예요.', preview: <DialogDemo /> },
   { name: 'Direction', desc: 'LTR/RTL 텍스트 방향을 제어해요.', preview: <DirectionDemo /> },
@@ -808,7 +868,7 @@ const CARDS: { name: string; desc: string; preview: React.ReactNode }[] = [
   { name: 'Resizable', desc: '드래그로 크기를 조절하는 분할 패널이에요.', preview: <ResizableDemo /> },
   { name: 'Scroll Area', desc: '커스텀 스크롤바가 있는 스크롤 영역이에요.', preview: <ScrollAreaDemo /> },
   { name: 'Select', desc: '커스텀 스타일의 드롭다운 선택 UI예요.', preview: <SelectDemo /> },
-  { name: 'Separator', desc: '섹션이나 요소 사이를 나누는 구분선이에요.', preview: (
+  { name: 'Separator', desc: '섹션이나 요소 사이를 나누는 구분선이에요.', href: '/design-guide/component/separator', preview: (
     <div className="flex flex-col gap-3 w-full text-sm">
       <div>위 섹션 내용</div>
       <Separator />
@@ -819,8 +879,8 @@ const CARDS: { name: string; desc: string; preview: React.ReactNode }[] = [
     </div>
   )},
   { name: 'Sheet', desc: '화면 오른쪽에서 슬라이드 인 되는 패널이에요.', preview: <SheetDemo /> },
-  { name: 'Sidebar', desc: '앱 왼쪽의 접이식 내비게이션 사이드바예요.', preview: <SidebarDemo /> },
-  { name: 'Skeleton', desc: '콘텐츠 로딩 중 보여주는 플레이스홀더예요.', preview: (
+  { name: 'Sidebar', desc: '앱 왼쪽의 접이식 내비게이션 사이드바예요.', href: '/design-guide/component/sidebar', preview: <SidebarDemo /> },
+  { name: 'Skeleton', desc: '콘텐츠 로딩 중 보여주는 플레이스홀더예요.', href: '/design-guide/component/skeleton', preview: (
     <div className="flex flex-col gap-4 w-full max-w-sm">
       <div className="flex items-center gap-3">
         <Skeleton className="size-10 rounded-full" />
@@ -845,8 +905,8 @@ const CARDS: { name: string; desc: string; preview: React.ReactNode }[] = [
       ))}
     </div>
   )},
-  { name: 'Table', desc: '데이터를 행과 열로 표시하는 테이블이에요.', preview: <TableDemo /> },
-  { name: 'Tabs', desc: '탭으로 여러 콘텐츠 패널을 전환해요.', preview: (
+  { name: 'Table', desc: '데이터를 행과 열로 표시하는 테이블이에요.', href: '/design-guide/component/table', preview: <TableDemo /> },
+  { name: 'Tabs', desc: '탭으로 여러 콘텐츠 패널을 전환해요.', href: '/design-guide/component/tabs', preview: (
     <Tabs defaultValue="overview" className="w-full max-w-sm">
       <TabsList>
         <TabsTrigger value="overview">개요</TabsTrigger>
@@ -873,19 +933,24 @@ const CARDS: { name: string; desc: string; preview: React.ReactNode }[] = [
 
 /* ─── grid ─── */
 
+const DOCUMENTED = CARDS.filter((c) => c.href)
+
 export function ShadcnComponentGrid() {
   return (
     <div className="not-prose grid grid-cols-2 gap-4 my-6">
-      {CARDS.map((c) => (
-        <div key={c.name} className="rounded-xl border border-border bg-card overflow-hidden">
-          <div className="px-4 py-3 border-b border-border bg-muted/30">
-            <div className="text-sm font-semibold text-foreground">{c.name}</div>
-            <div className="text-xs text-muted-foreground mt-0.5">{c.desc}</div>
+      {DOCUMENTED.map((c) => (
+        <Link key={c.name} href={c.href!} className="group rounded-xl border border-border bg-card overflow-hidden transition-colors hover:border-foreground/30 no-underline block">
+          <div className="px-4 py-3 border-b border-border bg-muted/30 flex items-center justify-between">
+            <div>
+              <div className="text-sm font-semibold text-foreground">{c.name}</div>
+              <div className="text-xs text-muted-foreground mt-0.5">{c.desc}</div>
+            </div>
+            <ChevronRightIcon className="size-4 text-muted-foreground/40 group-hover:text-muted-foreground transition-colors shrink-0" />
           </div>
           <div className="px-4 py-5 min-h-[120px] flex items-center">
             {c.preview}
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   )

@@ -1,0 +1,63 @@
+---
+title: "Accordion — 아코디언"
+description: 클릭하면 펼쳐지는 접이식 콘텐츠 컴포넌트예요. FAQ, 설정 목록, 가이드 같은 곳에 써요.
+---
+
+# Accordion — 아코디언
+
+**Accordion**은 제목을 클릭하면 내용이 펼쳐지는 컴포넌트예요.\
+한 화면에 많은 정보를 담아야 할 때 내용을 접어두고 필요한 것만 열어볼 수 있어요.
+
+## 언제 써요?
+
+| 상황 | 예시 |
+|------|------|
+| 자주 묻는 질문 | FAQ 페이지 |
+| 설정 그룹 | 알림 설정, 개인정보 설정 |
+| 단계별 가이드 | 1단계 설치 → 2단계 설정 → 3단계 실행 |
+| 긴 설명 숨기기 | 옵션별 상세 설명 |
+
+## 기본 아코디언
+
+한 번에 하나만 열려요. 다른 항목을 클릭하면 열려 있던 항목이 닫혀요.
+
+<AccordionBasicDemo />
+
+<VibeBlock>
+```
+shadcn Accordion으로 FAQ 3개를 만들어줘.
+한 번에 하나만 열리게 하고, 첫 번째 항목은 처음부터 열려 있게 해줘.
+```
+</VibeBlock>
+
+## 여러 항목 동시에 열기 (`multiple`)
+
+`multiple` prop을 추가하면 여러 항목을 동시에 펼쳐둘 수 있어요.\
+용어 설명이나 참고 자료처럼 여러 항목을 비교하며 볼 때 유용해요.
+
+<AccordionMultipleDemo />
+
+<VibeBlock>
+```
+shadcn Accordion에 multiple을 적용해서
+여러 항목이 동시에 열릴 수 있게 해줘.
+기본으로 첫 번째, 두 번째 항목이 열려 있게 해줘.
+```
+</VibeBlock>
+
+## 아이콘 포함 FAQ
+
+아이콘을 트리거 앞에 두면 항목의 성격을 한눈에 구분할 수 있어요.
+
+<AccordionFaqDemo />
+
+<VibeBlock>
+```
+FAQ 아코디언에 각 항목마다 lucide 아이콘을 추가해줘.
+결제는 CreditCard, 보안은 Shield, 초기화는 RefreshCw, 문의는 Headphones 아이콘을 써줘.
+```
+</VibeBlock>
+
+## 더 알아보기
+
+- [shadcn/ui Accordion 공식 문서](https://ui.shadcn.com/docs/components/radix/accordion)

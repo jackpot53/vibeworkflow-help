@@ -1,11 +1,13 @@
 export default {
   index: '컴포넌트 개요',
   avatar: 'Avatar',
+  accordion: 'Accordion',
   alert: 'Alert',
   badge: 'Badge',
   card: 'Card',
   sidebar: 'Sidebar',
   skeleton: 'Skeleton',
+  separator: 'Separator',
   collapsible: 'Collapsible',
   tabs: 'Tabs',
   table: 'Table',
