@@ -5,6 +5,7 @@ export default {
   alert: 'Alert',
   badge: 'Badge',
   card: 'Card',
+  carousel: 'Carousel',
   sidebar: 'Sidebar',
   skeleton: 'Skeleton',
   separator: 'Separator',

@@ -30,6 +30,7 @@ import { CardWhenDemo, CardBasicDemo, CardActionDemo, CardUsageDemo } from '@/co
 import { SidebarPartsDemo, SidebarBasicDemo, SidebarGroupDemo, SidebarCollapsibleDemo } from '@/components/sidebar-demo'
 import { SkeletonBasicDemo, SkeletonCardDemo, SkeletonFeedDemo } from '@/components/skeleton-demo'
 import { AccordionBasicDemo, AccordionMultipleDemo, AccordionFaqDemo } from '@/components/accordion-demo'
+import { CarouselBasicDemo, CarouselSizeDemo, CarouselCardDemo } from '@/components/carousel-demo'
 import { SeparatorBasicDemo, SeparatorOrientationDemo, SeparatorMenuDemo } from '@/components/separator-demo'
 import { CollapsibleBasicDemo, CollapsibleFaqDemo, CollapsibleSettingsDemo } from '@/components/collapsible-demo'
 import { AlertBasicDemo, AlertIconDemo, AlertActionDemo } from '@/components/alert-demo'
@@ -115,6 +116,9 @@ export function useMDXComponents() {
     AccordionBasicDemo,
     AccordionMultipleDemo,
     AccordionFaqDemo,
+    CarouselBasicDemo,
+    CarouselSizeDemo,
+    CarouselCardDemo,
     SeparatorBasicDemo,
     SeparatorOrientationDemo,
     SeparatorMenuDemo,

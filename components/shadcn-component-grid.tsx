@@ -18,6 +18,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card'
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion'
+import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from '@/components/ui/carousel'
 import {
   ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon, CheckIcon,
   SearchIcon, XIcon, HomeIcon, FileIcon, BellIcon, SettingsIcon,
@@ -811,6 +812,19 @@ const CARDS: { name: string; desc: string; href?: string; preview: React.ReactNo
         </div>
       </CardContent>
     </Card>
+  )},
+  { name: 'Carousel', desc: '슬라이드를 좌우로 넘겨볼 수 있는 컴포넌트예요.', href: '/design-guide/component/carousel', preview: (
+    <Carousel className="w-full max-w-[200px]">
+      <CarouselContent>
+        {['디자인', '타이포', '컬러', '레이아웃'].map((label, i) => (
+          <CarouselItem key={i}>
+            <div className="flex aspect-video items-center justify-center rounded-lg bg-muted text-sm font-medium">{label}</div>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <CarouselPrevious className="-left-8" />
+      <CarouselNext className="-right-8" />
+    </Carousel>
   )},
   { name: 'Chart', desc: '데이터를 막대/선/원형 차트로 시각화해요.', preview: <ChartDemo /> },
   { name: 'Checkbox', desc: '여러 항목을 다중 선택할 때 써요.', preview: (
