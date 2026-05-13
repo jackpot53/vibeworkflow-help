@@ -234,7 +234,11 @@ pre.not-prose {
   line-height: 1.6 !important;
 }
 
-/* 복사 버튼 */
+/* 복사 버튼 — 항상 노출 */
+pre.not-prose > div {
+  opacity: 1 !important;
+}
+
 pre.not-prose button {
   color: rgba(255, 255, 255, 0.35) !important;
   border-color: rgba(255, 255, 255, 0.15) !important;
@@ -293,6 +297,31 @@ pre.not-prose code.nextra-code {
   margin-bottom: 0 !important;
 }
 
+.output-block figure,
+.output-block pre.not-prose {
+  background-color: #ffffff !important;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+}
+
+.output-block pre.not-prose code.nextra-code {
+  color: #1e293b !important;
+}
+
+.output-block pre.not-prose code.nextra-code span {
+  color: var(--shiki-light) !important;
+}
+
+.output-block pre.not-prose button {
+  color: rgba(0, 0, 0, 0.3) !important;
+  border-color: rgba(0, 0, 0, 0.12) !important;
+}
+
+.output-block pre.not-prose button:hover {
+  color: rgba(0, 0, 0, 0.7) !important;
+  border-color: rgba(0, 0, 0, 0.3) !important;
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
 /* Highlighted text (형광펜) */
 mark {
   background-color: #fef08a;
@@ -327,13 +356,59 @@ mark {
   border-right-color: oklch(1 0 0 / 10%) !important;
 }
 
-/* VibeBlock / ClaudeBlock / ShellBlock / SlashBlock / FileBlock: 일반 폰트 */
+/* VibeBlock / ClaudeBlock / ShellBlock / SlashBlock / FileBlock: 라이트 테마 코드 블록 */
+.vibe-block figure,
 .vibe-block pre.not-prose,
+.claude-block figure,
 .claude-block pre.not-prose,
+.shell-cmd-block figure,
 .shell-cmd-block pre.not-prose,
+.slash-block figure,
 .slash-block pre.not-prose,
+.file-block figure,
 .file-block pre.not-prose {
+  background-color: #ffffff !important;
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+}
+
+.vibe-block pre.not-prose code.nextra-code,
+.claude-block pre.not-prose code.nextra-code,
+.shell-cmd-block pre.not-prose code.nextra-code,
+.slash-block pre.not-prose code.nextra-code,
+.file-block pre.not-prose code.nextra-code {
+  color: #1e293b !important;
+}
+
+.vibe-block pre.not-prose code.nextra-code span,
+.claude-block pre.not-prose code.nextra-code span,
+.shell-cmd-block pre.not-prose code.nextra-code span,
+.slash-block pre.not-prose code.nextra-code span,
+.file-block pre.not-prose code.nextra-code span {
+  color: var(--shiki-light) !important;
+}
+
+.vibe-block pre.not-prose button,
+.claude-block pre.not-prose button,
+.shell-cmd-block pre.not-prose button,
+.slash-block pre.not-prose button,
+.file-block pre.not-prose button {
+  color: rgba(0, 0, 0, 0.3) !important;
+  border-color: rgba(0, 0, 0, 0.12) !important;
+}
+
+.vibe-block pre.not-prose button:hover,
+.claude-block pre.not-prose button:hover,
+.shell-cmd-block pre.not-prose button:hover,
+.slash-block pre.not-prose button:hover,
+.file-block pre.not-prose button:hover {
+  color: rgba(0, 0, 0, 0.7) !important;
+  border-color: rgba(0, 0, 0, 0.3) !important;
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+/* ShellBlock 내부 $ 프리픽스: 라이트 배경에 맞게 */
+.shell-cmd-block .shell-block pre.not-prose code.nextra-code > span::before {
+  color: rgba(0, 0, 0, 0.3) !important;
 }
 
 /* VibeBlock / ClaudeBlock / ShellBlock / SlashBlock / FileBlock: strip header + code block */

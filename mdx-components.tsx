@@ -53,9 +53,9 @@ function CodePre(props: ComponentProps<'pre'> & { 'data-language'?: string }) {
   }
   if (lang === 'output') {
     return (
-      <div className="output-block">
-        <div className="flex items-center bg-[#0d1117] border-b border-zinc-500/20 px-3 py-1.5">
-          <span className="inline-block text-xs font-semibold tracking-widest uppercase px-2 py-0.5 bg-zinc-500/15 text-zinc-400 border border-zinc-500/30">
+      <div className="output-block border border-gray-200 rounded-md overflow-hidden">
+        <div className="flex items-center bg-gray-100 border-b border-gray-200 px-3 py-1.5">
+          <span className="inline-block text-xs font-semibold tracking-widest uppercase px-2 py-0.5 bg-gray-200 text-gray-600 border border-gray-300">
             출력
           </span>
         </div>
