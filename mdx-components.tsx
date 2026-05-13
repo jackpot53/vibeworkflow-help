@@ -36,6 +36,7 @@ import { TableBasicDemo, TableStatusDemo, TableFooterDemo } from '@/components/t
 import { DataTableDemo, DataTableColumnsDemo, DataTableHookDemo, DataTableToolbarDemo, DataTableRenderDemo, DataTablePaginationDemo } from '@/components/data-table-demo'
 import { FileTree } from '@/components/file-tree'
 import { AutoMemorySimDemo } from '@/components/auto-memory-sim'
+import { NavbarDemo, HeroDemo, FeaturesDemo, HowItWorksDemo, PricingDemo, TestimonialsDemo, FAQDemo, CTADemo, FooterDemo } from '@/components/section-demo'
 
 const SHELL_LANGS = new Set(['shell', 'bash', 'zsh', 'sh', 'fish'])
 const { pre: DefaultPre } = getDocsMDXComponents()
@@ -128,6 +129,15 @@ export function useMDXComponents() {
     DataTableRenderDemo,
     DataTablePaginationDemo,
     AutoMemorySimDemo,
+    NavbarDemo,
+    HeroDemo,
+    FeaturesDemo,
+    HowItWorksDemo,
+    PricingDemo,
+    TestimonialsDemo,
+    FAQDemo,
+    CTADemo,
+    FooterDemo,
     FileTree,
     Accordion,
     AccordionItem,
