@@ -112,7 +112,7 @@ function SessionDivider({ label }: { label: string }) {
 
 export function AutoMemorySimDemo() {
   return (
-    <div className="my-6 flex flex-col gap-3 max-w-lg">
+    <div className="my-6 flex flex-col gap-3 max-w-lg" data-section-preview>
       <UserCard text="작업한 내용 커밋해줘" time="오전 10:30" badge="첫 번째 세션" />
 
       <ClaudeCard
