@@ -147,6 +147,15 @@ article [data-slot="badge"] {
   border-radius: 9999px !important;
 }
 
+/* Sidebar radius 복원 */
+article [data-sidebar="sidebar"] {
+  border-radius: 0 !important;
+}
+article [data-sidebar="provider"] [data-sidebar="sidebar"][data-variant="floating"],
+article [data-sidebar="provider"] [data-sidebar="sidebar"][data-variant="inset"] {
+  border-radius: var(--radius-xl) !important;
+}
+
 /* Card radius 복원 */
 article [data-slot="card"] {
   border-radius: var(--radius-xl) !important;

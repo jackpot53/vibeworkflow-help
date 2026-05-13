@@ -4,5 +4,6 @@ export default {
   alert: 'Alert',
   badge: 'Badge',
   card: 'Card',
+  sidebar: 'Sidebar',
   collapsible: 'Collapsible',
 }

@@ -27,6 +27,7 @@ import { ToolsDemo } from '@/components/tools-demo'
 import { AvatarBasicDemo, AvatarSizeDemo, AvatarBadgeDemo, AvatarGroupDemo } from '@/components/avatar-demo'
 import { BadgeVariantTableDemo, BadgeVariantsDemo, BadgeStatusDemo, BadgeWithIconDemo } from '@/components/badge-demo'
 import { CardWhenDemo, CardBasicDemo, CardActionDemo, CardUsageDemo } from '@/components/card-demo'
+import { SidebarPartsDemo, SidebarBasicDemo, SidebarGroupDemo, SidebarCollapsibleDemo } from '@/components/sidebar-demo'
 import { CollapsibleBasicDemo, CollapsibleFaqDemo, CollapsibleSettingsDemo } from '@/components/collapsible-demo'
 import { AlertBasicDemo, AlertIconDemo, AlertActionDemo } from '@/components/alert-demo'
 
@@ -95,6 +96,10 @@ export function useMDXComponents() {
     CardBasicDemo,
     CardActionDemo,
     CardUsageDemo,
+    SidebarPartsDemo,
+    SidebarBasicDemo,
+    SidebarGroupDemo,
+    SidebarCollapsibleDemo,
     CollapsibleBasicDemo,
     CollapsibleFaqDemo,
     CollapsibleSettingsDemo,
