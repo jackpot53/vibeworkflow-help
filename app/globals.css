@@ -222,13 +222,13 @@ article h4 {
   font-weight: 600 !important;
 }
 
-/* Terminal-style code blocks */
+/* Code blocks — 라이트 테마 */
 pre.not-prose {
-  background-color: #0d1117 !important;
+  background-color: #ffffff !important;
   border-radius: 0 !important;
   box-shadow: none !important;
   outline: none !important;
-  border: none !important;
+  border: 1px solid oklch(0.922 0 0) !important;
   font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", ui-monospace, "SF Mono", Menlo, monospace !important;
   font-size: 0.8125rem !important;
   line-height: 1.6 !important;
@@ -240,26 +240,25 @@ pre.not-prose > div {
 }
 
 pre.not-prose button {
-  color: rgba(255, 255, 255, 0.35) !important;
-  border-color: rgba(255, 255, 255, 0.15) !important;
+  color: rgba(0, 0, 0, 0.3) !important;
+  border-color: rgba(0, 0, 0, 0.12) !important;
   transition: color 0.15s, border-color 0.15s !important;
 }
 
 pre.not-prose button:hover {
-  color: #ffffff !important;
-  border-color: rgba(255, 255, 255, 0.5) !important;
-  background-color: rgba(255, 255, 255, 0.08) !important;
+  color: rgba(0, 0, 0, 0.7) !important;
+  border-color: rgba(0, 0, 0, 0.3) !important;
+  background-color: rgba(0, 0, 0, 0.05) !important;
 }
 
-/* Shiki가 span에 인라인으로 --shiki-light를 심어서, 강제로 다크 토큰 색상 사용 */
 pre.not-prose code.nextra-code span {
-  color: var(--shiki-dark) !important;
+  color: var(--shiki-light) !important;
   background-color: transparent !important;
   font-family: inherit !important;
 }
 
 pre.not-prose code.nextra-code {
-  color: #e6edf3 !important;
+  color: #1e293b !important;
   font-family: inherit !important;
 }
 
@@ -274,7 +273,7 @@ pre.not-prose code.nextra-code {
 
 .shell-block pre.not-prose code.nextra-code > span::before {
   content: "$ ";
-  color: rgba(230, 237, 243, 0.4);
+  color: rgba(0, 0, 0, 0.3);
   user-select: none;
   -webkit-user-select: none;
   margin-right: 0.25rem;
