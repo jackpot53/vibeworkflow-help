@@ -9,6 +9,7 @@ export default {
   sidebar: 'Sidebar',
   skeleton: 'Skeleton',
   separator: 'Separator',
+  command: 'Command',
   collapsible: 'Collapsible',
   tabs: 'Tabs',
   table: 'Table',
