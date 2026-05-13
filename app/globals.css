@@ -147,6 +147,17 @@ article [data-slot="badge"] {
   border-radius: 9999px !important;
 }
 
+/* Card radius 복원 */
+article [data-slot="card"] {
+  border-radius: var(--radius-xl) !important;
+}
+article [data-slot="card-header"] {
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0 !important;
+}
+article [data-slot="card-footer"] {
+  border-radius: 0 0 var(--radius-xl) var(--radius-xl) !important;
+}
+
 /* VibeBlock / ClaudeBlock / ShellBlock / SlashBlock / FileBlock radius 복원 */
 article .vibe-block,
 article .claude-block,

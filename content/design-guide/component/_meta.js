@@ -3,5 +3,6 @@ export default {
   avatar: 'Avatar',
   alert: 'Alert',
   badge: 'Badge',
+  card: 'Card',
   collapsible: 'Collapsible',
 }

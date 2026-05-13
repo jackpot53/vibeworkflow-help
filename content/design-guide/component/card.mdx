@@ -1,0 +1,75 @@
+---
+title: "Card — 카드"
+description: 관련 정보를 하나의 영역으로 묶어 보여주는 컨테이너 컴포넌트예요.
+---
+
+# Card — 카드
+
+**Card**는 관련 정보를 하나의 영역으로 묶어 표시하는 컨테이너예요.\
+Header, Content, Footer 구조로 구성되며, 다양한 콘텐츠를 자유롭게 담을 수 있어요.
+
+## 언제 써요?
+
+<CardWhenDemo />
+
+## 구성 요소
+
+| 컴포넌트 | 역할 |
+|----------|------|
+| `Card` | 전체 컨테이너. `size="sm"`으로 더 작은 버전 사용 가능 |
+| `CardHeader` | 제목·설명·액션을 담는 상단 영역 |
+| `CardTitle` | 카드 제목 |
+| `CardDescription` | 부제목 또는 설명 텍스트 |
+| `CardAction` | 헤더 우측에 배치되는 액션 영역 (버튼, 메뉴 등) |
+| `CardContent` | 본문 콘텐츠 영역 |
+| `CardFooter` | 하단 버튼·링크 영역. 배경이 살짝 다른 색으로 구분돼요 |
+
+## Claude에게 이렇게 말해보세요
+
+### 기본 카드
+
+<CardBasicDemo />
+
+<VibeBlock>
+```
+shadcn Card로 알림 설정 카드 만들어줘.
+제목은 "알림 설정", 설명은 "이메일과 푸시 알림 수신 여부를 관리하세요."
+본문엔 체크 아이콘 목록으로 "새 댓글 알림"(초록), "멘션 알림"(초록),
+"마케팅 이메일"(회색 비활성) 세 항목 넣어줘.
+푸터엔 "저장" 버튼(기본)이랑 "취소" 버튼(outline) 나란히 달아줘.
+```
+</VibeBlock>
+
+### 헤더 액션
+
+<CardActionDemo />
+
+<VibeBlock>
+```
+shadcn Card로 팀 멤버 카드 만들어줘.
+제목 "팀 멤버", 설명 "현재 프로젝트에 참여 중인 멤버예요.",
+헤더 오른쪽엔 CardAction으로 MoreHorizontal 아이콘 ghost 버튼 달아줘.
+본문엔 멤버 목록 — 김지수(디자이너/활성), 이민준(프론트엔드/활성),
+박서연(백엔드/비활성) — 각 멤버 오른쪽에 활성 여부 Badge 표시해줘.
+```
+</VibeBlock>
+
+### 통계 카드
+
+<CardUsageDemo />
+
+<VibeBlock>
+```
+대시보드용 통계 카드 3개 가로로 나란히 만들어줘.
+각 카드엔 CardAction으로 아이콘 넣고, 큰 숫자랑 전월 대비 증감률(초록) 보여줘.
+- 총 사용자: 12,480 / +8.2% / Users 아이콘
+- 이번 달 요청: 3,291 / +14% / Zap 아이콘
+- 응답 성공률: 99.4% / +0.3% / TrendingUp 아이콘
+```
+</VibeBlock>
+
+## 더 알아보기
+
+더 자세한 Props와 사용법은 공식 문서를 참고하세요.
+
+- [shadcn/ui Card 공식 문서](https://ui.shadcn.com/docs/components/radix/card)
