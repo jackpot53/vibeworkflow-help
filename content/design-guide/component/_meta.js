@@ -7,4 +7,5 @@ export default {
   sidebar: 'Sidebar',
   skeleton: 'Skeleton',
   collapsible: 'Collapsible',
+  tabs: 'Tabs',
 }

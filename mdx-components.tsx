@@ -31,6 +31,7 @@ import { SidebarPartsDemo, SidebarBasicDemo, SidebarGroupDemo, SidebarCollapsibl
 import { SkeletonBasicDemo, SkeletonCardDemo, SkeletonFeedDemo } from '@/components/skeleton-demo'
 import { CollapsibleBasicDemo, CollapsibleFaqDemo, CollapsibleSettingsDemo } from '@/components/collapsible-demo'
 import { AlertBasicDemo, AlertIconDemo, AlertActionDemo } from '@/components/alert-demo'
+import { TabsBasicDemo, TabsSettingsDemo, TabsDashboardDemo } from '@/components/tabs-demo'
 
 const SHELL_LANGS = new Set(['shell', 'bash', 'zsh', 'sh', 'fish'])
 const { pre: DefaultPre } = getDocsMDXComponents()
@@ -110,6 +111,9 @@ export function useMDXComponents() {
     AlertBasicDemo,
     AlertIconDemo,
     AlertActionDemo,
+    TabsBasicDemo,
+    TabsSettingsDemo,
+    TabsDashboardDemo,
     Accordion,
     AccordionItem,
     AccordionTrigger,

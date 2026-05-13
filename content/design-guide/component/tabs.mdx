@@ -1,0 +1,76 @@
+---
+title: "Tabs — 탭"
+description: 하나의 공간에서 여러 콘텐츠 패널을 전환할 수 있는 네비게이션 컴포넌트예요.
+---
+
+# Tabs — 탭
+
+**Tabs**는 하나의 공간에서 여러 콘텐츠 섹션을 탭 버튼으로 전환하는 컴포넌트예요.\
+`TabsList` → `TabsTrigger` → `TabsContent` 구조로 구성되며, 페이지 이동 없이 관련 콘텐츠를 깔끔하게 분리해줘요.
+
+## 언제 써요?
+
+| 상황 | 예시 |
+|------|------|
+| 연관된 콘텐츠 그룹화 | 개요·활동·설정처럼 같은 맥락의 뷰 분리 |
+| 설정 카테고리 분류 | 계정·알림·보안 설정 탭 |
+| 데이터 뷰 전환 | 통계 차트 ↔ 목록 테이블 |
+| 코드·미리보기 | 에디터와 렌더링 결과 나란히 |
+
+## 구성 요소
+
+| 컴포넌트 | 역할 |
+|----------|------|
+| `Tabs` | 루트 컨테이너. `defaultValue`로 초기 탭 지정 |
+| `TabsList` | 탭 버튼들을 담는 가로 바 |
+| `TabsTrigger` | 개별 탭 버튼. `value`로 연결된 패널 식별 |
+| `TabsContent` | 각 탭에 대응하는 콘텐츠 패널 |
+
+## Claude에게 이렇게 말해보세요
+
+### 기본 탭
+
+<TabsBasicDemo />
+
+<VibeBlock>
+```
+shadcn Tabs로 프로젝트 정보 탭 만들어줘.
+탭 3개 — "개요"(마감일·팀 규모·진행률 표), "활동"(최근 작업 목록), "설정"(프로젝트 이름·공개 여부).
+기본 선택은 "개요"로 해줘.
+```
+</VibeBlock>
+
+### 아이콘 탭 — 설정 패널
+
+<TabsSettingsDemo />
+
+<VibeBlock>
+```
+shadcn Tabs로 사용자 설정 페이지 만들어줘.
+탭 3개 — "계정"(이름·이메일·역할), "알림"(새 댓글·멘션·마케팅 이메일 on/off Badge),
+"보안"(비밀번호 변경·2단계 인증·활성 세션 각각 outline 버튼).
+각 탭 트리거에 아이콘 넣어줘.
+```
+</VibeBlock>
+
+### 탭 + 대시보드
+
+<TabsDashboardDemo />
+
+<VibeBlock>
+```
+shadcn Tabs로 API 대시보드 만들어줘.
+탭 2개 — "통계"(총 요청·성공률·평균 응답을 3열 통계 카드로), "목록"(API별 호출 건수·상태 Badge 테이블).
+탭 오른쪽에 "이번 달" Badge 나란히 넣어줘.
+```
+</VibeBlock>
+
+<Callout type="tip">
+`TabsTrigger`에 아이콘과 텍스트를 함께 쓸 땐 `className="gap-1.5"`를 추가하면 간격이 자연스러워요.
+</Callout>
+
+## 더 알아보기
+
+더 자세한 Props와 사용법은 공식 문서를 참고하세요.
+
+- [shadcn/ui Tabs 공식 문서](https://ui.shadcn.com/docs/components/radix/tabs)
