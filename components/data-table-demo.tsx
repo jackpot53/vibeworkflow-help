@@ -349,9 +349,26 @@ function MiniTable({ data }: { data: Task[] }) {
   )
 }
 
-// columns 정의 — 텍스트·Badge 등 다양한 cell 렌더러
+// columns 정의 — 컬럼 헤더만 표시
 export function DataTableColumnsDemo() {
-  return <MiniTable data={TASKS.slice(0, 3)} />
+  const table = useReactTable({ data: [], columns: colDemoColumns, getCoreRowModel: getCoreRowModel() })
+  return (
+    <div className="not-prose rounded border border-border overflow-hidden">
+      <Table>
+        <TableHeader>
+          {table.getHeaderGroups().map((hg) => (
+            <TableRow key={hg.id} className="bg-muted/60 hover:bg-muted/60">
+              {hg.headers.map((h) => (
+                <TableHead key={h.id} className="py-1.5 text-xs h-auto">
+                  {flexRender(h.column.columnDef.header, h.getContext())}
+                </TableHead>
+              ))}
+            </TableRow>
+          ))}
+        </TableHeader>
+      </Table>
+    </div>
+  )
 }
 
 // useReactTable — 훅 인스턴스가 렌더링을 구동
