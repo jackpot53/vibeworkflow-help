@@ -8,4 +8,6 @@ export default {
   skeleton: 'Skeleton',
   collapsible: 'Collapsible',
   tabs: 'Tabs',
+  table: 'Table',
+  'data-table': 'Data Table',
 }

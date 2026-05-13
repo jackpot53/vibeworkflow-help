@@ -1,0 +1,54 @@
+---
+title: "Data Table — 데이터 테이블"
+description: 정렬·필터링·페이지네이션·열 관리를 갖춘 인터랙티브 테이블 컴포넌트예요.
+---
+
+# Data Table — 데이터 테이블
+
+**Data Table**은 TanStack Table을 기반으로 정렬·필터링·페이지네이션·열 표시 토글을 지원하는 인터랙티브 테이블이에요.\
+기본 `Table` 컴포넌트 위에 상태 관리 레이어를 얹는 구조라 원하는 기능만 골라서 붙일 수 있어요.
+
+## 언제 써요?
+
+| 상황 | 예시 |
+|------|------|
+| 대량 데이터 탐색 | 작업 목록, 사용자 관리, 주문 내역 |
+| 필터·검색이 필요한 목록 | 이름·상태로 좁혀보기 |
+| 열 정렬이 필요한 표 | 날짜순, 우선순위순 정렬 |
+| 열을 선택적으로 숨기고 싶은 표 | 컴팩트 뷰 전환 |
+
+## 구성 요소
+
+| 항목 | 역할 | 예시 |
+|------|------|------|
+| `columns` 정의 | `ColumnDef<T>[]` — 각 열의 렌더링·정렬·필터 방식 선언 | <DataTableColumnsDemo /> |
+| `useReactTable` | TanStack Table 인스턴스 생성. 필요한 Row Model을 조합해 기능을 활성화 | <DataTableHookDemo /> |
+| 툴바 | 검색 `Input` + 열 표시·숨김 `DropdownMenu` | <DataTableToolbarDemo /> |
+| `flexRender` | `header`·`cell` 정의를 실제 JSX로 렌더링 | <DataTableRenderDemo /> |
+| 페이지네이션 | `previousPage()` / `nextPage()` + 현재 위치 표시 | <DataTablePaginationDemo /> |
+
+## Claude에게 이렇게 말해보세요
+
+<DataTableDemo />
+
+<VibeBlock>
+```
+@tanstack/react-table과 shadcn Table로 작업 목록 데이터 테이블 만들어줘.
+열 5개 — ID(모노스페이스), 제목(정렬 가능), 상태(Badge, 정렬 가능),
+우선순위(Badge, 정렬 가능), 담당자(정렬 가능).
+툴바엔 제목 검색 Input이랑 열 표시/숨김 DropdownMenu 넣어줘.
+페이지당 5행, 이전/다음 버튼이랑 "X / Y 페이지" 표시 달아줘.
+헤더 행은 bg-muted/60 배경 넣어줘.
+```
+</VibeBlock>
+
+<Callout type="tip">
+`ColumnDef`의 `header`에 `Button`을 넣고 `column.toggleSorting()`을 연결하면 클릭으로 정렬을 전환할 수 있어요. `ArrowUpDown` 아이콘을 함께 쓰면 정렬 가능한 열임을 시각적으로 알려줄 수 있어요.
+</Callout>
+
+## 더 알아보기
+
+더 자세한 API와 고급 사용법은 공식 문서를 참고하세요.
+
+- [shadcn/ui Data Table 공식 문서](https://ui.shadcn.com/docs/components/radix/data-table)
+- [TanStack Table 공식 문서](https://tanstack.com/table/latest)

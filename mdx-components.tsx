@@ -33,7 +33,7 @@ import { CollapsibleBasicDemo, CollapsibleFaqDemo, CollapsibleSettingsDemo } fro
 import { AlertBasicDemo, AlertIconDemo, AlertActionDemo } from '@/components/alert-demo'
 import { TabsBasicDemo, TabsSettingsDemo, TabsDashboardDemo } from '@/components/tabs-demo'
 import { TableBasicDemo, TableStatusDemo, TableFooterDemo } from '@/components/table-demo'
-import { DataTableDemo } from '@/components/data-table-demo'
+import { DataTableDemo, DataTableColumnsDemo, DataTableHookDemo, DataTableToolbarDemo, DataTableRenderDemo, DataTablePaginationDemo } from '@/components/data-table-demo'
 import { FileTree } from '@/components/file-tree'
 
 const SHELL_LANGS = new Set(['shell', 'bash', 'zsh', 'sh', 'fish'])
@@ -121,6 +121,11 @@ export function useMDXComponents() {
     TableStatusDemo,
     TableFooterDemo,
     DataTableDemo,
+    DataTableColumnsDemo,
+    DataTableHookDemo,
+    DataTableToolbarDemo,
+    DataTableRenderDemo,
+    DataTablePaginationDemo,
     FileTree,
     Accordion,
     AccordionItem,

@@ -1,0 +1,81 @@
+---
+title: "Table — 테이블"
+description: 정형 데이터를 행과 열로 구조화해 보여주는 컴포넌트예요.
+---
+
+# Table — 테이블
+
+**Table**은 정형 데이터를 행과 열로 구조화해 표시하는 컴포넌트예요.\
+헤더·본문·푸터 구조로 구성되며, 목록 비교·현황 파악·청구 내역처럼 데이터를 스캔해야 할 때 적합해요.
+
+## 언제 써요?
+
+| 상황 | 예시 |
+|------|------|
+| 정형 데이터 목록 | 팀원·고객·상품 목록 |
+| 상태 현황 파악 | API 상태·배포 현황·서비스 모니터링 |
+| 항목 비교 | 요금제·스펙 비교표 |
+| 청구·정산 내역 | 주문 내역·인보이스·영수증 |
+
+## 구성 요소
+
+| 컴포넌트 | 역할 |
+|----------|------|
+| `Table` | 루트 컨테이너. `width: 100%`로 가득 채워짐 |
+| `TableHeader` | `<thead>` 영역. `TableRow` + `TableHead` 조합 |
+| `TableBody` | `<tbody>` 영역. 데이터 행들을 담음 |
+| `TableFooter` | `<tfoot>` 영역. 합계·요약 행에 사용 |
+| `TableRow` | 개별 행 (`<tr>`). 호버 시 하이라이트 |
+| `TableHead` | 헤더 셀 (`<th>`). `text-right`로 숫자 열 정렬 가능 |
+| `TableCell` | 데이터 셀 (`<td>`). `colSpan`으로 열 병합 가능 |
+| `TableCaption` | 테이블 하단 캡션 텍스트 |
+
+## Claude에게 이렇게 말해보세요
+
+### 기본 테이블
+
+<TableBasicDemo />
+
+<VibeBlock>
+```
+shadcn Table로 팀원 목록 테이블 만들어줘.
+열 4개 — 이름(굵게), 역할, 부서, 이메일(흐린 색).
+하단에 TableCaption으로 "현재 프로젝트 팀원 목록이에요." 추가해줘.
+```
+</VibeBlock>
+
+### 상태 Badge 테이블
+
+<TableStatusDemo />
+
+<VibeBlock>
+```
+shadcn Table로 API 현황 테이블 만들어줘.
+열 4개 — API 이름, 호출 수(우측 정렬), 성공률(우측 정렬), 상태(가운데 정렬).
+헤더 행은 bg-muted/60 배경 넣고, 각 열 사이에 border-r로 세로 구분선 넣어줘.
+상태는 rounded-full Badge로 — "정상"은 default, "점검 중"은 secondary, "오류"는 destructive.
+```
+</VibeBlock>
+
+### 합계 행 (TableFooter)
+
+<TableFooterDemo />
+
+<VibeBlock>
+```
+shadcn Table로 청구 내역 테이블 만들어줘.
+열 4개 — 항목, 수량(우측 정렬), 단가(우측 정렬), 금액(우측 정렬).
+마지막 행은 TableFooter로 "합계" 텍스트와 총합 금액을 표시해줘.
+앞 3열은 colSpan=3으로 병합해줘.
+```
+</VibeBlock>
+
+<Callout type="tip">
+숫자·금액 열은 `TableHead`와 `TableCell` 모두에 `className="text-right"`를 주면 헤더와 데이터 정렬이 맞아떨어져요.
+</Callout>
+
+## 더 알아보기
+
+더 자세한 Props와 사용법은 공식 문서를 참고하세요.
+
+- [shadcn/ui Table 공식 문서](https://ui.shadcn.com/docs/components/radix/table)
