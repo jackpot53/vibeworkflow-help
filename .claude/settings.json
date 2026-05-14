@@ -48,7 +48,8 @@
       "Bash(grep \"^\\\\`\\\\`\\\\`\")",
       "Bash(grep -B5 \"⎿\\\\|\\\\`\\\\`\\\\`output\")",
       "Bash(grep -rn -B5 -A10 \"^\\\\`\\\\`\\\\`output\" /Users/amiz/dev/vibeworkflow-help/content/)",
-      "Bash(grep -B1 \"^\\\\`\\\\`\\\\`output\")"
+      "Bash(grep -B1 \"^\\\\`\\\\`\\\\`output\")",
+      "WebFetch(domain:portfolio-two-sepia-93.vercel.app)"
     ],
     "additionalDirectories": [
       "/Users/amiz/Desktop"
