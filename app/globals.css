@@ -410,6 +410,15 @@ mark {
   color: rgba(0, 0, 0, 0.3) !important;
 }
 
+/* SlashBlock 내부 > 프리픽스: 복사 불가 */
+.slash-block pre.not-prose code.nextra-code > span::before {
+  content: "> ";
+  color: rgba(0, 0, 0, 0.3);
+  user-select: none;
+  -webkit-user-select: none;
+  font-weight: 500;
+}
+
 /* VibeBlock / ClaudeBlock / ShellBlock / SlashBlock / FileBlock: strip header + code block */
 .vibe-block pre.not-prose,
 .vibe-block figure,
