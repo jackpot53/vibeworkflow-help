@@ -786,7 +786,7 @@ const CARDS: { name: string; desc: string; href?: string; preview: React.ReactNo
   )},
   { name: 'Avatar', desc: '사용자 프로필 이미지를 둥글게 표시하는 컴포넌트예요.', href: '/design-guide/component/avatar', preview: (
     <div className="flex items-center gap-3">
-      <Avatar><AvatarImage src="https://github.com/shadcn.png" /><AvatarFallback>CN</AvatarFallback></Avatar>
+      <Avatar><AvatarImage src="/images/shadcn-avatar.png" /><AvatarFallback>CN</AvatarFallback></Avatar>
       <Avatar size="sm"><AvatarFallback>AB</AvatarFallback></Avatar>
       <Avatar size="lg"><AvatarFallback>JK</AvatarFallback></Avatar>
     </div>

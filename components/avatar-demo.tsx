@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/avatar'
 
 const TEAM = [
-  { name: '김지수', initials: '김지', src: 'https://24365withblinks.com/images/about/profile_jisoo.jpg' },
+  { name: '김지수', initials: '김지', src: '/images/profile-jisoo.jpg' },
   { name: '이민준', initials: '이민', src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBBW9G3a0VUkCDVYrVlVOffv_MU4J6uliJ6g&s' },
   { name: '박서연', initials: '박서', src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9L_eIa-ScFPOiAqaUpe7Loy9Bku1O0zkMgw&s' },
   { name: '최지후', initials: '최지', src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSLjEDQ8vsPOiGgZiDYbp_rsk6knPVCVCgWQ&s' },

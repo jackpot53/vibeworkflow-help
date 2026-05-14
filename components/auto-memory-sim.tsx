@@ -14,7 +14,7 @@ function UserAvatar() {
 function ClaudeAvatar() {
   return (
     <Avatar size="sm" className="flex-shrink-0">
-      <AvatarImage src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Claude_AI_logo.svg/1024px-Claude_AI_logo.svg.png" alt="Claude" />
+      <AvatarImage src="/images/claude-ai-logo.svg" alt="Claude" />
       <AvatarFallback className="bg-gradient-to-br from-orange-400 to-amber-500 text-white font-bold text-xs">C</AvatarFallback>
     </Avatar>
   )

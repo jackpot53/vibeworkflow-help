@@ -17,7 +17,7 @@ declare global {
 function LottieSkeleton() {
   return (
     <img
-      src="https://cdn.day1company.io/prod/uploads/202603/201650-1931/main-web-980-354.webp"
+      src="/images/day1company-main-web.webp"
       alt=""
       style={{ width: '500px', height: 'auto' }}
       className="rounded-2xl"

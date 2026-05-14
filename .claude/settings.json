@@ -41,7 +41,14 @@
       "Bash(grep -n '```json\\\\|```' /Users/amiz/dev/vibeworkflow-help/content/reference/commands/permissions.mdx)",
       "Bash(grep -n 'settings\\\\.json\\\\|```json' /Users/amiz/dev/vibeworkflow-help/content/guides/environment-setup/settings.mdx)",
       "Bash(grep -n '```markdown\\\\|```\\\\n' /Users/amiz/dev/vibeworkflow-help/content/design-guide/design-md.mdx)",
-      "Bash(grep -n '```json' /Users/amiz/dev/vibeworkflow-help/content/guides/environment-setup/settings.mdx)"
+      "Bash(grep -n '```json' /Users/amiz/dev/vibeworkflow-help/content/guides/environment-setup/settings.mdx)",
+      "Bash(npm install *)",
+      "Bash(cp ~/Desktop/claudecode-extension.png /Users/amiz/dev/vibeworkflow-help/public/images/claudecode-extension.png)",
+      "Bash(grep -n \"shell-cmd-block\\\\|bash\\\\|\\\\\\\\\\\\$\\\\|user-select\\\\|select-none\\\\|prefix\" /Users/amiz/dev/vibeworkflow-help/app/globals.css)",
+      "Bash(grep \"^\\\\`\\\\`\\\\`\")"
+    ],
+    "additionalDirectories": [
+      "/Users/amiz/Desktop"
     ]
   }
 }
