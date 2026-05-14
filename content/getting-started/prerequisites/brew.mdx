@@ -11,19 +11,42 @@ description: macOS에서 개발 도구를 쉽게 관리할 수 있는 패키지 
 즉, 앱스토어 없이 터미널로 모든 개발 도구를 관리할 수 있습니다.<br/>
 개발하다가 필요한 프로그램이나 패키지들을 brew를 통해 설치할 경우가 있으니 설치를 해야 합니다.
 
- MacOS의 `Terminal` 앱을 열고 다음 명령어를 붙여넣기 한다음 `enter` 를 해서 설치합니다.
+MacOS의 `Terminal` 앱을 열고 다음 명령어를 붙여넣기 한다음 `enter` 를 해서 설치합니다.
 
-```shell
+<Callout type="info">
+  **터미널이 뭔가요?**
+
+  터미널은 컴퓨터에 **글자로 명령을 내리는 창**이에요.
+  마우스로 클릭하는 대신, 키보드로 명령어를 입력해서 프로그램을 설치하거나 파일을 다루는 방식입니다.
+
+  macOS에는 기본으로 **Terminal** 앱이 설치되어 있어요. Spotlight(⌘ + Space)에서 "Terminal" 또는 "터미널"을 검색하면 바로 열 수 있어요.
+
+  <Screenshot src="https://ftp-mac.com/wp-content/uploads/2024/04/Screenshot-2024-04-10-at-20.56.23-1024x664.png" alt="macOS Spotlight에서 Terminal 검색" caption="Spotlight에서 Terminal 검색" />
+
+  <Screenshot src="https://maketecheasier.com/wp-content/uploads/2021/06/macos-terminal.png" alt="macOS 기본 Terminal 앱" caption="macOS 기본 Terminal 앱" />
+
+  처음에는 낯설어 보이지만, 결국 "이 명령어를 붙여넣고 Enter"만 반복하는 거라 금방 익숙해져요.
+</Callout>
+
+<ShellBlock>
+```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
+</ShellBlock>
+
+<Callout type="info">
+  우측 **복사 버튼**을 클릭해서 명령어를 복사한 뒤, 터미널에 붙여넣기(⌘ + V)하고 **Enter**를 누르세요.
+</Callout>
 
 ## 설치 확인
 
 설치가 완료되면 다음 명령어로 정상 설치 여부를 확인합니다.
 
-```shell
+<ShellBlock>
+```bash
 brew --version
 ```
+</ShellBlock>
 
 아래와 같이 버전 정보가 출력되면 설치 성공입니다.
 

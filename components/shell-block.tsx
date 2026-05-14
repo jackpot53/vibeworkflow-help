@@ -7,7 +7,7 @@ export function ShellBlock({ children }: { children: ReactNode }) {
       <div className="flex items-center bg-amber-50 border-b border-amber-200 px-3 py-1.5">
         <span className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-widest uppercase px-2 py-0.5 bg-amber-100 text-amber-700 border border-amber-300">
           <Terminal size={11} />
-          SHELL
+          터미널 입력
         </span>
       </div>
       {children}

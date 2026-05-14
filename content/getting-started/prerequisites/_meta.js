@@ -1,4 +1,5 @@
 export default {
+  index: '시작 전 준비물',
   brew: '01. brew(Homebrew) 설치',
   terminal: '02. 터미널 설치',
   'claude-subscription': '03. 클로드코드 구독하기',
