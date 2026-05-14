@@ -59,8 +59,8 @@ function CodePre(props: ComponentProps<'pre'> & { 'data-language'?: string }) {
     return (
       <div className="output-block border border-gray-200 rounded-md overflow-hidden">
         <div className="flex items-center bg-gray-100 border-b border-gray-200 px-3 py-1.5">
-          <span className="inline-block text-xs font-semibold tracking-widest uppercase px-2 py-0.5 bg-gray-200 text-gray-600 border border-gray-300">
-            출력
+          <span className="inline-block text-xs font-semibold px-2 py-0.5 bg-gray-200 text-gray-600 border border-gray-300">
+            터미널 출력
           </span>
         </div>
         <Pre {...props} />

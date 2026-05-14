@@ -45,7 +45,10 @@
       "Bash(npm install *)",
       "Bash(cp ~/Desktop/claudecode-extension.png /Users/amiz/dev/vibeworkflow-help/public/images/claudecode-extension.png)",
       "Bash(grep -n \"shell-cmd-block\\\\|bash\\\\|\\\\\\\\\\\\$\\\\|user-select\\\\|select-none\\\\|prefix\" /Users/amiz/dev/vibeworkflow-help/app/globals.css)",
-      "Bash(grep \"^\\\\`\\\\`\\\\`\")"
+      "Bash(grep \"^\\\\`\\\\`\\\\`\")",
+      "Bash(grep -B5 \"⎿\\\\|\\\\`\\\\`\\\\`output\")",
+      "Bash(grep -rn -B5 -A10 \"^\\\\`\\\\`\\\\`output\" /Users/amiz/dev/vibeworkflow-help/content/)",
+      "Bash(grep -B1 \"^\\\\`\\\\`\\\\`output\")"
     ],
     "additionalDirectories": [
       "/Users/amiz/Desktop"
