@@ -410,8 +410,9 @@ mark {
   color: rgba(0, 0, 0, 0.3) !important;
 }
 
-/* SlashBlock 내부 > 프리픽스: 복사 불가 */
-.slash-block pre.not-prose code.nextra-code > span::before {
+/* SlashBlock / VibeBlock 내부 > 프리픽스: 복사 불가 */
+.slash-block pre.not-prose code.nextra-code > span::before,
+.vibe-block pre.not-prose code.nextra-code > span::before {
   content: "> ";
   color: rgba(0, 0, 0, 0.3);
   user-select: none;
