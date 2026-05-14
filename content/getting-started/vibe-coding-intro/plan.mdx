@@ -136,15 +136,17 @@ import { Lightbulb, ClipboardList, Search, GitBranch, Layers } from 'lucide-reac
 
 ## Plan 모드로 전환
 
-모델 설정이 끝났으면 이제 Plan 모드로 전환해볼게요.
-
-`/plan`을 입력하거나, **Shift + Tab**을 두 번 눌러도 돼요.
+Plan 모드로 전환하기 위해 클로드코드 CLI에서 `/plan`을 입력하거나, **Shift + Tab**을 두 번 눌러도 돼요.
 
 <SlashBlock>
 ```
 /plan
 ```
 </SlashBlock>
+
+클로드코드 익스텐션(안티그래비티)에서는 입력창 오른쪽 아래의 모드 버튼을 클릭한 뒤 **Plan mode**를 선택하면 돼요.
+
+<Screenshot src="/images/planmode.png" alt="클로드코드 익스텐션 Plan mode 선택 화면" />
 
 이 명령어를 입력하는 순간 Claude가 Plan 모드로 전환돼요.\
 이 상태에서 원하는 걸 말하면 코드를 바로 짜는 대신, 어떻게 만들지 계획부터 세워줘요.\
@@ -293,28 +295,28 @@ import { Lightbulb, ClipboardList, Search, GitBranch, Layers } from 'lucide-reac
 
 ---
 
-## 이제 클로드코드에게 말을 걸어볼게요
+## 이번 실습 기술 스택
+
+이번 실습에서 사용할 기술 스택은 아래와 같아요. Claude에게 말을 걸 때 이 스택을 함께 알려주면 더 정확하게 세팅해줘요.
+
+| 기술 | 한 줄 설명 |
+|------|-----------|
+| [**Next.js**](https://nextjs.org) | 웹사이트를 만드는 React 기반 프레임워크예요. 폴더 구조만으로 페이지가 자동으로 만들어져요. |
+| [**TypeScript**](https://www.typescriptlang.org) | JavaScript에 타입을 추가한 언어예요. 코드 실수를 미리 잡아줘서 더 안전한 개발이 가능해요. |
+| [**App Router**](https://nextjs.org/docs/app) | Next.js의 최신 라우팅 방식이에요. `app/` 폴더 안에 파일을 만들면 자동으로 URL이 생성돼요. |
+| [**Supabase**](https://supabase.com) | 데이터베이스 + 로그인 기능을 쉽게 쓸 수 있는 서비스예요. 백엔드 없이도 데이터를 저장할 수 있어요. |
+| [**Vercel**](https://vercel.com) | Next.js를 만든 회사가 운영하는 배포 플랫폼이에요. GitHub에 올리면 자동으로 배포돼요. |
+| [**Tailwind CSS**](https://tailwindcss.com) | 클래스 이름으로 디자인하는 CSS 도구예요. `text-lg`, `bg-blue-500` 같은 이름으로 스타일을 바로 적용해요. |
+| [**shadcn/ui**](https://ui.shadcn.com) | 버튼, 카드, 모달 같은 UI 컴포넌트 모음이에요. 복사해서 바로 쓸 수 있고 커스터마이징도 쉬워요. |
+
+---
+
+## 포트폴리오 웹사이트 계획서 만들기 <span className="inline-block text-xs font-semibold tracking-widest uppercase px-2 py-0.5 ml-1 align-middle bg-blue-500/15 text-blue-600 dark:text-blue-400 border border-blue-500/30">실습</span>
 
 Plan 모드에서 자연어로 원하는 것을 설명하면 돼요.\
 완벽하게 정리된 기획서가 없어도 괜찮아요 — 아이디어를 편하게 말하면 Claude가 구체화해줘요.
 
-이번 실습에서 사용할 기술 스택은 아래와 같아요. Claude에게 말을 걸 때 이 스택을 함께 알려주면 더 정확하게 세팅해줘요.
-
-<Callout type="tip">
-  <span className="inline-block text-xs font-semibold tracking-widest uppercase px-2 py-0.5 mb-3 bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">이번 실습 기술 스택</span>
-  
-  | 기술 | 한 줄 설명 |
-  |------|-----------|
-  | **Next.js** | 웹사이트를 만드는 React 기반 프레임워크예요. 폴더 구조만으로 페이지가 자동으로 만들어져요. |
-  | **TypeScript** | JavaScript에 타입을 추가한 언어예요. 코드 실수를 미리 잡아줘서 더 안전한 개발이 가능해요. |
-  | **App Router** | Next.js의 최신 라우팅 방식이에요. `app/` 폴더 안에 파일을 만들면 자동으로 URL이 생성돼요. |
-  | **Supabase** | 데이터베이스 + 로그인 기능을 쉽게 쓸 수 있는 서비스예요. 백엔드 없이도 데이터를 저장할 수 있어요. |
-  | **Vercel** | Next.js를 만든 회사가 운영하는 배포 플랫폼이에요. GitHub에 올리면 자동으로 배포돼요. |
-  | **Tailwind CSS** | 클래스 이름으로 디자인하는 CSS 도구예요. `text-lg`, `bg-blue-500` 같은 이름으로 스타일을 바로 적용해요. |
-  | **shadcn/ui** | 버튼, 카드, 모달 같은 UI 컴포넌트 모음이에요. 복사해서 바로 쓸 수 있고 커스터마이징도 쉬워요. |
-</Callout>
-
-아래는 포트폴리오 사이트를 시작할 때 쓸 수 있는 예시들이에요:
+먼저 만들고 싶은 것을 말해요.
 
 <VibeBlock>
 ```
@@ -322,216 +324,328 @@ Plan 모드에서 자연어로 원하는 것을 설명하면 돼요.\
 ```
 </VibeBlock>
 
-<VibeBlock>
-```
-개발자 포트폴리오 사이트 만들어줘.
-자기소개, 프로젝트 목록, 연락처 섹션이 있었으면 좋겠어.
-```
-</VibeBlock>
-
-<VibeBlock>
-```
-심플하고 깔끔한 포트폴리오 웹사이트를 만들고 싶어.
-Next.js 쓰고 싶고, 다크 모드도 지원하면 좋겠어.
-프로젝트 카드들이 그리드로 보이는 레이아웃이면 좋겠어.
-```
-</VibeBlock>
-
-<VibeBlock>
-```
-포트폴리오 사이트 만들어줘.
-히어로 섹션에 내 이름이랑 한 줄 소개가 나오고,
-아래에 내가 만든 프로젝트들이 카드 형태로 보이는 구성이면 돼.
-GitHub 링크도 넣을 수 있으면 좋겠어.
-```
-</VibeBlock>
-
-기술 스택을 명시하면 Claude가 세팅부터 맞춰줘요:
-
-<VibeBlock>
-```
-Next.js + TypeScript + Tailwind CSS + shadcn/ui로
-포트폴리오 사이트 만들어줘.
-자기소개, 프로젝트 목록, 연락처 섹션이 있었으면 좋겠어.
-```
-</VibeBlock>
-
-<VibeBlock>
-```
-Next.js App Router, TypeScript, Tailwind CSS, shadcn/ui 스택으로
-심플한 개발자 포트폴리오 만들어줘.
-데이터는 Supabase에 저장하고 Vercel로 배포할 거야.
-프로젝트 카드들이 그리드로 보이고 다크 모드도 지원하면 좋겠어.
-```
-</VibeBlock>
-
-이번 실습에서는 아래 프롬프트를 그대로 사용할 거예요:
-
-<Callout type="tip">
-  <span className="inline-block text-xs font-semibold tracking-widest uppercase px-2 py-0.5 mb-2 bg-blue-500/15 text-blue-600 dark:text-blue-400 border border-blue-500/30">실습</span>
-  다음 프롬프트를 Plan 모드에서 그대로 입력해보세요.\
-  Claude가 질문을 던지면 그때 답하면서 구체화하는 것이 자연스러운 흐름이에요.
-</Callout>
-
-<VibeBlock>
-```
-나만의 포트폴리오가 있는 웹사이트를 만들고 싶어.
-Next.js App Router, TypeScript, Tailwind CSS, shadcn/ui 기술스택을 사용할거고
-DB연동은 Supabase, 배포는 Vercel을 이용할 거야.
-```
-</VibeBlock>
-
----
-
-## 이런 식으로 대화가 흘러가요
-
-Plan 모드를 시작하면 Claude가 바로 코드를 짜지 않아요.\
-먼저 뭘 만들고 싶은지 물어보고, 충분히 파악한 뒤에 계획을 세워요.\
-마치 개발자 친구와 아이디어를 정리하는 대화 같은 느낌이에요.
-
----
-
-### 1단계 — 내가 무엇을 만들고 싶은지 말해요
-
-<VibeBlock>
-```
-> 나만의 포트폴리오가 있는 웹사이트를 만들고 싶어.
-  Next.js App Router, TypeScript, Tailwind CSS, shadcn/ui 기술스택을 사용할거고
-  DB연동은 Supabase, 배포는 Vercel을 이용할 거야.
-```
-</VibeBlock>
-
----
-
-### 2단계 — Claude가 구체적으로 물어봐요
-
-Claude가 모호한 부분을 스스로 가정하지 않고 먼저 확인해요.
-
 <ClaudeBlock>
 ```
-⏺ 포트폴리오 사이트 계획을 시작하기 전에 몇 가지 여쭤볼게요.
-
-  1. 어떤 페이지나 섹션이 필요하신가요?
-     (예: 자기소개 히어로, 프로젝트 목록, 기술 스택, 경력, 연락처 등)
-
-  2. 프로젝트 데이터는 어떻게 관리하실 건가요?
-     - 코드 파일에 직접 작성 (간단하고 빠름)
-     - Supabase DB에서 불러오기 (나중에 관리자 페이지 추가 가능)
-
-  3. 다크 모드가 필요하신가요?
-
-  4. 모바일에서도 잘 보여야 하나요?
+포트폴리오 웹사이트를 만들고 싶으시군요. 계획을 세우기 전에 현재 디렉토리
+상태를 먼저 확인하고, 몇 가지 중요한 결정 사항을 여쭤보겠습니다.
 ```
 </ClaudeBlock>
 
----
-
-### 3단계 — 내가 답해요
-
-`>` 뒤에 타이핑하고 Enter를 누르면 돼요.\
-완벽하게 답하지 않아도 괜찮아요. 생각나는 대로 말하면 Claude가 맞춰줘요.
-
-<VibeBlock>
-```
-> 섹션은 자기소개, 프로젝트 목록, 연락처면 충분해.
-  프로젝트 데이터는 일단 코드에 직접 쓸게.
-  다크 모드랑 모바일 대응 둘 다 필요해.
-```
-</VibeBlock>
-
-모르거나 정해지지 않은 건 그냥 말해도 돼요:
-
-<VibeBlock>
-```
-> DB 연동은 나중에 추가하고 싶은데 일단 없이 시작해도 될까?
-```
-</VibeBlock>
+Claude가 첫 번째 질문을 던져요.
 
 <ClaudeBlock>
 ```
-⏺ 네, 전혀 문제없어요. 지금은 코드에 데이터를 직접 작성하고,
-  나중에 Supabase 연동이 필요하면 그때 추가하는 방식으로 할게요.
+어떤 분야의 포트폴리오인가요?
+
+❯ 1. 개발자/엔지니어
+     프로젝트, 기술 스택, GitHub 링크 중심
+  2. 디자이너
+     비주얼 작업물, 케이스 스터디 중심
+  3. 콘텐츠/크리에이터
+     글, 영상, 사진 등 창작물 중심
+  4. 범용 자기소개
+     특정 분야에 한정하지 않은 일반 프로필
+  5. Type something.
 ```
 </ClaudeBlock>
 
----
-
-### 4단계 — Claude가 계획을 만들어줘요
-
-대화가 끝나면 Claude가 어떤 파일을 만들고 어떤 순서로 작업할지 정리해줘요.
 
 <ClaudeBlock>
 ```
-⏺ 알겠어요. 구현 계획을 정리했어요:
+어떤 기술 스택으로 만들까요?
 
-  ## 포트폴리오 사이트 계획
+❯ 1. 정적 HTML/CSS/JS (Recommended)
+     가장 간단, 빌드 도구 불필요, GitHub Pages 등 어디든 배포 쉬움
+  2. Next.js + Tailwind
+     React 기반 모던 스택, 추후 블로그/동적 기능 확장 용이
+  3. Astro
+     정적 사이트 최적화, 빠른 로딩, 콘텐츠 중심 사이트에 적합
+  4. Type something.
+────────────────────────────────────────────────────────────────────────────────
+  5. Chat about this
+  6. Skip interview and plan immediately
 
-  ### 만들 화면
-  - 메인 페이지 — Hero(자기소개), 프로젝트 목록, 연락처를 한 페이지에 배치
-
-  ### 만들 파일
-  - app/page.tsx            — 메인 페이지
-  - app/layout.tsx          — 공통 레이아웃, 다크 모드 설정
-  - components/Hero.tsx     — 이름, 한 줄 소개, 버튼
-  - components/Projects.tsx — 프로젝트 카드 그리드
-  - components/Contact.tsx  — 이메일 연락처
-  - data/projects.ts        — 프로젝트 데이터 (여기서 직접 수정해요)
-
-  ### 작업 순서
-  1. Next.js 프로젝트 생성 + Tailwind, shadcn/ui 설치
-  2. 다크 모드 + 모바일 반응형 레이아웃 설정
-  3. Hero 섹션 구현
-  4. 프로젝트 카드 그리드 구현
-  5. 연락처 섹션 구현
-  6. Vercel 배포 설정
 ```
 </ClaudeBlock>
 
----
-
-### 5단계 — 계획을 확인하고 승인하거나 수정해요
-
-계획을 보고 마음에 들면 바로 승인하고, 바꾸고 싶은 게 있으면 말하면 돼요.
-
-수정이 필요할 때:
-
-<VibeBlock>
-```
-> Skills 섹션도 추가해줘. 그리고 프로젝트 카드에 GitHub 링크도 넣어줘.
-```
-</VibeBlock>
-
 <ClaudeBlock>
 ```
-⏺ 계획 업데이트했어요.
-  - Skills 섹션 추가 (components/Skills.tsx)
-  - 프로젝트 카드에 GitHub 링크 필드 추가
+어떤 섹션을 포함할까요? (복수 선택)
 
-  이 계획대로 진행할까요?
+  1. [✔] About / 자기소개
+  본인 소개, 사진, 한 줄 요약
+  2. [✔] Projects / 프로젝트
+  주요 작업물 카드 리스트
+  3. [✔] Skills / 기술 스택
+  사용 가능한 기술/도구 목록
+❯ 4. [✔] Contact / 연락처
+  이메일, GitHub, LinkedIn 등 링크
+  5. [ ] Type something
+     Next
+────────────────────────────────────────────────────────────────────────────────
+  6. Chat about this
+  7. Skip interview and plan immediately
+────────────
 ```
 </ClaudeBlock>
 
-바로 승인할 때:
-
-<VibeBlock>
+<ClaudeBlock>
 ```
-> 응, 이대로 진행해줘.
+디자인 분위기는 어떤 쪽이 좋으세요?
+
+❯ 1. 미니멀/모던
+     깔끔한 여백, 절제된 색상, 타이포그래피 중심
+  2. 다크 테마/개발자 감성
+     어두운 배경, 모노스페이스 폰트, 터미널 느낌
+  3. 다채롭고 화려하게
+     그라데이션, 애니메이션, 시각적 임팩트 강조
+  4. Type something.
+────────────────────────────────────────────────────────────────────────────────
+  5. Chat about this
+  6. Skip interview and plan immediately
 ```
-</VibeBlock>
-
----
-
-### 6단계 — Claude가 코드를 작성하기 시작해요
-
-승인하면 Plan 모드가 끝나고 실제 코드 작성이 시작돼요.
+</ClaudeBlock>
 
 <ClaudeBlock>
 ```
-⏺ Plan 모드를 종료하고 구현을 시작할게요.
+Review your answers  쪽이 좋으세요?
 
+❯●1어떤 분야의 포트폴리오인가요?
+   → 개발자/엔지니어제된 색상, 타이포그래피 중심
+ ●2어떤 기술 스택으로 만들까요?
+   → Next.js + Tailwind
+ ●3어떤 섹션을 포함할까요? (복수 선택)
+   → About / 자기소개, Projects / 프로젝트, Skills / 기술 스택, Contact / 연락처
+ ●4디자인 분위기는 어떤 쪽이 좋으세요?
+── → 미니멀/모던
+
+Ready to submit your answers?immediately
+
+❯ 1. Submit answersab/Arrow keys to navigate · Esc to cancel
+  2. Cancel
+```
+</ClaudeBlock>
+
+<ClaudeBlock>
+```
+⏺ 답변 감사합니다. 개발자 포트폴리오, Next.js + Tailwind, 미니멀/모던 스타일로
+  가겠습니다. 한 가지만 더 확인하고 계획을 작성하겠습니다.
+```
+</ClaudeBlock>
+
+
+<ClaudeBlock>
+```
+포트폴리오의 주 언어는 무엇으로 할까요?
+
+❯ 1. 한국어
+     국내 채용/협업 대상이 주라면 적합
+  2. 영어
+     해외/글로벌 노출이 중요하면 적합
+  3. 한/영 토글 지원
+     다국어 지원 구현 (구현량 더 큼)
+  4. Type something.
+────────────────────────────────────────────────────────────────────────────────
+  5. Chat about this
+  6. Skip interview and plan immediately
+```
+</ClaudeBlock>
+
+<ClaudeBlock>
+```
+다크 모드 토글을 포함할까요?
+
+❯ 1. 네, 시스템 설정 따르기 + 수동 토글 (Recommended)
+     개발자 포트폴리오에서 흔한 패턴, 미니멀 스타일과 잘 어울림
+  2. 라이트 모드만
+     더 단순하게 구현, 깔끔한 하얀 바탕
+  3. 다크 모드만
+     어두운 테마 고정
+  4. Type something.
+────────────────────────────────────────────────────────────────────────────────
+  5. Chat about this
+  6. Skip interview and plan immediately
+```
+</ClaudeBlock>
+
+
+<ClaudeBlock>
+```
+⏺ 좋습니다. 이제 계획을 작성하겠습니다.
+```
+</ClaudeBlock>
+
+<ClaudeBlock>
+```
+Ready to code?
+
+ Here is Claude's plan:
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+ 개발자 포트폴리오 웹사이트 구축
+
+ Context
+
+ 사용자(개발자)의 개인 포트폴리오 웹사이트를 처음부터 구축합니다. 현재
+ /Users/amiz/dev/test/ 디렉토리는 비어 있고, git 저장소도 아닙니다.
+
+ 확정된 요구사항:
+ - 분야: 개발자/엔지니어 프로필
+ - 스택: Next.js (App Router) + TypeScript + Tailwind CSS
+ - 섹션: About, Projects, Skills, Contact (한 페이지 스크롤형)
+ - 디자인: 미니멀/모던 — 넓은 여백, 절제된 색상, 타이포그래피 중심
+ - 언어: 한국어
+ - 다크 모드: 시스템 설정 자동 감지 + 수동 토글
+
+ 의도하는 결과: 추후 본인 정보로 손쉽게 채워 넣을 수 있는, 깔끔하고 반응형으로
+ 동작하는 개인 포트폴리오 사이트.
+
+ ---
+ 접근 방식
+
+ 1. create-next-app으로 프로젝트를 스캐폴딩 (TypeScript + Tailwind + App Router
+  옵션 사용) — 직접 package.json / 빌드 설정을 작성하지 않고 공식 템플릿을 활용
+ 2. 데이터(프로젝트 목록, 스킬 목록)는 data/ 하위에 TypeScript 파일로 분리 →
+ 추후 본인이 콘텐츠만 교체하면 됨
+ 3. 각 섹션을 독립 컴포넌트로 구성하고, app/page.tsx에서 조립
+ 4. next-themes 라이브러리로 다크/라이트 토글 구현 (Next.js App Router에서
+ hydration 이슈 없이 동작하는 표준 패턴)
+
+ ---
+ 파일 구조
+
+ /Users/amiz/dev/test/
+ ├── app/
+ │   ├── layout.tsx          # 폰트, 메타데이터, ThemeProvider 래핑
+ │   ├── page.tsx            # 섹션 조립
+ │   └── globals.css         # Tailwind 디렉티브 + CSS 변수
+ ├── components/
+ │   ├── Nav.tsx             # 상단 고정 네비 + 다크모드 토글
+ │   ├── Hero.tsx            # About 섹션 (이름/한 줄 소개/CTA)
+ │   ├── Projects.tsx        # 프로젝트 카드 그리드
+ │   ├── Skills.tsx          # 카테고리별 스킬 태그
+ │   ├── Contact.tsx         # 이메일/GitHub/LinkedIn 링크
+ │   ├── ThemeProvider.tsx   # next-themes 래퍼
+ │   └── ThemeToggle.tsx     # 라이트/다크/시스템 전환 버튼
+ ├── data/
+ │   ├── profile.ts          # 이름, 한 줄 소개, 연락처 정보
+ │   ├── projects.ts         # 프로젝트 배열 (title, description, stack, links)
+ │   └── skills.ts           # 카테고리별 스킬 배열
+ ├── public/
+ │   └── (프로필 이미지 자리)
+ ├── tailwind.config.ts      # darkMode: 'class', 폰트 패밀리 확장
+ ├── package.json
+ └── README.md               # 콘텐츠 수정 가이드
+
+ ---
+ 주요 구현 디테일
+
+ 디자인 토큰 (미니멀/모던)
+
+ - 폰트: next/font/google로 Inter(라틴) + Pretendard(한글) 로드. 본문 16px/1.7,
+  헤딩은 굵기로만 위계 표현
+ - 색상: 라이트는 #fafafa 배경 / #171717 텍스트, 다크는 #0a0a0a 배경 / #ededed
+ 텍스트. 액센트 한 가지(예: #3b82f6)만 사용
+ - 레이아웃: max-w-3xl mx-auto px-6 고정 컬럼, 섹션 간 py-24 여백
+ - 모션: 과한 애니메이션 지양. 스크롤 시 fade-in 정도만 (CSS @starting-style
+ 또는 간단한 IntersectionObserver)
+
+ Nav (components/Nav.tsx)
+
+ - 상단 고정(sticky top-0), 반투명 배경 + backdrop-blur
+ - 섹션 앵커 링크 (About / Projects / Skills / Contact) — 스무스 스크롤
+ - 우측에 ThemeToggle
+
+ Hero / About (components/Hero.tsx)
+
+ - 이름(h1) + 직책/한 줄 소개 + 짧은 자기소개 단락
+ - CTA 2개: "프로젝트 보기"(앵커), "이메일 보내기"(mailto:)
+ - 데이터 출처: data/profile.ts
+
+ Projects (components/Projects.tsx)
+
+ - 2열 그리드(모바일 1열): 카드 컴포넌트
+ - 각 카드: 제목, 한 줄 설명, 스택 태그, GitHub/Demo 링크
+ - 데이터 출처: data/projects.ts (배열 길이에 따라 자동 렌더링)
+
+ Skills (components/Skills.tsx)
+
+ - 카테고리(예: Language / Frontend / Backend / Tools)별로 태그 형태로 나열
+ - 단순 텍스트 칩 — 진행률 바 같은 과한 시각화 지양 (미니멀 원칙)
+
+ Contact (components/Contact.tsx)
+
+ - 이메일(mailto:), GitHub, LinkedIn 링크 — 텍스트 + 아이콘
+ - 아이콘은 lucide-react 사용 (Tailwind와 가장 흔히 페어링되는 경량 SVG 아이콘
+ 셋)
+
+ 다크 모드
+
+ - next-themes의 ThemeProvider로 app/layout.tsx 전체 래핑, attribute="class" +
+ defaultTheme="system"
+ - tailwind.config.ts에서 darkMode: 'class'
+ - 토글은 라이트/다크/시스템 3-way 순환
+
+ 반응형
+
+ - Tailwind 기본 breakpoint 활용 (sm 640 / md 768 / lg 1024)
+ - Hero/Projects 그리드만 md: 분기, 나머지는 단일 컬럼 유지
+
+ ---
+ 수정 대상 / 생성 파일
+
+ 전부 신규 생성입니다. 가장 자주 손볼 파일은 다음과 같으므로 README에 명시:
+
+ - data/profile.ts — 이름, 자기소개, 연락처
+ - data/projects.ts — 프로젝트 추가/수정
+ - data/skills.ts — 스킬 목록
+ - app/globals.css — 색상 토큰 조정 시
+
+ ---
+ 검증 방법
+
+ 1. 개발 서버 실행
+ cd /Users/amiz/dev/test && npm run dev
+ 1. → 브라우저에서 http://localhost:3000 접속
+ 2. 체크리스트
+   - 4개 섹션이 모두 렌더링되고 네비 앵커가 해당 위치로 스크롤되는지
+   - 다크 모드 토글이 라이트/다크/시스템 순으로 전환되는지, 새로고침 후에도
+ 선택이 유지되는지
+   - 모바일 폭(375px)에서 레이아웃이 깨지지 않는지 (DevTools 디바이스 모드)
+   - 프로젝트 데이터를 한 줄 추가했을 때 카드가 자동 추가되는지
+   - npm run build가 에러 없이 통과하는지 (프로덕션 빌드 검증)
+   - Lighthouse Performance/Accessibility 90+ (선택적)
+ 3. 타입 검사
+ cd /Users/amiz/dev/test && npx tsc --noEmit
+
+ ---
+ 다음 단계 (이번 작업 범위 밖)
+
+ - 배포 (Vercel 연결)
+ - 블로그 섹션 추가 (MDX)
+ - i18n (한/영 토글) — 추후 필요 시
+ - 분석 도구 (Vercel Analytics, Plausible 등)
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+ Claude has written up a plan and is ready to execute. Would you like to
+ proceed?
+
+ ❯ 1. Yes, auto-accept edits
+   2. Yes, manually approve edits
+   3. No, refine with Ultraplan on Claude Code on the web
+   4. Tell Claude what to change
+      shift+tab to approve with this feedback
+```
+</ClaudeBlock>
+
+**Yes, auto-accept edits** 를 누르면 이제 구현이 시작됩니다.
+
+<ClaudeBlock>
+```
+⏺ 알겠어요. Plan 모드를 종료하고 코드 작성을 시작할게요.
+  ✦ Next.js 프로젝트 생성 중...
   ✦ app/layout.tsx 생성 중...
-  ✦ app/page.tsx 생성 중...
   ✦ components/Hero.tsx 생성 중...
+
 ```
 </ClaudeBlock>
 
@@ -542,14 +656,15 @@ Claude가 모호한 부분을 스스로 가정하지 않고 먼저 확인해요.
 
 ---
 
-## 로컬 웹서버를 실행해서 확인해요
+## 만든 웹사이트, 바로 눈으로 확인해요
 
-코드가 완성되면 직접 눈으로 확인해볼 차례예요.\
-Claude에게 개발 서버를 실행해달라고 말하면 돼요.
+Claude가 코드를 다 만들면 실제로 어떻게 보이는지 확인해볼 차례예요.\
+인터넷에 올리기 전에 내 컴퓨터에서만 미리 보는 것이에요 — 마치 인쇄하기 전에 미리보기 버튼을 누르는 것처럼요.\
+Claude에게 한 마디만 하면 바로 브라우저에서 열어줘요.
 
 <VibeBlock>
 ```
-> 로컬에서 실행해서 확인해볼게. 개발 서버 켜줘.
+로컬에서 실행해서 확인해볼게. 개발 서버 켜줘.
 ```
 </VibeBlock>
 
@@ -567,27 +682,26 @@ Claude가 아래처럼 실행해줘요:
 </ClaudeBlock>
 
 브라우저에서 **http://localhost:3000** 을 열어 직접 확인하세요.\
-잘못된 부분이 보이면 바로 말해줘도 돼요.
+Claude가 만든 웹사이트를 직접 눈으로 보면서, 마음에 안 드는 부분이 있으면 바로 말하면 돼요.\
+Claude가 수정해주고 브라우저에 실시간으로 반영돼요.
 
 <VibeBlock>
 ```
-> Hero 섹션 글씨가 너무 작아. 좀 더 크게 해줘.
-
-> 프로젝트 카드 배경색이 이상해. 다크 모드에서 텍스트가 안 보여.
+Hero 섹션 글씨가 너무 작아. 좀 더 크게 해줘.
 ```
 </VibeBlock>
 
-Claude가 수정하고 개발 서버가 자동으로 반영돼요.\
-원하는 모습이 될 때까지 계속 대화하면서 조정하면 돼요.
+<VibeBlock>
+```
+프로젝트 카드 배경색이 이상해. 다크 모드에서 텍스트가 안 보여.
+```
+</VibeBlock>
 
-<Callout type="tip">
-  브라우저를 열어두면 코드가 바뀔 때마다 자동으로 새로고침돼요.\
-  Claude에게 수정을 요청하면서 실시간으로 결과를 확인할 수 있어요.
-</Callout>
+브라우저를 열어둔 채로 수정을 요청하면, 결과가 바로 화면에 반영돼요. 원하는 모습이 나올 때까지 계속 대화하면서 조정할 수 있어요.
 
 ---
 
-## 완성됐으면 commit하고 push해요
+## 완성된 코드를 github에 올려요
 
 만족스러운 결과가 나왔다면 변경사항을 저장하고 GitHub에 올릴 차례예요.\
 Claude에게 그냥 말하면 돼요.
@@ -636,8 +750,7 @@ Claude가 변경된 파일을 확인하고 커밋 메시지를 제안해줘요:
   **"'초기 포트폴리오 세팅 완료'로 커밋해줘"** 처럼 말하면 그대로 써줘요.
 </Callout>
 
-이제 GitHub에 코드가 올라간 상태예요.\
-다음 단계에서는 Vercel에 연결해서 실제 URL로 배포해볼 거예요.
+이제 GitHub에 코드가 올라간 상태예요.
 
 ---
 
@@ -648,7 +761,7 @@ Claude가 변경된 파일을 확인하고 커밋 메시지를 제안해줘요:
 
 <VibeBlock>
 ```
-> 지금까지 만든 내용 기준으로 CLAUDE.md 업데이트해줘.
+지금까지 만든 내용 기준으로 CLAUDE.md 업데이트해줘.
 ```
 </VibeBlock>
 
