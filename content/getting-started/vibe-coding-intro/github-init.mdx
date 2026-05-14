@@ -26,14 +26,18 @@ import { Callout, Tabs } from 'nextra/components'
   아직 계정이 없다면 [시작 전 준비물 - Git & GitHub 설치하기](/getting-started/prerequisites/git-setup)를 먼저 진행해 주세요.
 </Callout>
 
-우측 상단 **`+`** 버튼 클릭 → **`New repository`** 선택하면 다음과 같은 화면이 나와요.
+우측 상단 **`+`** 버튼 클릭 → **`New repository`** 클릭하세요.
 
-![GitHub 새 저장소 만들기 버튼](https://carpentries-incubator.github.io/git-Rstudio-course/fig/github-create-a-repo.png)
+![GitHub 새 저장소 만들기 버튼](/images/new-repository.png)
 
 <Callout type="info">
   **Repository(저장소)란?** 하나의 프로젝트를 담는 폴더예요.\
   코드 파일, 이미지, 설정 파일 등을 담고, 변경 이력까지 모두 기록해줘요. 줄여서 **repo(레포)** 라고도 불러요.
 </Callout>
+
+New repository 선택하면 다음과 같은 화면이 나와요.
+
+![GitHub 새 저장소 입력 화면](/images/repository-field.png)
 
 각 항목을 아래 탭에 맞춰 입력해주세요.
 
@@ -112,7 +116,7 @@ GitHub에 있는 프로젝트를 내 컴퓨터로 복사해오는 작업을 **`g
 저장소 페이지 상단의 초록색 **`<> Code`** 버튼을 클릭해요.\
 팝업이 열리면 **`SSH`** 탭을 선택하고, 오른쪽 복사 아이콘을 클릭해요.
 
-<img src="https://docs.github.com/assets/images/help/repository/https-url-clone-cli.png" alt="GitHub 클론 URL 복사" width={360} />
+<img src="https://godngu.github.io/assets/images/blog/2021/0005/image01.png" alt="GitHub 클론 URL 복사" width={360} />
 
 <Callout type="warning">
   위 화면에서 **HTTPS 탭이 아닌 SSH 탭**을 선택해야 해요! SSH 탭을 누르면 `git@github.com:...` 형태의 주소가 나타납니다.
@@ -131,6 +135,14 @@ git@github.com:내계정명/portfolio.git
   </Tabs.Tab>
   <Tabs.Tab>
 
+**홈 폴더(Home folder)** 는 내 Mac에서 내 계정 전용 공간이에요. 터미널을 열면 기본적으로 이 위치에서 시작해요. `dev` 폴더는 이 홈 폴더 바로 안에 만들어지고, 앞으로 모든 프로젝트는 이 `~/dev` 폴더 안에서 진행할 거예요.
+
+<Callout type="tip">
+  **파인더에서 홈 폴더가 안 보이는 경우** Finder 메뉴 → **설정(Settings)** → **사이드바(Sidebar)** 탭에서 내 계정 이름(집 모양 아이콘)을 체크하면 파인더 왼쪽 사이드바에 홈 폴더가 표시돼요.
+</Callout>
+
+![Finder 설정에서 홈 폴더 표시하기](/images/finder-homefolder.png)
+
 터미널을 열고 아래 명령어를 순서대로 입력해요.
 
 <ShellBlock>
@@ -143,10 +155,6 @@ cd dev
 **`mkdir dev`** — `dev`라는 이름의 폴더를 만들어요.
 
 **`cd dev`** — 그 폴더 안으로 이동해요.
-
-<Callout type="info">
-  `dev`는 development(개발)의 줄임말이에요. 앞으로 만드는 모든 프로젝트를 이 폴더 안에서 관리할 거예요.
-</Callout>
 
   </Tabs.Tab>
   <Tabs.Tab>
@@ -188,25 +196,161 @@ Antigravity를 실행한 후 **`Open Folder`** 를 클릭하고 `dev/portfolio` 
 
 ---
 
-## 3. 클로드 코드로 git 명령하기
+## 3. Git 기본 흐름 이해하기
 
-프로젝트 폴더에서 `claude` 를 실행하면 git 명령어를 직접 외울 필요 없이 말로 할 수 있어요.
+![Git 동작 원리](https://rawbinn.com/static/images/blogs/how_git_works.svg)
+
+코드를 수정하고 GitHub에 올리기까지는 크게 세 단계예요.\
+마치 **택배를 보내는 과정**과 같아요.
+
+| 단계 | Git 명령어 | 택배 비유 | 저장 위치 | 하는 일 |
+|------|-----------|-----------|-----------|---------|
+| 1단계 | `git add` | 박스에 물건 담기 | 내 컴퓨터 | 저장할 파일을 선택해요 |
+| 2단계 | `git commit` | 박스 봉인하고 송장 붙이기 | 내 컴퓨터 | "이런 내용을 변경했다"는 이력을 기록해요 |
+| 3단계 | `git push` | 택배 발송 | **GitHub(인터넷)** | 내 컴퓨터의 이력을 GitHub에 올려요 |
+
+<Callout type="info">
+  **add와 commit은 아직 내 컴퓨터 안에서만 일어나는 일이에요.**\
+  push를 해야 비로소 GitHub에 올라가요. 인터넷이 끊겨도 add·commit은 할 수 있지만, push는 인터넷이 연결돼야 해요.
+</Callout>
+
+반대로 GitHub에서 내 컴퓨터로 최신 내용을 받아올 때는 `git pull` — 택배를 받는 것과 같아요.
+
+<Callout type="tip">
+  **클로드코드를 쓰면 이 과정을 직접 할 필요가 없어요.** "변경사항 커밋하고 푸시해줘"라고 말하면 add → commit → push를 한 번에 처리해줘요.
+</Callout>
 
 <ClaudeGitDemo />
 
-| git 명령어 | 하고 싶은 것 | 클로드 코드에게 이렇게 말해요 |
-|---|---|---|
-| `git add . && git commit` | 변경사항 저장하기 | "변경사항 확인하고 커밋 메시지 작성해서 커밋해줘" |
-| `git add . && git commit` | 메시지 직접 지정해서 저장 | "변경사항 커밋해줘, 메시지는 'feat: 메인 페이지 추가'로 해줘" |
-| `git push` | GitHub에 올리기 | "현재 브랜치 GitHub에 푸시해줘" |
-| `git pull` | 최신 내용 가져오기 | "GitHub에서 최신 내용 받아와줘" |
-| `git checkout -b` | 새 브랜치 만들기 | "feature/메인페이지 브랜치 만들고 이동해줘" |
-| `git branch` | 브랜치 목록 보기 | "지금 브랜치 목록 보여줘" |
-| `git status` | 변경된 파일 확인 | "어떤 파일이 수정됐는지 알려줘" |
-| `gh pr create` | PR 만들기 | "변경사항 요약해서 PR 만들어줘" |
-| `git revert HEAD` | 이전 상태로 되돌리기 | "마지막 커밋 전으로 되돌려줘" |
+### 실제로 어떻게 말하면 될까요?
+
+<Tabs items={["저장(커밋)하기", "GitHub에 올리기(푸시)", "최신 내용 받기(풀)", "되돌리기"]}>
+  <Tabs.Tab>
+
+<VibeBlock>
+```
+변경사항 확인하고 적절한 커밋 메시지로 커밋해줘
+```
+</VibeBlock>
+
+클로드코드가 어떤 파일이 바뀌었는지 확인하고, `git add`부터 `git commit`까지 한 번에 처리해줘요.
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+
+<VibeBlock>
+```
+현재 브랜치를 GitHub에 푸시해줘
+```
+</VibeBlock>
+
+내 컴퓨터의 변경사항을 GitHub에 올려요. 처음 올리는 브랜치라면 설정도 자동으로 처리해줘요.
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+
+<VibeBlock>
+```
+GitHub에서 최신 내용 받아와줘
+```
+</VibeBlock>
+
+다른 사람이 GitHub에 올린 변경사항을 내 컴퓨터로 가져와요.
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+
+<VibeBlock>
+```
+마지막으로 저장한 것 전 상태로 되돌려줘
+```
+</VibeBlock>
+
+코드를 잘못 수정했을 때 이전 상태로 되돌려요. Git의 가장 강력한 기능 중 하나예요.
+
+  </Tabs.Tab>
+</Tabs>
+
 
 ---
 
-이제 GitHub 저장소가 내 컴퓨터와 연결되었어요! 🎉\
+## 4. 직접 해보기 — 파일 만들고 GitHub에 올려보기
+
+방금 배운 흐름을 직접 체험해봐요.\
+`dev/portfolio` 폴더에서 파일을 하나 만들고, 커밋하고, GitHub에 올린 뒤 실제로 반영됐는지 확인해볼 거예요.
+
+<Callout type="info">
+  Antigravity에서 `dev/portfolio` 폴더를 열고, 클로드코드 패널을 실행한 상태에서 진행하세요.
+</Callout>
+
+### 1. 파일 만들기
+
+클로드코드 패널에서 아래처럼 말해보세요.
+
+<VibeBlock>
+```
+hello.txt 파일을 만들고 안에 "안녕하세요, 첫 번째 커밋입니다!"라고 써줘
+```
+</VibeBlock>
+
+`portfolio` 폴더 안에 `hello.txt` 파일이 생겼을 거예요.
+
+### 2. 커밋하기
+
+파일을 만들었으면 이력으로 저장해볼게요.
+
+<VibeBlock>
+```
+방금 만든 파일 커밋해줘
+```
+</VibeBlock>
+
+클로드코드가 `git add`와 `git commit`을 자동으로 처리해줘요.\
+"어떤 커밋 메시지로 할까요?"라고 물어보면 원하는 내용을 말하거나, 그냥 "알아서 해줘"라고 해도 돼요.
+
+### 3. GitHub에 올리기 (푸시)
+
+커밋은 아직 내 컴퓨터에만 있어요. GitHub에 올려볼게요.
+
+<VibeBlock>
+```
+GitHub에 푸시해줘
+```
+</VibeBlock>
+
+### 4. GitHub에서 확인하기
+
+브라우저에서 `github.com/내계정명/portfolio`로 이동하세요.\
+방금 만든 `hello.txt` 파일이 올라와 있으면 성공이에요! 🎉
+
+<Callout type="tip">
+  파일 옆에 방금 입력한 커밋 메시지가 함께 표시돼요. 언제 무엇을 바꿨는지 이력이 기록된 거예요.
+</Callout>
+
+---
+
+## 5. README.md 수정해서 올려보기
+
+저장소를 만들 때 자동으로 생성된 `README.md` 파일을 수정하고 GitHub에 올려볼게요.\
+README는 GitHub 저장소 페이지에 바로 표시되는 소개 페이지예요. 수정하면 바로 반영되는 걸 눈으로 확인할 수 있어요.
+
+<VibeBlock>
+```
+README.md 파일을 열고, 내용을 "안녕하세요! 바이브코딩으로 만드는 포트폴리오입니다."로 바꿔줘
+```
+</VibeBlock>
+
+파일이 수정됐으면 커밋하고 푸시할게요.
+
+<VibeBlock>
+```
+README.md 변경사항 커밋하고 GitHub에 푸시해줘
+```
+</VibeBlock>
+
+브라우저에서 `github.com/내계정명/portfolio`를 새로고침해보세요.\
+저장소 페이지 하단에 방금 수정한 내용이 바로 반영돼 있을 거예요. 🎉
+
+이제 GitHub 저장소가 내 컴퓨터와 연결되었어요!\
 앞으로 바이브코딩으로 만든 코드는 모두 이 폴더에 저장되고, GitHub에 올려서 관리할 수 있어요.
+

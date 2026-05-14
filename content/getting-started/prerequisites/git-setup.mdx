@@ -9,13 +9,15 @@ import { Callout, Steps, Tabs } from 'nextra/components'
 
 <Screenshot src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvB4PVpG6ojDsNJGQIVW2q-2qAXc6M8ZEmkw&s" alt="Git & GitHub" />
 
-Git은 파일(특히 코드)의 변경 이력을 기록하고 관리하는 **버전 관리 시스템(VCS)** 입니다.\
-개발하다 보면 이런 상황이 자주 생깁니다:
-- 코드 수정하다가 망함 → 이전 상태로 되돌리고 싶다
-- 여러 사람이 동시에 작업 → 누가 뭘 바꿨는지 알아야 함
-- 기능별로 따로 작업 → 나중에 합치기 필요
+구글 독스에서 문서를 편집하면 **"버전 기록"** 이 자동으로 남아요.\
+언제, 누가, 무엇을 바꿨는지 확인하고 이전 상태로 되돌릴 수 있죠.
 
-Git이 이걸 전부 해결해줍니다.
+**Git은 코드 파일을 위한 버전 기록 시스템이에요.**\
+코드 파일도 문서처럼 수시로 바뀌고, 여러 사람이 함께 작업하기 때문에 이런 이력 관리가 꼭 필요합니다.
+
+<Callout type="info">
+  **GitHub는 Git의 저장 공간이에요.** Git이 내 컴퓨터에서 이력을 기록하는 도구라면, GitHub는 그 이력을 인터넷 어딘가에 안전하게 보관해두는 저장소입니다. 구글 독스에서 문서가 구글 서버에 저장되는 것과 같은 개념이에요.
+</Callout>
 
 ## GitHub 가입
 
@@ -117,88 +119,22 @@ Hi username! You've successfully authenticated, but GitHub does not provide shel
 </div>
 </TimelineTabs>
 
-<Callout type="warning">
-  다음 단계는 이후 실습 때 함께 진행할 예정입니다. 지금은 넘어가세요.
-</Callout>
-
-
-## GitHub에서 새 저장소 만들기
-
-...
-
-## GitHub 저장소를 로컬로 가져오기
-
-<ShellBlock>
-```bash
-git clone git@github.com:사용자명/저장소명.git
-cd 저장소명
-```
-</ShellBlock>
-
-이 폴더는 이제 GitHub 원격 저장소와 연결된 상태입니다.
-
-## 클로드코드로 Git 사용하기
-
-![Git 동작 원리](https://rawbinn.com/static/images/blogs/how_git_works.svg)
-
-클로드코드는 Git에 대한 별도 설정이 필요 없습니다.\
-프로젝트 폴더에서 클로드코드를 실행하면 자연어로 바로 Git 작업을 할 수 있습니다.
-
-<ShellBlock>
-```bash
-cd 내프로젝트
-claude
-```
-</ShellBlock>
-
-<Tabs items={["커밋하기", "브랜치 만들기", "푸시하기", "PR 생성까지 한 번에"]}>
-  <Tabs.Tab>
-
-```
-> 변경사항을 확인하고 적절한 커밋 메시지로 커밋해줘
-```
-
-수동으로 스테이징한 파일이 없으면 Claude가 변경사항을 검토해 `git add`까지 자동으로 처리합니다.
-
-`/commit` 슬래시 커맨드로도 빠르게 커밋할 수 있습니다.
-
-  </Tabs.Tab>
-  <Tabs.Tab>
-
-```
-> feature/user-auth라는 브랜치를 만들고 거기로 이동해줘
-```
-
-새 브랜치를 만들고 즉시 이동까지 한 번에 처리됩니다.
-
-  </Tabs.Tab>
-  <Tabs.Tab>
-
-```
-> 현재 브랜치를 origin에 푸시해줘
-```
-
-처음 푸시하는 브랜치라면 upstream 설정도 자동으로 처리합니다.
-
-  </Tabs.Tab>
-  <Tabs.Tab>
-
-```
-> 이 브랜치를 푸시하고 변경사항 요약으로 PR을 만들어줘
-```
-
-GitHub CLI가 설치되어 있으면 푸시부터 PR 생성까지 한 번에 완료됩니다.
-
-  </Tabs.Tab>
-</Tabs>
 
 ## GitHub CLI 설치하기
 
-GitHub CLI를 설치하면 터미널에서 PR 생성, 이슈 관리 등을 명령어 하나로 처리할 수 있습니다.\
-클로드코드의 PR 자동화 기능도 내부적으로 GitHub CLI를 활용합니다.
+GitHub 웹사이트에서 하는 작업들 — PR 만들기, 이슈 등록, 저장소 관리 — 을 **터미널 명령어로 바로 처리**할 수 있게 해주는 도구예요.
 
-**PR(Pull Request)이란?** : "내가 이런 코드를 변경했는데, 검토하고 메인 코드에 합쳐주세요"라는 요청서입니다.\
-별도 브랜치에서 작업한 뒤 main에 합치는 과정에서 사용합니다.
+<Callout type="info">
+  **CLI(Command Line Interface)** 란 마우스로 클릭하는 대신 명령어를 입력해서 프로그램을 조작하는 방식이에요. GitHub CLI는 GitHub 웹사이트를 터미널에서 쓸 수 있게 해주는 원격 제어기 같은 거예요.
+</Callout>
+
+클로드코드에게 "PR 만들어줘"라고 하면, 클로드코드가 내부적으로 GitHub CLI를 이용해 대신 처리해줍니다.\
+GitHub CLI가 없으면 클로드코드의 PR 자동화 기능을 쓸 수 없어요.
+
+<Callout type="tip">
+  **PR(Pull Request)이란?** 내가 작업한 코드를 메인 코드에 합쳐달라는 요청이에요.\
+  "이런 기능을 추가했는데 검토하고 반영해주세요"라고 GitHub에 알리는 방식이에요.
+</Callout>
 
 <PRFlowDiagram />
 
