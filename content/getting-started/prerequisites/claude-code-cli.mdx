@@ -214,6 +214,22 @@ Quick safety check: Is this a project you created or one you trust?
 ```
 </SlashBlock>
 
+클로드코드가 상태 표시줄 스크립트를 만들기 위해 명령어를 실행해도 되는지 물어봐요.
+
+```output
+Claude wants to execute a bash command:
+  bash ~/.claude/statusline-command.sh
+
+❯ 1. Yes          → 이번 한 번만 허용
+  2. Yes, always  → 앞으로 이 명령어는 항상 자동으로 허용 (다시 안 물어봄)
+  3. No           → 이번엔 실행하지 않음
+```
+
+<Callout type="tip">
+  **2번 Yes, always**를 선택하면 앞으로 같은 명령어가 나올 때 자동으로 허용돼요.\
+  처음엔 1번으로 확인하고, 익숙해지면 2번을 선택해도 괜찮아요.
+</Callout>
+
 설정이 완료되면 다음과 같이 확인 메시지가 출력됩니다.
 
 ```output
