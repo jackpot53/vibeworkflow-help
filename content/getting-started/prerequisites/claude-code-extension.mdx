@@ -7,26 +7,39 @@ import { Callout, Steps } from 'nextra/components'
 
 # 클로드 코드 익스텐션 설치하기
 
-Antigravity의 가장 큰 장점 중 하나는 VS Code 기반의 포크(fork)라는 점입니다.\
-VS Code의 모든 확장 프로그램을 그대로 사용할 수 있어, Antigravity 안에서 클로드코드를 직접 실행할 수 있습니다.\
-하나의 워크스페이스에서 Gemini와 Claude, 두 AI를 동시에 활용할 수 있는 환경이 만들어집니다.
+Antigravity는 전 세계에서 가장 많이 쓰이는 코드 편집기인 **VS Code를 기반으로 만들어진 편집기**예요.
 
-## 익스텐션 패널 열기
+<Callout type="info">
+  **포크(fork)가 뭔가요?** 기존 프로그램의 소스코드를 그대로 가져와서, 거기에 새로운 기능을 얹어 새 프로그램을 만드는 방식이에요. 레시피를 그대로 가져다가 재료를 몇 가지 더 추가한 나만의 요리를 만드는 것과 비슷해요. Antigravity는 VS Code라는 레시피를 기반으로, AI 기능을 강화해서 만든 편집기예요.
+</Callout>
 
-왼쪽 사이드바의 **익스텐션 패널 열기 아이콘**(<img src="https://raw.githubusercontent.com/microsoft/vscode-icons/main/icons/dark/extensions.svg" style={{display:'inline', height:'1em', verticalAlign:'middle', filter:'invert(1)'}} /> 네 개의 블록이 퍼즐처럼 맞물린 모양)을 클릭하여 확장 패널을 여세요.\
-이곳에서 외부 도구를 검색하고 설치할 수 있으며, 설치 후 API 키를 직접 연결해 사용하는 방식입니다.
+덕분에 VS Code용으로 만들어진 수천 개의 확장 프로그램을 Antigravity에서도 그대로 쓸 수 있어요.\
+클로드코드 익스텐션도 그 중 하나로, 설치하면 편집기를 벗어나지 않고 Claude와 대화하면서 코딩할 수 있어요.\
+하나의 화면에서 Gemini와 Claude, 두 AI를 동시에 활용할 수도 있습니다.
+
+## 확장 프로그램(익스텐션)이란?
+
+확장 프로그램은 편집기에 **추가로 설치하는 기능 모음**이에요.\
+스마트폰에서 기본 앱 외에 카카오톡, 유튜브 같은 앱을 추가로 설치하는 것과 똑같은 개념이에요.
+
+Antigravity 자체는 코드를 작성하고 보여주는 기본 편집기예요.\
+여기에 클로드코드 확장 프로그램을 설치하면, 편집기 안에서 바로 Claude와 대화하며 코딩할 수 있는 기능이 추가되는 거예요.
+
+## 클로드코드 검색 & 설치
+
+왼쪽 사이드바의 **익스텐션 패널 열기 아이콘**(<img src="https://raw.githubusercontent.com/microsoft/vscode-icons/main/icons/dark/extensions.svg" style={{display:'inline', height:'1em', verticalAlign:'middle', filter:'invert(1)'}} /> 네 개의 블록이 퍼즐처럼 맞물린 모양)을 클릭하세요.
 
 <Callout type="info">
   단축키 `Cmd+Shift+X`(Mac) / `Ctrl+Shift+X`(Windows)로도 바로 열 수 있습니다.
 </Callout>
 
-## 클로드코드 검색 & 설치
+패널 상단 검색창에 `claude code`를 입력하세요.
 
-검색창에 `claude code` 를 입력하고 공식 Anthropic 확장 프로그램을 설치하세요.
+![클로드코드 검색 화면](/images/vscode-extension-install.jpg)
 
-![클로드코드 검색 화면](https://resource.lilys.ai/thumbnails/yMJcHcCbgi4/289.jpg)
+검색 결과 목록에서 **Claude Code for VS Code** (게시자: Anthropic)를 클릭한 뒤, **Install** 버튼을 클릭해 설치를 완료하세요.
 
-설치하면 Antigravity의 통합 터미널에서 IDE를 벗어나지 않고 클로드코드 CLI 세션을 직접 실행할 수 있습니다.
+설치가 끝나면 다른 프로그램을 열지 않아도 Antigravity 안에서 바로 Claude와 대화하며 코딩을 시작할 수 있어요.
 
 
 ## 클로드코드 익스텐션 패널 열기
@@ -51,6 +64,17 @@ VS Code의 모든 확장 프로그램을 그대로 사용할 수 있어, Antigra
 <Callout type="tip">
   Claude 패널은 드래그로 원하는 위치에 자유롭게 재배치할 수 있습니다.
 </Callout>
+
+## 이제 GUI로 바이브코딩!
+
+클로드코드는 원래 터미널에서 명령어를 입력하는 **CLI(Command Line Interface) 도구**예요.\
+하지만 익스텐션을 설치하면 터미널 없이도 **편집기 안의 패널에서 마우스와 키보드만으로** Claude와 대화하며 코딩할 수 있어요.
+
+<Callout type="tip">
+  CLI를 몰라도 괜찮아요. 익스텐션 패널이 터미널의 역할을 대신하기 때문에, 명령어 없이도 바이브코딩의 모든 기능을 그대로 사용할 수 있습니다.
+</Callout>
+
+![Antigravity에서 클로드코드 GUI 패널로 바이브코딩하는 화면](/images/claude-code-extension.png)
 
 ## 온보딩 체크리스트 확인
 
