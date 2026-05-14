@@ -7,6 +7,7 @@ import { CommandCard } from '@/components/command-card'
 import { Screenshot } from '@/components/screenshot'
 import { StepBadge } from '@/components/step-badge'
 import { GitFlowDiagram } from '@/components/git-flow-diagram'
+import { StackArchitectureDiagram } from '@/components/stack-architecture-diagram'
 import { PRFlowDiagram } from '@/components/pr-flow-diagram'
 import { HeroSection } from '@/components/hero-section'
 import { LottieAnimation } from '@/components/lottie-animation'
@@ -40,6 +41,7 @@ import { TableBasicDemo, TableStatusDemo, TableFooterDemo } from '@/components/t
 import { DataTableDemo, DataTableColumnsDemo, DataTableHookDemo, DataTableToolbarDemo, DataTableRenderDemo, DataTablePaginationDemo } from '@/components/data-table-demo'
 import { FileTree } from '@/components/file-tree'
 import { AutoMemorySimDemo } from '@/components/auto-memory-sim'
+import { WebLayersDemo } from '@/components/web-layers-demo'
 import { NavbarDemo, HeroDemo, FeaturesDemo, HowItWorksDemo, PricingDemo, TestimonialsDemo, FAQDemo, CTADemo, FooterDemo } from '@/components/section-demo'
 
 const SHELL_LANGS = new Set(['shell', 'bash', 'zsh', 'sh', 'fish'])
@@ -88,6 +90,7 @@ export function useMDXComponents() {
     ComponentNameGrid,
     PlanTable,
     GitFlowDiagram,
+    StackArchitectureDiagram,
     PRFlowDiagram,
     HeroSection,
     LottieAnimation,
@@ -145,6 +148,7 @@ export function useMDXComponents() {
     DataTableRenderDemo,
     DataTablePaginationDemo,
     AutoMemorySimDemo,
+    WebLayersDemo,
     NavbarDemo,
     HeroDemo,
     FeaturesDemo,
