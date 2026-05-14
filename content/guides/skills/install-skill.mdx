@@ -5,4 +5,150 @@ description: 다른 사람이 만든 스킬을 설치하고 팀과 공유하는 
 
 # 스킬 설치하기
 
-준비 중이에요.
+스킬은 직접 만들 수도 있지만, 다른 사람이 만든 스킬을 가져다 쓸 수도 있어요.
+설치 방법은 두 가지예요.
+
+---
+
+## 방법 1 — npx skills CLI (가장 쉬운 방법)
+
+터미널에 명령어 한 줄만 입력하면 GitHub에 올라온 스킬을 바로 설치할 수 있어요.\
+코드를 전혀 몰라도 괜찮아요.
+
+<ShellBlock>
+```bash
+# 인터랙티브 모드로 설치 (직접 선택하며 진행)
+npx skills add remotion-dev/skills
+
+# 특정 스킬만 골라서 설치
+npx skills add vercel-labs/agent-skills --skill frontend-design
+
+# 전역 설치 (내 컴퓨터의 모든 프로젝트에서 사용)
+npx skills add remotion-dev/skills -g
+
+# 확인 없이 자동으로 설치
+npx skills add remotion-dev/skills -y
+```
+</ShellBlock>
+
+**`npx skills add` 옵션**
+
+| 옵션 | 설명 |
+|------|------|
+| `-s, --skill <이름>` | 레포 안의 특정 스킬만 설치 |
+| `-g, --global` | 전역 설치 (모든 프로젝트에서 사용) |
+| `-a, --agent <에이전트>` | 특정 AI 에이전트에만 설치 (예: `claude-code`) |
+| `-l, --list` | 레포에서 설치 가능한 스킬 목록 확인 |
+| `--all` | 레포의 모든 스킬을 모든 에이전트에 설치 |
+| `--copy` | 파일을 직접 복사해서 설치 |
+| `-y, --yes` | 모든 확인 질문에 자동으로 예 |
+
+설치할 때 두 가지를 선택하게 돼요.
+
+| 선택 항목 | 옵션 | 설명 |
+|-----------|------|------|
+| **설치 범위** | 프로젝트 / 전역 | 이 프로젝트에서만 쓸지, 모든 프로젝트에서 쓸지 |
+| **설치 방법** | 심볼릭 링크 / 복사 | 원본을 가리킬지, 직접 복사할지 |
+
+<Callout type="tip">
+설치 방법은 **심볼릭 링크**를 권장해요.
+
+심볼릭 링크는 파일을 직접 복사하지 않고, 원본 파일을 가리키는 **바로가기**를 만드는 방식이에요. 바탕화면에 있는 앱 아이콘처럼요 — 아이콘을 클릭하면 실제 앱이 실행되지만, 아이콘 자체가 앱은 아닌 것처럼요.
+
+심볼릭 링크로 설치하면 스킬이 업데이트될 때 원본만 바꾸면 돼서, 여러 프로젝트에서 쓰더라도 한 번에 최신 버전이 반영돼요. 복사 방식은 업데이트할 때마다 다시 복사해야 해요.
+
+실제로 설치하면 폴더 구조가 이렇게 돼요.
+
+```
+# 원본 파일 (GitHub에서 받아온 스킬)
+~/.cache/skills/remotion-dev/skills/
+└── frontend-design/
+    └── SKILL.md          ← 실제 파일
+
+# Claude가 바라보는 위치 (바로가기만 있음)
+~/.claude/skills/
+└── frontend-design -> ~/.cache/skills/remotion-dev/skills/frontend-design/
+                       ↑ 이 화살표가 심볼릭 링크예요
+```
+
+`->` 표시가 심볼릭 링크예요. Claude가 `~/.claude/skills/frontend-design`을 열면, 자동으로 원본 위치의 파일을 읽어와요. 원본이 업데이트되면 바로가기가 가리키는 내용도 자동으로 바뀌어요.
+</Callout>
+
+---
+
+## 방법 2 — 직접 복사해서 추가하기
+
+CLI 없이 스킬 파일을 직접 원하는 위치에 넣는 방법이에요.\
+GitHub에서 스킬 폴더를 다운로드하거나, 직접 만든 파일을 아래 경로에 두면 돼요.
+
+| 설치 위치 | 경로 | 적용 범위 |
+|-----------|------|-----------|
+| 전역 | `~/.claude/skills/스킬이름/SKILL.md` | 내 컴퓨터의 모든 프로젝트 |
+| 프로젝트 | `.claude/skills/스킬이름/SKILL.md` | 현재 프로젝트만 |
+
+<Callout type="info">
+`.claude/skills/`에 설치하면 Git으로 팀 전체가 같은 스킬을 공유할 수 있어요.
+</Callout>
+
+---
+
+## 스킬 마켓플레이스
+
+[skills.sh](https://skills.sh)는 Claude Code를 비롯한 AI 에이전트용 스킬을 모아둔 오픈소스 마켓플레이스예요.\
+창작(아트, 음악, 디자인), 개발(테스트, 코드 리뷰, Git 자동화), 비즈니스(커뮤니케이션, 데이터 처리) 등 수천 개의 스킬을 찾을 수 있어요.
+
+---
+
+## 관리 명령어
+
+### list (ls) — 설치된 스킬 목록 확인
+
+<ShellBlock>
+```bash
+npx skills list              # 전체 목록
+npx skills list -g           # 전역 스킬만
+npx skills list -p           # 현재 프로젝트 스킬만
+npx skills list -a claude-code  # 특정 에이전트 스킬만
+```
+</ShellBlock>
+
+### find — 스킬 검색
+
+<ShellBlock>
+```bash
+npx skills find              # 인터랙티브 검색
+npx skills find typescript   # 키워드로 검색
+```
+</ShellBlock>
+
+### update — 스킬 업데이트
+
+<ShellBlock>
+```bash
+npx skills update            # 모든 스킬 업데이트
+npx skills update -g         # 전역 스킬만 업데이트
+npx skills update -p         # 현재 프로젝트 스킬만 업데이트
+npx skills update -y         # 확인 없이 자동 업데이트
+```
+</ShellBlock>
+
+### remove (rm) — 스킬 제거
+
+<ShellBlock>
+```bash
+npx skills remove 스킬이름         # 스킬 제거
+npx skills remove 스킬이름 -g      # 전역에서 제거
+npx skills remove 스킬이름 --all   # 모든 스킬 제거
+```
+</ShellBlock>
+
+### init — 새 스킬 템플릿 생성
+
+직접 스킬을 만들 때 시작점이 되는 `SKILL.md` 파일을 자동으로 만들어줘요.
+
+<ShellBlock>
+```bash
+npx skills init              # 현재 폴더에 SKILL.md 생성
+npx skills init 스킬이름     # 스킬이름/ 폴더 안에 SKILL.md 생성
+```
+</ShellBlock>
